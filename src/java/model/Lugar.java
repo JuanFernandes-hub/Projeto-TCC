@@ -10,13 +10,22 @@ package model;
  * @author juann
  */
 public class Lugar {
+    private int idLugar;
     private String nome;
     private float avaliacao;
-    private String categoria;
+    private Categoria categoria;
     private Localizacao localizacao;
 
     public Lugar() {
         this.avaliacao = 0;
+    }
+
+    public int getIdLugar() {
+        return idLugar;
+    }
+
+    public void setIdLugar(int idLugar) {
+        this.idLugar = idLugar;
     }
 
     public String getNome() {
@@ -35,13 +44,15 @@ public class Lugar {
         this.avaliacao = avaliacao;
     }
 
-    public String getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+
+    
 
     public Localizacao getLocalizacao() {
         return localizacao;

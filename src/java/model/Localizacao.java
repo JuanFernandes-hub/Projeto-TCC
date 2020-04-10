@@ -11,12 +11,20 @@ package model;
  */
 public class Localizacao {
     
+    private int idLocalizacao;
     private String rua;
-    private String cidade;
-    private String estado;
+    private Cidade cidade;
     private String complemento;
 
     public Localizacao() {
+    }
+
+    public int getIdLocalizacao() {
+        return idLocalizacao;
+    }
+
+    public void setIdLocalizacao(int idLocalizacao) {
+        this.idLocalizacao = idLocalizacao;
     }
 
     public String getRua() {
@@ -27,20 +35,12 @@ public class Localizacao {
         this.rua = rua;
     }
 
-    public String getCidade() {
+    public Cidade getCidade() {
         return cidade;
     }
 
-    public void setCidade(String cidade) {
+    public void setCidade(Cidade cidade) {
         this.cidade = cidade;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
     }
 
     public String getComplemento() {
