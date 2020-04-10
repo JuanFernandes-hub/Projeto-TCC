@@ -4,6 +4,10 @@
     Author     : juann
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="DAO.CidadeDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="model.Cidade"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,18 +19,21 @@
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> <!-- pasta Bootstrap -->
         <link rel="stylesheet" href="css/EstilosCadastro.css"> <!-- css entrar -->
         <link rel="stylesheet" href="css/EstilosRodape.css"> <!-- css do rodape -->
-        
+
         <!--
-        <% 
-        //    ArrayList<Cidade> cidade =  (ArrayList<Cidade>) request.getAttribute("cidade");
-            
-        %>
+        
         -->
     </head>
     <body>
-        
+
+
         <div class="container">
 
+            <%!
+                CidadeDAO dao = new CidadeDAO();
+                List<Cidade> cidades = dao.getCidade();
+
+            %>
 
             <form action="" method="post" class="col-sm-6">
                 <div class="row justify-content-md-center">
@@ -41,12 +48,13 @@
                 <div class="form-group">
                     <label for="categoria" class="" style="color: black;">Categoria</label>
                     <select class="form-control" name="nCategoria" id="categoria">
+
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
                     </select>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="estado" class="" style="color: black;">Estado</label>
                     <select class="form-control" name="nEstado" id="estado">
@@ -55,21 +63,26 @@
                         <option>3</option>
                     </select>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="cidade" class="" style="color: black;">Cidade</label>
                     <select class="form-control" name="nCidade" id="cidade">
+                        <%
+                            for (Cidade cidade : cidades) {
+                        %><option><% out.print(cidade.getNome());
+                            }
+                            %></option>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
                     </select>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="rua" class="" style="color: black;">Rua (opcional)</label>
                     <input type="text" class="form-control" name="nRua" id="rua" placeholder="R. Rio Branco">
                 </div>
-                
+
                 <div class="form-group">
                     <label for="complemento" class="" style="color: black;">Complemento (opcional)</label>
                     <textarea class="form-control" name="nRua" id="rua" placeholder="Digite alguns detalhes." rows="5"></textarea>

@@ -25,13 +25,14 @@ public class Testes {
             
         }
         
+        /*
         EstadoDAO dao1 = new EstadoDAO();
         List<Estado> estados = dao1.getEstado();
 
         for (Estado estado : estados) {
             System.out.print(estado.getNome());
             
-        }
+        }*/
         
     }
 
