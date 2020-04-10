@@ -1,0 +1,44 @@
+.janelaLogin{
+    background-color: #4A44F2;
+    color: white;
+    text-align: center;
+    border-radius: 12px;
+    height: 320px;
+    max-height: 350px;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.group-form>input:enabled{
+    background-color: #4A44F2;
+    color: #ffffff;
+    padding-right: 50px;
+    padding-left: 50px;
+}
+
+.group-form>label{
+    color: #ffffff;
+    text-align: left;
+}
+
+.group-form>::placeholder{
+    color: #ffffff;
+    text-align: left;
+}
+
+.btn-botaozinho {
+    margin-top: 10px;
+    color: #ffffff;
+    background-color: #4A44F2;
+    border-color: #ffffff;
+    padding-right: 50px;
+    padding-left: 50px;
+    margin-bottom: 20px
+}
+
+.btn-botaozinho:hover {
+    color: #ffffff;
+    background-color: #4A44F2;
+    border-color: #ffffff;
+}
