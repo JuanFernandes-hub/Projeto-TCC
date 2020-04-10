@@ -4,6 +4,8 @@
     Author     : juann
 --%>
 
+<%@page import="model.Estado"%>
+<%@page import="DAO.EstadoDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="DAO.CidadeDAO"%>
 <%@page import="java.util.ArrayList"%>
@@ -32,6 +34,9 @@
             <%!
                 CidadeDAO dao = new CidadeDAO();
                 List<Cidade> cidades = dao.getCidade();
+                
+                EstadoDAO daoEstado = new EstadoDAO();
+                List<Estado> estados = daoEstado.getEstado();
 
             %>
 
@@ -58,6 +63,11 @@
                 <div class="form-group">
                     <label for="estado" class="" style="color: black;">Estado</label>
                     <select class="form-control" name="nEstado" id="estado">
+                        <%
+                            for (Estado estado : estados) {
+                        %><option><% out.print(estado.getNome());
+                            }
+                            %></option>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
