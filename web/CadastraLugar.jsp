@@ -4,6 +4,8 @@
     Author     : juann
 --%>
 
+<%@page import="model.Categoria"%>
+<%@page import="DAO.CategoriaDAO"%>
 <%@page import="model.Estado"%>
 <%@page import="DAO.EstadoDAO"%>
 <%@page import="java.util.List"%>
@@ -37,6 +39,9 @@
                 
                 EstadoDAO daoEstado = new EstadoDAO();
                 List<Estado> estados = daoEstado.getEstado();
+                
+                CategoriaDAO daoCategoria = new CategoriaDAO();
+                List<Categoria> categorias = daoCategoria.getCategoria();
 
             %>
 
@@ -53,10 +58,11 @@
                 <div class="form-group">
                     <label for="categoria" class="" style="color: black;">Categoria</label>
                     <select class="form-control" name="nCategoria" id="categoria">
-
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
+                        <%
+                            for (Categoria categoria : categorias) {
+                        %><option><% out.print(categoria.getNome());
+                            }
+                            %></option>
                     </select>
                 </div>
 
@@ -68,9 +74,6 @@
                         %><option><% out.print(estado.getNome());
                             }
                             %></option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
                     </select>
                 </div>
 
