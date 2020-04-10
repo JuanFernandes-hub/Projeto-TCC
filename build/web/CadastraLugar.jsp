@@ -57,12 +57,18 @@
 
                 <div class="form-group">
                     <label for="categoria" class="" style="color: black;">Categoria</label>
-                    <select class="form-control" name="nCategoria" id="categoria">
+                    <select class="form-control" name="nCategoria" id="categoria" onchange="pegaCategoria(this.value)">
                         <%
                             for (Categoria categoria : categorias) {
-                        %><option><% out.print(categoria.getNome());
+                                %><option><% out.print(categoria.getNome());
                             }
                             %></option>
+                        
+                        <script type="text/javascript">
+                            function pegaCategoria(valor){
+                                console.log(valor);
+                            }
+                        </script>
                     </select>
                 </div>
 
