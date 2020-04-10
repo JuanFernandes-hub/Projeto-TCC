@@ -60,7 +60,7 @@
                     <select class="form-control" name="nCategoria" id="categoria" onchange="pegaCategoria(this.value)">
                         <%
                             for (Categoria categoria : categorias) {
-                                %><option><% out.print(categoria.getNome());
+                                %><option value="<% out.print(categoria.getIdCategoria()); %>"><% out.print(categoria.getNome());
                             }
                             %></option>
                         
