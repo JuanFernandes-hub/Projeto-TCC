@@ -9,7 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import model.Login;
+import java.util.ArrayList;
+import java.util.List;
+import model.Categoria;
 
 /**
  *
@@ -18,27 +20,59 @@ import model.Login;
 public class CategoriaDAO {
     static Connection c;
     
-    public Login getLugar(String usuario, String senha){
-        String sql = "SELECT * FROM login WHERE usuario = ? AND senha = ?";
+    public static boolean insereCategoria(Categoria categoria){
+        c = ConnectionFactory.getConnection();
+        
+        String sql = "INSERT INTO categoria(nome) "
+                + "VALUES (?);";
+        try{
+            PreparedStatement ppstt = c.prepareStatement(sql);
+            ppstt.setString(1,categoria.getNome());
+            ppstt.execute();
+            ppstt.close();
+        }catch(SQLException e){
+            return false;
+        }
+        return true;
+    }
+    
+    public Categoria getCategoria(String nome){
+        String sql = "SELECT * FROM categoria WHERE nome = ?";
         c = ConnectionFactory.getConnection();
         try{
             PreparedStatement ppstt = c.prepareStatement(sql);
-            ppstt.setString(1,usuario);
-            ppstt.setString(2,senha);
+            ppstt.setString(1,nome);
             ResultSet rs = ppstt.executeQuery();
             if(rs.next()){
-                Login login = new Login();
-                login.setIdUsuario(rs.getInt("pkidusuario"));
-                login.setUsuario(rs.getString("usuario"));
-                login.setSenha(rs.getString("senha"));
-                login.setClasse(rs.getString("classe"));
-                System.out.println(login);
-                return login;
+                Categoria categoria = new Categoria();
+                categoria.setIdCategoria(rs.getInt("pkidcategoria"));
+                categoria.setNome(rs.getString("nome"));
+                return categoria;
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());
         }
         
         return null;
+    }
+    
+    public static List<Categoria> getCategoria(){
+        List<Categoria> categorias = new ArrayList<Categoria>();
+        String sql = "SELECT * FROM categoria;";
+        c = ConnectionFactory.getConnection();
+        try{
+            PreparedStatement ppstt = c.prepareStatement(sql);
+            ResultSet rs = ppstt.executeQuery();
+            while(rs.next()){
+                Categoria categoria = new Categoria();
+                categoria.setIdCategoria(rs.getInt("pkidcategoria"));
+                categoria.setNome(rs.getString("nome"));
+                categorias.add(categoria);
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        
+        return categorias;
     }
 }

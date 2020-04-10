@@ -37,7 +37,7 @@ public class LoginDAO {
         return true;
     }
     
-    public Login getLugar(String usuario, String senha){
+    public Login getLogin(String usuario, String senha){
         String sql = "SELECT * FROM login WHERE usuario = ? AND senha = ?";
         c = ConnectionFactory.getConnection();
         try{

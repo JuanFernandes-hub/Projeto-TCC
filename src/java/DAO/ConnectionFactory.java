@@ -19,7 +19,7 @@ public class ConnectionFactory {
         Connection c = null;
         try {
             carregaDriver();
-            c = DriverManager.getConnection("jdbc:postgresql://localhost/TesteBanco", "postgres", "juan");
+            c = DriverManager.getConnection("jdbc:postgresql://localhost/TCC", "postgres", "juan");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } finally {
