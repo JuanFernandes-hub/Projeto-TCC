@@ -5,9 +5,14 @@
  */
 package servlet;
 
+import DAO.CategoriaDAO;
+import DAO.CidadeDAO;
 import DAO.EstadoDAO;
+import DAO.LocalizacaoDAO;
+import DAO.LugarDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,7 +44,7 @@ public class CadastraLugar extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             Lugar lugar = new Lugar();
             Localizacao localizacao = new Localizacao();
-            String nome_lugar = request.getParameter("nName");
+            String nome_lugar = request.getParameter("nNome");
             String categoria_lugar = request.getParameter("nCategoria");
             String estado_lugar = request.getParameter("nEstado");
             String cidade_lugar = request.getParameter("nCidade");
@@ -52,28 +57,33 @@ public class CadastraLugar extends HttpServlet {
             
             
             Estado estado = new Estado();
-            estado.setNome(estado_lugar);
-            estado.setSigla(EstadoDAO.getEstado(estado).getSigla());
-            estado.setIdEstado(EstadoDAO.getEstado(estado).getIdEstado());
+            estado.setIdEstado(Integer.parseInt(estado_lugar));//o nome é o pk do estado
             
             Cidade cidade = new Cidade();
-            cidade.setNome(cidade_lugar);
+            cidade.setIdCidade(Integer.parseInt(cidade_lugar));
             cidade.setEstado(estado);
             
             localizacao.setCidade(cidade);
+            LocalizacaoDAO.insereLocalizacao(localizacao);
             
             //setando categoria
             Categoria categoria = new Categoria();
-            categoria.setNome(categoria_lugar);
+            categoria.setIdCategoria(Integer.parseInt(categoria_lugar));
             
             
-            //setando lugar
+            //Nao esta enviando o lugar
             lugar.setNome(nome_lugar);
+            lugar.setAvaliacao(5);
             lugar.setCategoria(categoria);
             lugar.setLocalizacao(localizacao);
+            LugarDAO.insereLugar(lugar);
             
-            //TEm q ver
+            System.out.print(localizacao.getRua()+localizacao.getCidade());
+            System.out.print(lugar.getNome()+lugar.getAvaliacao()+lugar.getCategoria()+lugar.getLocalizacao());
             
+        }catch( Exception e ){
+            RequestDispatcher rd = request.getRequestDispatcher("index.html");
+            rd.forward(request, response);
         }
     }
 

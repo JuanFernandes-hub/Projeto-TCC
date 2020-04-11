@@ -36,18 +36,18 @@ public class CategoriaDAO {
         return true;
     }
     
-    public Categoria getCategoria(String nome){
+    public static Categoria getCategoria(Categoria categoria){
         String sql = "SELECT * FROM categoria WHERE nome = ?";
         c = ConnectionFactory.getConnection();
         try{
             PreparedStatement ppstt = c.prepareStatement(sql);
-            ppstt.setString(1,nome);
+            ppstt.setString(1,categoria.getNome());
             ResultSet rs = ppstt.executeQuery();
             if(rs.next()){
-                Categoria categoria = new Categoria();
-                categoria.setIdCategoria(rs.getInt("pkidcategoria"));
-                categoria.setNome(rs.getString("nome"));
-                return categoria;
+                Categoria categoriaObj = new Categoria();
+                categoriaObj.setIdCategoria(rs.getInt("pkidcategoria"));
+                categoriaObj.setNome(rs.getString("nome"));
+                return categoriaObj;
             }
         }catch(SQLException e){
             System.out.println(e.getMessage());

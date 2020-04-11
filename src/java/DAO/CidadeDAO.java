@@ -33,8 +33,7 @@ public class CidadeDAO {
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
             ppstt.setString(1, cidade.getNome());
-            //estado objeto convertido para string para converter para int
-            ppstt.setInt(2, Integer.parseInt(cidade.getEstado().toString()));
+            ppstt.setInt(2, cidade.getEstado().getIdEstado());
             ppstt.execute();
             ppstt.close();
         } catch (SQLException e) {
@@ -45,27 +44,27 @@ public class CidadeDAO {
 
     
     //Recebe cidade atraves do nome
-    public Cidade getCidade(String nome) {
+    public static Cidade getCidade(Cidade cidade) {
         String sql = "SELECT cidade.pkidcidade, cidade.nome AS cidadenome, cidade.fkidestado, estado.nome AS estadonome, estado.sigla"
                 + "FROM cidade INNER JOIN estado ON (cidade.fkidestado = estado.pkidestado) AND cidade.nome = '?' ";
         c = ConnectionFactory.getConnection();
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
-            ppstt.setString(1, nome);
+            ppstt.setString(1, cidade.getNome());
             ResultSet rs = ppstt.executeQuery();
             if (rs.next()) {
-                Cidade cidade = new Cidade();
+                Cidade cidadeObj = new Cidade();
                 Estado estado = new Estado();
                 //objeto cidade
-                cidade.setIdCidade(rs.getInt("pkidcidade"));
-                cidade.setNome(rs.getString("cidadenome"));
+                cidadeObj.setIdCidade(rs.getInt("pkidcidade"));
+                cidadeObj.setNome(rs.getString("cidadenome"));
 
                 //objeto estado
                 estado.setIdEstado(rs.getInt("fkidestado"));
                 estado.setNome("estadonome");
                 estado.setSigla("sigla");
                 cidade.setEstado(estado);
-                return cidade;
+                return cidadeObj;
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

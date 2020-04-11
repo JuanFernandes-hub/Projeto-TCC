@@ -23,6 +23,7 @@
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> <!-- pasta Bootstrap -->
         <link rel="stylesheet" href="css/EstilosCadastro.css"> <!-- css entrar -->
         <link rel="stylesheet" href="css/EstilosRodape.css"> <!-- css do rodape -->
+        <script type="text/javascript" src="ajax.js"></script>
 
         <!--
         
@@ -45,7 +46,7 @@
 
             %>
 
-            <form action="" method="post" class="col-sm-6">
+            <form action="CadastraLugar" method="post" class="col-sm-6">
                 <div class="row justify-content-md-center">
                     <h1 style="color: black">Crie sua conta</h1>
                 </div>
@@ -60,41 +61,64 @@
                     <select class="form-control" name="nCategoria" id="categoria" onchange="pegaCategoria(this.value)">
                         <%
                             for (Categoria categoria : categorias) {
-                                %><option value="<% out.print(categoria.getIdCategoria()); %>"><% out.print(categoria.getNome());
+                                %><option name="nCategoria" value="<% out.print(categoria.getIdCategoria()); %>"><% out.print(categoria.getNome());
                             }
                             %></option>
                         
                         <script type="text/javascript">
                             function pegaCategoria(valor){
                                 console.log(valor);
+                                return valor;
                             }
+                        </script>
+                        <!-- teste-->
+                        <script type="text/javascript"> 
+                            console.log();
                         </script>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="estado" class="" style="color: black;">Estado</label>
-                    <select class="form-control" name="nEstado" id="estado">
+                    <select class="form-control" name="nEstado" id="estado" onchange="pegaCategoria(this.value)">
                         <%
                             for (Estado estado : estados) {
-                        %><option><% out.print(estado.getNome());
+                        %><option value="<% out.print(estado.getIdEstado()); %>"><% out.print(estado.getNome());
                             }
                             %></option>
                     </select>
                 </div>
+                    
+                    <!-- pegaCategoria(document.getElementById(estado)) -->
 
-                <div class="form-group">
+                <div class="form-group" >
                     <label for="cidade" class="" style="color: black;">Cidade</label>
-                    <select class="form-control" name="nCidade" id="cidade">
+                    <select class="form-control" name="nCidade" id="cidade" placeholder="Escolha uma cidade" onchange="pegaCategoria(this.value)">
                         <%
                             for (Cidade cidade : cidades) {
-                        %><option><% out.print(cidade.getNome());
+                        %><option value="<% out.print(cidade.getIdCidade()); %>"><% out.print(cidade.getNome());
                             }
                             %></option>
+                        
+                        
+                        <%--
+                            for(Cidade cidade : cidades){
+                                if(cidade.getEstado() == %> pegaCategoria(document.getElementById(estado)) <%){
+                                
+                                }else{
+                            }}
+                        --%>
+
+                        
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
                     </select>
+                        
+                        <script type="text/javascript">
+                            console.log(document.getElementsByName("nCidade"));
+                            console.log(document.getElementsByName("nCategoria"));
+                        </script>
                 </div>
 
                 <div class="form-group">
@@ -104,7 +128,7 @@
 
                 <div class="form-group">
                     <label for="complemento" class="" style="color: black;">Complemento (opcional)</label>
-                    <textarea class="form-control" name="nRua" id="rua" placeholder="Digite alguns detalhes." rows="5"></textarea>
+                    <textarea class="form-control" name="nComplemento" id="complemento" placeholder="Digite alguns detalhes." rows="5"></textarea>
                 </div>
 
 

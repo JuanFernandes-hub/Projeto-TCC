@@ -39,6 +39,7 @@ public class LugarDAO {
             ppstt.execute();
             ppstt.close();
         } catch (SQLException e) {
+            System.out.print("nao deu");
             return false;
         }
         return true;
