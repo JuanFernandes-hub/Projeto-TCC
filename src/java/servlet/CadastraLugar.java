@@ -65,6 +65,7 @@ public class CadastraLugar extends HttpServlet {
             
             localizacao.setCidade(cidade);
             LocalizacaoDAO.insereLocalizacao(localizacao);
+            localizacao.setIdLocalizacao(); //declarar uma pk de algum jeito
             
             //setando categoria
             Categoria categoria = new Categoria();
@@ -75,11 +76,9 @@ public class CadastraLugar extends HttpServlet {
             lugar.setNome(nome_lugar);
             lugar.setAvaliacao(5);
             lugar.setCategoria(categoria);
-            lugar.setLocalizacao(localizacao);
+            lugar.setLocalizacao(localizacao); //é preciso que a localizacao tenha uma pk
             LugarDAO.insereLugar(lugar);
             
-            System.out.print(localizacao.getRua()+localizacao.getCidade());
-            System.out.print(lugar.getNome()+lugar.getAvaliacao()+lugar.getCategoria()+lugar.getLocalizacao());
             
         }catch( Exception e ){
             RequestDispatcher rd = request.getRequestDispatcher("index.html");
