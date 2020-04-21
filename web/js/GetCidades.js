@@ -1,5 +1,6 @@
 $(document).ready(function(){
      
+   //Ajax para puxar cidades de acordo com estado selecionado  
    $("#estado").change(function(){
        var pesquisa = $("#estado").val(); //idEstado
        
@@ -23,10 +24,11 @@ $(document).ready(function(){
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                $("#resposta").html(jqXHR.responseText);
+                $("#resposta").html(jqXHR.responseText+"Desculpe.");
             },
             beforeSend: function (xhr) {
                 $("#botao").attr("disabled",true);
+                $("#cidade").html("Aguarde...")
             },
             complete: function (jqXHR, textStatus) {
                 $("#botao").attr("disabled",false);

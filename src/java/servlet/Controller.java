@@ -12,12 +12,10 @@ import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.Integer.parseInt;
-import java.rmi.ServerException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Modelo;
 
 /**
  *
@@ -38,15 +36,18 @@ public class Controller extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
                     
+        //Pega cidades do banco de acordo com select estado
         try{
             CidadeDAO cdao = new CidadeDAO();
             String pesquisa = request.getParameter("pesquisa");
             
+            //Json para retornar ao ajax
             Gson gson = new Gson();
             JsonObject obj = new JsonObject();
             JsonElement jsonobj = gson.toJsonTree(cdao.getCidade(parseInt(pesquisa)));
             obj.add("dados",jsonobj);
             
+            //resposta
             PrintWriter out = response.getWriter();
             out.println(obj.toString());
             out.close();
