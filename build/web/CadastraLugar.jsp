@@ -23,7 +23,7 @@
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> <!-- pasta Bootstrap -->
         <link rel="stylesheet" href="css/EstilosCadastro.css"> <!-- css entrar -->
         <link rel="stylesheet" href="css/EstilosRodape.css"> <!-- css do rodape -->
-        <script type="text/javascript" src="ajax.js"></script>
+        
 
         <!--
         
@@ -46,7 +46,7 @@
 
             %>
 
-            <form action="CadastraLugar" method="post" class="col-sm-6">
+            <form action="CadastraLugar" method="post" class="col-sm-6" id="formLugar">
                 <div class="row justify-content-md-center">
                     <h1 style="color: black">Crie sua conta</h1>
                 </div>
@@ -87,9 +87,14 @@
                             }
                             %></option>
                     </select>
+                    
+                    <!--teste de ajax-->
+                    <div id="resposta">
+                        ???
+                    </div>
                 </div>
                     
-                    <!-- pegaCategoria(document.getElementById(estado)) -->
+                    
 
                 <div class="form-group" >
                     <label for="cidade" class="" style="color: black;">Cidade</label>
@@ -99,17 +104,7 @@
                         %><option value="<% out.print(cidade.getIdCidade()); %>"><% out.print(cidade.getNome());
                             }
                             %></option>
-                        
-                        
-                        <%--
-                            for(Cidade cidade : cidades){
-                                if(cidade.getEstado() == %> pegaCategoria(document.getElementById(estado)) <%){
-                                
-                                }else{
-                            }}
-                        --%>
 
-                        
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -132,7 +127,7 @@
                 </div>
 
 
-                <button type="submit" class="btn btn-warning">Enviar</button>
+                <button type="submit" id="botao" class="btn btn-warning">Enviar</button>
             </form>
         </div>
 
@@ -142,5 +137,6 @@
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> <!-- ajax -->
+        <script type="text/javascript" src="js/GetCidades.js"></script> <!-- Meu arquivo ajax -->
     </body>
 </html>

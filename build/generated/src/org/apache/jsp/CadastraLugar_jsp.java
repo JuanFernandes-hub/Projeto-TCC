@@ -81,7 +81,7 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("        <link href=\"bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\" type=\"text/css\" /> <!-- pasta Bootstrap -->\n");
       out.write("        <link rel=\"stylesheet\" href=\"css/EstilosCadastro.css\"> <!-- css entrar -->\n");
       out.write("        <link rel=\"stylesheet\" href=\"css/EstilosRodape.css\"> <!-- css do rodape -->\n");
-      out.write("        <script type=\"text/javascript\" src=\"ajax.js\"></script>\n");
+      out.write("        \n");
       out.write("\n");
       out.write("        <!--\n");
       out.write("        \n");
@@ -95,7 +95,7 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("            ");
       out.write("\n");
       out.write("\n");
-      out.write("            <form action=\"CadastraLugar\" method=\"post\" class=\"col-sm-6\">\n");
+      out.write("            <form action=\"CadastraLugar\" method=\"post\" class=\"col-sm-6\" id=\"formLugar\">\n");
       out.write("                <div class=\"row justify-content-md-center\">\n");
       out.write("                    <h1 style=\"color: black\">Crie sua conta</h1>\n");
       out.write("                </div>\n");
@@ -150,9 +150,14 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
                             
       out.write("</option>\n");
       out.write("                    </select>\n");
+      out.write("                    \n");
+      out.write("                    <!--teste de ajax-->\n");
+      out.write("                    <div id=\"resposta\">\n");
+      out.write("                        ???\n");
+      out.write("                    </div>\n");
       out.write("                </div>\n");
       out.write("                    \n");
-      out.write("                    <!-- pegaCategoria(document.getElementById(estado)) -->\n");
+      out.write("                    \n");
       out.write("\n");
       out.write("                <div class=\"form-group\" >\n");
       out.write("                    <label for=\"cidade\" class=\"\" style=\"color: black;\">Cidade</label>\n");
@@ -169,12 +174,7 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
                             }
                             
       out.write("</option>\n");
-      out.write("                        \n");
-      out.write("                        \n");
-      out.write("                        ");
       out.write("\n");
-      out.write("\n");
-      out.write("                        \n");
       out.write("                        <option>1</option>\n");
       out.write("                        <option>2</option>\n");
       out.write("                        <option>3</option>\n");
@@ -197,7 +197,7 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                </div>\n");
       out.write("\n");
       out.write("\n");
-      out.write("                <button type=\"submit\" class=\"btn btn-warning\">Enviar</button>\n");
+      out.write("                <button type=\"submit\" id=\"botao\" class=\"btn btn-warning\">Enviar</button>\n");
       out.write("            </form>\n");
       out.write("        </div>\n");
       out.write("\n");
@@ -207,6 +207,7 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("        integrity=\"sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=\" crossorigin=\"anonymous\"></script>\n");
       out.write("        <script src=\"bootstrap/js/bootstrap.min.js\"></script>\n");
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\"></script> <!-- ajax -->\n");
+      out.write("        <script type=\"text/javascript\" src=\"js/GetCidades.js\"></script> <!-- Meu arquivo ajax -->\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

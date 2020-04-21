@@ -40,13 +40,56 @@ public class LocalizacaoDAO {
         }
         return true;
     }
+    
+    
+    //Para pegar id da localizacao
+    public Localizacao getLocalizacao(Localizacao localizacao) {
+        String sql = "SELECT loc.pkidlocalizacao, loc.rua, loc.fkidcidade, loc.complemento,"
+                + "cid.nome AS cidadenome, cid.fkidestado, est.nome AS estadonome, est.sigla"
+                + "FROM localizacao loc"
+                + "INNER JOIN cidade AS cid ON (loc.fkidcidade = ?)" //recebe o pkid da cidade
+                + "INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)";
+        c = ConnectionFactory.getConnection();
+        try {
+            PreparedStatement ppstt = c.prepareStatement(sql);
+            ppstt.setInt(1, localizacao.getIdLocalizacao());
+            ResultSet rs = ppstt.executeQuery();
+            if (rs.next()) {
+                Localizacao localizacaoObj = new Localizacao();
+                localizacaoObj.setIdLocalizacao(rs.getInt("pkidlocalizacao"));
+                localizacaoObj.setRua(rs.getString("rua"));
+                localizacaoObj.setComplemento("complemento");
+
+                //objeto cidade 
+                Cidade cidadeObj = new Cidade();
+                cidadeObj.setIdCidade(rs.getInt("fkidcidade"));
+                cidadeObj.setNome(rs.getString("cidadenome"));
+
+                //objeto estado
+                Estado estado = new Estado();
+                estado.setIdEstado(rs.getInt("fkidestado"));
+                estado.setNome(rs.getString("estadonome"));
+                estado.setSigla(rs.getString("sigla"));
+
+                //cidade recebe estado
+                cidadeObj.setEstado(estado);
+                //localizacao recebe cidade
+                localizacaoObj.setCidade(cidadeObj);
+                return localizacaoObj;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
 
     //Filtar localizacao por cidade
     public Localizacao getLocalizacao(Cidade cidade) {
         String sql = "SELECT loc.pkidlocalizacao, loc.rua, loc.fkidcidade, loc.complemento,"
                 + "cid.nome AS cidadenome, cid.fkidestado, est.nome AS estadonome, est.sigla"
                 + "FROM localizacao loc"
-                + "INNER JOIN cidade AS cid ON (loc.fkidcidade = ?)" //recebe o pkid da ciadde
+                + "INNER JOIN cidade AS cid ON (loc.fkidcidade = ?)" //recebe o pkid da cidade
                 + "INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)";
         c = ConnectionFactory.getConnection();
         try {
@@ -83,7 +126,7 @@ public class LocalizacaoDAO {
         return null;
     }
 
-    public static List<Localizacao> getLocalizacao() {
+    public  List<Localizacao> getLocalizacao() {
         List<Localizacao> localizacoes = new ArrayList<Localizacao>();
         String sql = "SELECT loc.pkidlocalizacao, loc.rua, loc.fkidcidade, loc.complemento,"
                 + "cid.nome AS cidadenome, cid.fkidestado, est.nome AS estadonome, est.sigla"

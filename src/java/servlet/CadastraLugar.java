@@ -12,6 +12,7 @@ import DAO.LocalizacaoDAO;
 import DAO.LugarDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -65,7 +66,13 @@ public class CadastraLugar extends HttpServlet {
             
             localizacao.setCidade(cidade);
             LocalizacaoDAO.insereLocalizacao(localizacao);
-            localizacao.setIdLocalizacao(); //declarar uma pk de algum jeito
+            
+            //gambiarra para pega pk da localizacao
+            //com a localizacao inserida, puxo ela do banco
+            //e pego a sua pk
+            LocalizacaoDAO localdao = new LocalizacaoDAO();
+            Localizacao local = localdao.getLocalizacao(cidade);
+            localizacao.setIdLocalizacao(local.getIdLocalizacao());
             
             //setando categoria
             Categoria categoria = new Categoria();
@@ -79,6 +86,13 @@ public class CadastraLugar extends HttpServlet {
             lugar.setLocalizacao(localizacao); //é preciso que a localizacao tenha uma pk
             LugarDAO.insereLugar(lugar);
             
+            
+            System.out.print(lugar.getNome());
+            System.out.print(lugar.getLocalizacao());
+            System.out.println(localizacao.getIdLocalizacao());
+            
+            RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+            rd.forward(request, response);
             
         }catch( Exception e ){
             RequestDispatcher rd = request.getRequestDispatcher("index.html");
