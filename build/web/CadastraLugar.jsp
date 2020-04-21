@@ -9,15 +9,13 @@
 <%@page import="model.Estado"%>
 <%@page import="DAO.EstadoDAO"%>
 <%@page import="java.util.List"%>
-<%@page import="DAO.CidadeDAO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="model.Cidade"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Nome - Cadastre-se</title>
+        <title>Colibri - Cadastro de Lugares</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"> <!-- Bootstrap -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> <!-- pasta Bootstrap -->
@@ -35,15 +33,13 @@
         <div class="container">
 
             <%!
-                CidadeDAO dao = new CidadeDAO();
-                List<Cidade> cidades = dao.getCidade();
-                
+                //Pegar estado para select
                 EstadoDAO daoEstado = new EstadoDAO();
                 List<Estado> estados = daoEstado.getEstado();
                 
+                //Pegar categorias para selecr
                 CategoriaDAO daoCategoria = new CategoriaDAO();
                 List<Categoria> categorias = daoCategoria.getCategoria();
-
             %>
 
             <form action="CadastraLugar" method="post" class="col-sm-6" id="formLugar">
@@ -56,6 +52,7 @@
                     <input type="text" class="form-control" name="nNome" id="nome" placeholder="Nome" autofocus required>
                 </div>
 
+                <!-- SELECT CATEGORIAS -->
                 <div class="form-group">
                     <label for="categoria" class="" style="color: black;">Categoria</label>
                     <select class="form-control" name="nCategoria" id="categoria" onchange="pegaCategoria(this.value)">
@@ -64,56 +61,30 @@
                                 %><option name="nCategoria" value="<% out.print(categoria.getIdCategoria()); %>"><% out.print(categoria.getNome());
                             }
                             %></option>
-                        
-                        <script type="text/javascript">
-                            function pegaCategoria(valor){
-                                console.log(valor);
-                                return valor;
-                            }
-                        </script>
-                        <!-- teste-->
-                        <script type="text/javascript"> 
-                            console.log();
-                        </script>
                     </select>
                 </div>
 
+                <!-- SELECT ESTADO-->
                 <div class="form-group">
                     <label for="estado" class="" style="color: black;">Estado</label>
-                    <select class="form-control" name="nEstado" id="estado" onchange="pegaCategoria(this.value)">
+                    <select class="form-control" name="nEstado" id="estado" required>
+                        <option class="Selecione" value="" disabled selected hidden>Selecione...</option>
                         <%
                             for (Estado estado : estados) {
                         %><option value="<% out.print(estado.getIdEstado()); %>"><% out.print(estado.getNome());
                             }
                             %></option>
                     </select>
-                    
-                    <!--teste de ajax-->
-                    <div id="resposta">
-                        ???
-                    </div>
                 </div>
                     
-                    
-
+                
+                <!-- SELECT CIDADE -->
                 <div class="form-group" >
                     <label for="cidade" class="" style="color: black;">Cidade</label>
-                    <select class="form-control" name="nCidade" id="cidade" placeholder="Escolha uma cidade" onchange="pegaCategoria(this.value)">
-                        <%
-                            for (Cidade cidade : cidades) {
-                        %><option value="<% out.print(cidade.getIdCidade()); %>"><% out.print(cidade.getNome());
-                            }
-                            %></option>
-
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
+                    <select class="form-control" name="nCidade" id="cidade" required>
+                        <!-- option gerados por ajax, de acordo com o estado selecionado -->
+                        <option value="" disabled selected hidden>Selecione...</option>
                     </select>
-                        
-                        <script type="text/javascript">
-                            console.log(document.getElementsByName("nCidade"));
-                            console.log(document.getElementsByName("nCategoria"));
-                        </script>
                 </div>
 
                 <div class="form-group">

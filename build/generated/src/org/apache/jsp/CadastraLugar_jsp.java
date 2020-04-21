@@ -8,23 +8,19 @@ import DAO.CategoriaDAO;
 import model.Estado;
 import DAO.EstadoDAO;
 import java.util.List;
-import DAO.CidadeDAO;
 import java.util.ArrayList;
-import model.Cidade;
 
 public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
 
-                CidadeDAO dao = new CidadeDAO();
-                List<Cidade> cidades = dao.getCidade();
-                
+                //Pegar estado para select
                 EstadoDAO daoEstado = new EstadoDAO();
                 List<Estado> estados = daoEstado.getEstado();
                 
+                //Pegar categorias para selecr
                 CategoriaDAO daoCategoria = new CategoriaDAO();
                 List<Categoria> categorias = daoCategoria.getCategoria();
-
             
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
 
@@ -69,13 +65,11 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>Nome - Cadastre-se</title>\n");
+      out.write("        <title>Colibri - Cadastro de Lugares</title>\n");
       out.write("        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n");
       out.write("        <link href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css\" rel=\"stylesheet\"> <!-- Bootstrap -->\n");
       out.write("        <link href=\"bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\" type=\"text/css\" /> <!-- pasta Bootstrap -->\n");
@@ -105,6 +99,7 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                    <input type=\"text\" class=\"form-control\" name=\"nNome\" id=\"nome\" placeholder=\"Nome\" autofocus required>\n");
       out.write("                </div>\n");
       out.write("\n");
+      out.write("                <!-- SELECT CATEGORIAS -->\n");
       out.write("                <div class=\"form-group\">\n");
       out.write("                    <label for=\"categoria\" class=\"\" style=\"color: black;\">Categoria</label>\n");
       out.write("                    <select class=\"form-control\" name=\"nCategoria\" id=\"categoria\" onchange=\"pegaCategoria(this.value)\">\n");
@@ -120,23 +115,14 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
                             }
                             
       out.write("</option>\n");
-      out.write("                        \n");
-      out.write("                        <script type=\"text/javascript\">\n");
-      out.write("                            function pegaCategoria(valor){\n");
-      out.write("                                console.log(valor);\n");
-      out.write("                                return valor;\n");
-      out.write("                            }\n");
-      out.write("                        </script>\n");
-      out.write("                        <!-- teste-->\n");
-      out.write("                        <script type=\"text/javascript\"> \n");
-      out.write("                            console.log();\n");
-      out.write("                        </script>\n");
       out.write("                    </select>\n");
       out.write("                </div>\n");
       out.write("\n");
+      out.write("                <!-- SELECT ESTADO-->\n");
       out.write("                <div class=\"form-group\">\n");
       out.write("                    <label for=\"estado\" class=\"\" style=\"color: black;\">Estado</label>\n");
-      out.write("                    <select class=\"form-control\" name=\"nEstado\" id=\"estado\" onchange=\"pegaCategoria(this.value)\">\n");
+      out.write("                    <select class=\"form-control\" name=\"nEstado\" id=\"estado\" required>\n");
+      out.write("                        <option class=\"Selecione\" value=\"\" disabled selected hidden>Selecione...</option>\n");
       out.write("                        ");
 
                             for (Estado estado : estados) {
@@ -150,40 +136,16 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
                             
       out.write("</option>\n");
       out.write("                    </select>\n");
-      out.write("                    \n");
-      out.write("                    <!--teste de ajax-->\n");
-      out.write("                    <div id=\"resposta\">\n");
-      out.write("                        ???\n");
-      out.write("                    </div>\n");
       out.write("                </div>\n");
       out.write("                    \n");
-      out.write("                    \n");
-      out.write("\n");
+      out.write("                \n");
+      out.write("                <!-- SELECT CIDADE -->\n");
       out.write("                <div class=\"form-group\" >\n");
       out.write("                    <label for=\"cidade\" class=\"\" style=\"color: black;\">Cidade</label>\n");
-      out.write("                    <select class=\"form-control\" name=\"nCidade\" id=\"cidade\" placeholder=\"Escolha uma cidade\" onchange=\"pegaCategoria(this.value)\">\n");
-      out.write("                        ");
-
-                            for (Cidade cidade : cidades) {
-                        
-      out.write("<option value=\"");
- out.print(cidade.getIdCidade()); 
-      out.write('"');
-      out.write('>');
- out.print(cidade.getNome());
-                            }
-                            
-      out.write("</option>\n");
-      out.write("\n");
-      out.write("                        <option>1</option>\n");
-      out.write("                        <option>2</option>\n");
-      out.write("                        <option>3</option>\n");
+      out.write("                    <select class=\"form-control\" name=\"nCidade\" id=\"cidade\" required>\n");
+      out.write("                        <!-- option gerados por ajax, de acordo com o estado selecionado -->\n");
+      out.write("                        <option value=\"\" disabled selected hidden>Selecione...</option>\n");
       out.write("                    </select>\n");
-      out.write("                        \n");
-      out.write("                        <script type=\"text/javascript\">\n");
-      out.write("                            console.log(document.getElementsByName(\"nCidade\"));\n");
-      out.write("                            console.log(document.getElementsByName(\"nCategoria\"));\n");
-      out.write("                        </script>\n");
       out.write("                </div>\n");
       out.write("\n");
       out.write("                <div class=\"form-group\">\n");

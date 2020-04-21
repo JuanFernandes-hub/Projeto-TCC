@@ -48,3 +48,8 @@
     background-color: #4A44F2;
     border-color: #ffffff;
 }
+
+.select:invalid{
+    color:gray;
+    
+}
