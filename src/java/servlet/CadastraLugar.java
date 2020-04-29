@@ -12,6 +12,7 @@ import DAO.LocalizacaoDAO;
 import DAO.LugarDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.Integer.parseInt;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -42,59 +43,54 @@ public class CadastraLugar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            
             Lugar lugar = new Lugar();
             Localizacao localizacao = new Localizacao();
+            Categoria categoria = new Categoria();
+            Cidade cidade = new Cidade();
+            Estado estado = new Estado();
+            
             String nome_lugar = request.getParameter("nNome");
-            String categoria_lugar = request.getParameter("nCategoria");
-            String estado_lugar = request.getParameter("nEstado");
-            String cidade_lugar = request.getParameter("nCidade");
+            int categoria_lugar = parseInt(request.getParameter("nCategoria"));
+            int estado_lugar = parseInt(request.getParameter("nEstado"));
+            int cidade_lugar = parseInt(request.getParameter("nCidade"));
             String rua_lugar = request.getParameter("nRua");
             String complemento_lugar = request.getParameter("nComplemento");
-            
-            //setando localizacao
-            localizacao.setRua(rua_lugar);
-            localizacao.setComplemento(complemento_lugar);
-            
-            
-            Estado estado = new Estado();
-            estado.setIdEstado(Integer.parseInt(estado_lugar));//o nome é o pk do estado
-            
-            Cidade cidade = new Cidade();
-            cidade.setIdCidade(Integer.parseInt(cidade_lugar));
+
+            estado.setIdEstado(estado_lugar);
+            cidade.setIdCidade(cidade_lugar);
             cidade.setEstado(estado);
             
+            localizacao.setRua(rua_lugar);
+            localizacao.setComplemento(complemento_lugar);
             localizacao.setCidade(cidade);
-            LocalizacaoDAO.insereLocalizacao(localizacao);
+            int idLocal = LocalizacaoDAO.insere(localizacao); //manda pro banco e pega o id
+            localizacao.setIdLocalizacao(idLocal);
             
-            //gambiarra para pega pk da localizacao
-            //com a localizacao inserida, puxo ela do banco
-            //e pego a sua pk
-            LocalizacaoDAO localdao = new LocalizacaoDAO();
-            Localizacao local = localdao.getLocalizacao(cidade);
-            localizacao.setIdLocalizacao(local.getIdLocalizacao());
+            categoria.setIdCategoria(categoria_lugar);
             
-            //setando categoria
-            Categoria categoria = new Categoria();
-            categoria.setIdCategoria(Integer.parseInt(categoria_lugar));
-            
-            
-            //Nao esta enviando o lugar
             lugar.setNome(nome_lugar);
-            lugar.setAvaliacao(5);
+            lugar.setLocalizacao(localizacao);
             lugar.setCategoria(categoria);
-            lugar.setLocalizacao(localizacao); //é preciso que a localizacao tenha uma pk
+            lugar.setAvaliacao(5);
+            
             LugarDAO.insereLugar(lugar);
             
             
-            System.out.print(lugar.getNome());
-            System.out.print(lugar.getLocalizacao());
-            System.out.println(localizacao.getIdLocalizacao());
-            
+            /*
+            out.println("<html>");
+            out.println("<body>");
+            out.println("Categoria " + categoria_lugar
+                    + " adicionado com sucesso");
+            out.println("</body>");
+            out.println("</html>");
+            */
+
             RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
             rd.forward(request, response);
-            
-        }catch( Exception e ){
+        } catch (Exception e) {
             RequestDispatcher rd = request.getRequestDispatcher("index.html");
             rd.forward(request, response);
         }

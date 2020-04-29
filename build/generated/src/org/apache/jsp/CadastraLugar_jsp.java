@@ -102,7 +102,7 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                <!-- SELECT CATEGORIAS -->\n");
       out.write("                <div class=\"form-group\">\n");
       out.write("                    <label for=\"categoria\" class=\"\" style=\"color: black;\">Categoria</label>\n");
-      out.write("                    <select class=\"form-control\" name=\"nCategoria\" id=\"categoria\" onchange=\"pegaCategoria(this.value)\">\n");
+      out.write("                    <select class=\"form-control\" name=\"nCategoria\" id=\"categoria\">\n");
       out.write("                        ");
 
                             for (Categoria categoria : categorias) {
@@ -126,12 +126,14 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                        ");
 
                             for (Estado estado : estados) {
+                                int id = estado.getIdEstado();
+                                String nome = estado.getNome();
                         
-      out.write("<option value=\"");
- out.print(estado.getIdEstado()); 
+      out.write("<option name=\"nEstado\" value=\"");
+ out.print(id); 
       out.write('"');
       out.write('>');
- out.print(estado.getNome());
+ out.print(nome);
                             }
                             
       out.write("</option>\n");
@@ -158,18 +160,38 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                    <textarea class=\"form-control\" name=\"nComplemento\" id=\"complemento\" placeholder=\"Digite alguns detalhes.\" rows=\"5\"></textarea>\n");
       out.write("                </div>\n");
       out.write("\n");
-      out.write("\n");
+      out.write("                \n");
       out.write("                <button type=\"submit\" id=\"botao\" class=\"btn btn-warning\">Enviar</button>\n");
       out.write("            </form>\n");
       out.write("        </div>\n");
       out.write("\n");
-      out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js\"></script><!-- font awesome -->\n");
+      out.write("        \n");
       out.write("        <!-- IMPORTANTE - SCRIPTS NECESSARIOS PARA O FUNCIONAMENTO DO DROPDOWN, DEVE SER A ULTIMA COISA ANTES DE FECHAR O BODY -->\n");
       out.write("        <script src=\"http://code.jquery.com/jquery-3.4.1.min.js\"\n");
       out.write("        integrity=\"sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=\" crossorigin=\"anonymous\"></script>\n");
       out.write("        <script src=\"bootstrap/js/bootstrap.min.js\"></script>\n");
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\"></script> <!-- ajax -->\n");
       out.write("        <script type=\"text/javascript\" src=\"js/GetCidades.js\"></script> <!-- Meu arquivo ajax -->\n");
+      out.write("        <script>\n");
+      out.write("            $(document).ready(function(){\n");
+      out.write("               //console.log($(\"#estado\").name);\n");
+      out.write("               //console.log($(\"#cidade\").name);\n");
+      out.write("               //console.log($(\"#categoria\").name);\n");
+      out.write("               \n");
+      out.write("               $(\"#cidade\").change(function(){\n");
+      out.write("                   console.log(\"Nome da cidade:\"+$(\"#cidade :selected\").text());\n");
+      out.write("                   console.log(\"Value da cidade:\"+$(\"#cidade\").val());\n");
+      out.write("                   \n");
+      out.write("               });\n");
+      out.write("               \n");
+      out.write("               $(\"#categoria\").change(function(){\n");
+      out.write("                   //console.log($(\"#categoria\").val());\n");
+      out.write("                   //console.log(document.getElementsByName(\"nCategoria\")[0].value)\n");
+      out.write("                   \n");
+      out.write("               });\n");
+      out.write("                \n");
+      out.write("            });\n");
+      out.write("        </script>\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

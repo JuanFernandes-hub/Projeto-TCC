@@ -12,14 +12,18 @@ $(document).ready(function(){
           data: {pesquisa: pesquisa},
           dataType: "json",
             success: function (data, textStatus, jqXHR) {
-                $("#resposta").html("")
-                console.log(data);
+                $("#resposta").html("");
+                //console.log(data);
                 $("#cidade").empty();
                 for(var i in data.dados){
-                    var value = data.dados[i].value;
                     var nome = data.dados[i].nome;
-                    var novaOpc = $('<option value='+value+'>'+nome+' </option>');
+                    console.log("dataNome"+nome); //atributo nome da classe Cidade
+                    var id = data.dados[i].idCidade; //atributo idCidade da classe Cidade
+                    console.log("dataId"+id);
+                    
+                    var novaOpc = $('<option name="nCidade" value='+id+'>'+nome+' </option>');
                     $("#cidade").append(novaOpc);
+                    console.log("NovaOpcVal: "+novaOpc.val());
                     
                 }
             },

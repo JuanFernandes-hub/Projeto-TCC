@@ -70,7 +70,7 @@ public class CidadeDAO {
 
         return null;
     }
-
+    
     //Recebe todas as cidade
     public static List<Cidade> getCidade() {
         List<Cidade> cidades = new ArrayList<Cidade>();

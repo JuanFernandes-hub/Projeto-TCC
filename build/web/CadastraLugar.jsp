@@ -55,7 +55,7 @@
                 <!-- SELECT CATEGORIAS -->
                 <div class="form-group">
                     <label for="categoria" class="" style="color: black;">Categoria</label>
-                    <select class="form-control" name="nCategoria" id="categoria" onchange="pegaCategoria(this.value)">
+                    <select class="form-control" name="nCategoria" id="categoria">
                         <%
                             for (Categoria categoria : categorias) {
                                 %><option name="nCategoria" value="<% out.print(categoria.getIdCategoria()); %>"><% out.print(categoria.getNome());
@@ -71,7 +71,9 @@
                         <option class="Selecione" value="" disabled selected hidden>Selecione...</option>
                         <%
                             for (Estado estado : estados) {
-                        %><option value="<% out.print(estado.getIdEstado()); %>"><% out.print(estado.getNome());
+                                int id = estado.getIdEstado();
+                                String nome = estado.getNome();
+                        %><option name="nEstado" value="<% out.print(id); %>"><% out.print(nome);
                             }
                             %></option>
                     </select>
@@ -97,17 +99,37 @@
                     <textarea class="form-control" name="nComplemento" id="complemento" placeholder="Digite alguns detalhes." rows="5"></textarea>
                 </div>
 
-
+                
                 <button type="submit" id="botao" class="btn btn-warning">Enviar</button>
             </form>
         </div>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script><!-- font awesome -->
+        
         <!-- IMPORTANTE - SCRIPTS NECESSARIOS PARA O FUNCIONAMENTO DO DROPDOWN, DEVE SER A ULTIMA COISA ANTES DE FECHAR O BODY -->
         <script src="http://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> <!-- ajax -->
         <script type="text/javascript" src="js/GetCidades.js"></script> <!-- Meu arquivo ajax -->
+        <script>
+            $(document).ready(function(){
+               //console.log($("#estado").name);
+               //console.log($("#cidade").name);
+               //console.log($("#categoria").name);
+               
+               $("#cidade").change(function(){
+                   console.log("Nome da cidade:"+$("#cidade :selected").text());
+                   console.log("Value da cidade:"+$("#cidade").val());
+                   
+               });
+               
+               $("#categoria").change(function(){
+                   //console.log($("#categoria").val());
+                   //console.log(document.getElementsByName("nCategoria")[0].value)
+                   
+               });
+                
+            });
+        </script>
     </body>
 </html>

@@ -41,6 +41,27 @@ public class EstadoDAO {
         return null;
     }
     
+    public static Estado getEstado(int idEstado){
+        String sql = "SELECT * FROM estado WHERE pkidestado = ?";
+        c = ConnectionFactory.getConnection();
+        try{
+            PreparedStatement ppstt = c.prepareStatement(sql);
+            ppstt.setInt(1,idEstado);
+            ResultSet rs = ppstt.executeQuery();
+            if(rs.next()){
+                Estado estadoObj = new Estado();
+                estadoObj.setIdEstado(rs.getInt("pkidestado"));
+                estadoObj.setNome(rs.getString("nome"));
+                estadoObj.setSigla("sigla");
+                return estadoObj;
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        
+        return null;
+    }
+    
     
     public static List<Estado> getEstado(){
         List<Estado> estados = new ArrayList<Estado>();
