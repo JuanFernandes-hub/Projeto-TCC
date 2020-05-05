@@ -22,7 +22,7 @@ public class LoginDAO {
         c = ConnectionFactory.getConnection();
         
         //mudar banco
-        String sql = "INSERT INTO login(usuario,senha,email) "
+        String sql = "INSERT INTO login(usuario,senha,email)\n"
                 + "VALUES (?,?,?);";
         try{
             PreparedStatement ppstt = c.prepareStatement(sql);

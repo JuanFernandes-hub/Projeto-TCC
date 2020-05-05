@@ -149,6 +149,11 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                        <option value=\"\" disabled selected hidden>Selecione...</option>\n");
       out.write("                    </select>\n");
       out.write("                </div>\n");
+      out.write("                \n");
+      out.write("                <div class=\"form-group\">\n");
+      out.write("                    <label for=\"bairro\" class=\"\" style=\"color: black;\">Bairro (opcional)</label>\n");
+      out.write("                    <input type=\"text\" class=\"form-control\" name=\"nBairro\" id=\"bairro\" placeholder=\"Bairro\">\n");
+      out.write("                </div>\n");
       out.write("\n");
       out.write("                <div class=\"form-group\">\n");
       out.write("                    <label for=\"rua\" class=\"\" style=\"color: black;\">Rua (opcional)</label>\n");
@@ -159,6 +164,8 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                    <label for=\"complemento\" class=\"\" style=\"color: black;\">Complemento (opcional)</label>\n");
       out.write("                    <textarea class=\"form-control\" name=\"nComplemento\" id=\"complemento\" placeholder=\"Digite alguns detalhes.\" rows=\"5\"></textarea>\n");
       out.write("                </div>\n");
+      out.write("                \n");
+      out.write("                \n");
       out.write("\n");
       out.write("                \n");
       out.write("                <button type=\"submit\" id=\"botao\" class=\"btn btn-warning\">Enviar</button>\n");
@@ -172,6 +179,7 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("        <script src=\"bootstrap/js/bootstrap.min.js\"></script>\n");
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\"></script> <!-- ajax -->\n");
       out.write("        <script type=\"text/javascript\" src=\"js/GetCidades.js\"></script> <!-- Meu arquivo ajax -->\n");
+      out.write("        \n");
       out.write("        <script>\n");
       out.write("            $(document).ready(function(){\n");
       out.write("               //console.log($(\"#estado\").name);\n");

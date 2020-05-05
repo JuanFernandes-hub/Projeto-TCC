@@ -27,7 +27,7 @@ public class LocalizacaoDAO {
     public static boolean insereLocalizacao(Localizacao localizacao) {
         c = ConnectionFactory.getConnection();
 
-        String sql = "INSERT INTO localizacao(rua,fkidcidade,complemento) "
+        String sql = "INSERT INTO localizacao(rua,fkidcidade,complemento)\n"
                 + "VALUES (?,?,?);";
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
@@ -47,7 +47,7 @@ public class LocalizacaoDAO {
     public static int insere(Localizacao localizacao) {
         c = ConnectionFactory.getConnection();
 
-        String sql = "INSERT INTO localizacao(rua,fkidcidade,complemento) "
+        String sql = "INSERT INTO localizacao(rua,fkidcidade,complemento)\n"
                 + "VALUES (?,?,?);";
         try {
             PreparedStatement ppstt = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -71,11 +71,11 @@ public class LocalizacaoDAO {
 
     //Filtar localizacao por cidade
     public Localizacao getLocalizacao(Cidade cidade) {
-        String sql = "SELECT loc.pkidlocalizacao, loc.rua, loc.fkidcidade, loc.complemento,"
-                + "cid.nome AS cidadenome, cid.fkidestado, est.nome AS estadonome, est.sigla"
-                + "FROM localizacao loc"
-                + "INNER JOIN cidade AS cid ON (loc.fkidcidade = ?)" //recebe o pkid da cidade
-                + "INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)";
+        String sql = "SELECT loc.pkidlocalizacao, loc.rua, loc.fkidcidade, loc.complemento,\n"
+                + "cid.nome AS cidadenome, cid.fkidestado, est.nome AS estadonome, est.sigla\n"
+                + "FROM localizacao loc\n"
+                + "INNER JOIN cidade AS cid ON (loc.fkidcidade = ?)\n" //recebe o pkid da cidade
+                + "INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)\n";
         c = ConnectionFactory.getConnection();
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
@@ -113,11 +113,11 @@ public class LocalizacaoDAO {
 
     public  List<Localizacao> getLocalizacao() {
         List<Localizacao> localizacoes = new ArrayList<Localizacao>();
-        String sql = "SELECT loc.pkidlocalizacao, loc.rua, loc.fkidcidade, loc.complemento,"
-                + "cid.nome AS cidadenome, cid.fkidestado, est.nome AS estadonome, est.sigla"
-                + "FROM localizacao loc"
-                + "INNER JOIN cidade AS cid ON (loc.fkidcidade = cid.pkidcidade)"
-                + "INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)";
+        String sql = "SELECT loc.pkidlocalizacao, loc.rua, loc.fkidcidade, loc.complemento,\n"
+                + "cid.nome AS cidadenome, cid.fkidestado, est.nome AS estadonome, est.sigla\n"
+                + "FROM localizacao loc\n"
+                + "INNER JOIN cidade AS cid ON (loc.fkidcidade = cid.pkidcidade)\n"
+                + "INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)\n";
         c = ConnectionFactory.getConnection();
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);

@@ -5,15 +5,11 @@
  */
 package servlet;
 
-import DAO.CategoriaDAO;
-import DAO.CidadeDAO;
-import DAO.EstadoDAO;
 import DAO.LocalizacaoDAO;
 import DAO.LugarDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.Integer.parseInt;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

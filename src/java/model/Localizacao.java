@@ -15,10 +15,21 @@ public class Localizacao {
     private String rua;
     private Cidade cidade;
     private String complemento;
-
+    private String bairro;
+    private int numero;
+    
     public Localizacao() {
     }
 
+    public Localizacao(int idLocalizacao, String rua, Cidade cidade, String complemento, String bairro, int numero) {
+        this.idLocalizacao = idLocalizacao;
+        this.rua = rua;
+        this.cidade = cidade;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.numero = numero;
+    }
+    
     public int getIdLocalizacao() {
         return idLocalizacao;
     }
@@ -50,9 +61,21 @@ public class Localizacao {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
-    
-    
-    
-    
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    } 
     
 }

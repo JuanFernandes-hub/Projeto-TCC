@@ -21,7 +21,7 @@
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> <!-- pasta Bootstrap -->
         <link rel="stylesheet" href="css/EstilosCadastro.css"> <!-- css entrar -->
         <link rel="stylesheet" href="css/EstilosRodape.css"> <!-- css do rodape -->
-        
+
 
         <!--
         
@@ -36,7 +36,7 @@
                 //Pegar estado para select
                 EstadoDAO daoEstado = new EstadoDAO();
                 List<Estado> estados = daoEstado.getEstado();
-                
+
                 //Pegar categorias para selecr
                 CategoriaDAO daoCategoria = new CategoriaDAO();
                 List<Categoria> categorias = daoCategoria.getCategoria();
@@ -58,11 +58,39 @@
                     <select class="form-control" name="nCategoria" id="categoria">
                         <%
                             for (Categoria categoria : categorias) {
-                                %><option name="nCategoria" value="<% out.print(categoria.getIdCategoria()); %>"><% out.print(categoria.getNome());
+                        %><option name="nCategoria" value="<% out.print(categoria.getIdCategoria()); %>"><% out.print(categoria.getNome());
                             }
                             %></option>
                     </select>
                 </div>
+
+                
+
+
+                <div class="form-row ">
+                    <div class="col-5">
+                    <label for="acesso">Acesso</label>
+                    <select class="form-control" name="nAcesso" id="acesso">
+                        <option name="nAcesso" value="gratuito">Gratuito</option>
+                        <option name="nAcesso" value="pago">Pago</option>
+                        <option name="nAcesso" value="Requer Permissão">Requer Permissão</option>
+                    </select>
+                </div>
+                    <div class="col">
+                        <label for="horarioInicial" class="" style="color: black;">Das</label>
+                        <input type="text" class="form-control" name="nHorarioInicial" id="horarioInicial" placeholder="Horário Inicial">
+                    </div>
+                    <div class="col">
+                        <label for="horarioFinal" class="" style="color: black;">Às</label>
+                        <input type="text" class="form-control" name="nHorarioFinal" id="horarioFinal" placeholder="Horário Final">
+                    </div>
+                </div>
+
+
+
+
+
+
 
                 <!-- SELECT ESTADO-->
                 <div class="form-group">
@@ -78,8 +106,8 @@
                             %></option>
                     </select>
                 </div>
-                    
-                
+
+
                 <!-- SELECT CIDADE -->
                 <div class="form-group" >
                     <label for="cidade" class="" style="color: black;">Cidade</label>
@@ -90,8 +118,18 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="bairro" class="" style="color: black;">Bairro (opcional)</label>
+                    <input type="text" class="form-control" name="nBairro" id="bairro" placeholder="Bairro">
+                </div>
+
+                <div class="form-group">
                     <label for="rua" class="" style="color: black;">Rua (opcional)</label>
                     <input type="text" class="form-control" name="nRua" id="rua" placeholder="R. Rio Branco">
+                </div>
+
+                <div class="form-group">
+                    <label for="numero" class="" style="color: black;">N° (opcional)</label>
+                    <input type="text" class="form-control" name="nNumero" id="numero" placeholder="Número">
                 </div>
 
                 <div class="form-group">
@@ -99,36 +137,39 @@
                     <textarea class="form-control" name="nComplemento" id="complemento" placeholder="Digite alguns detalhes." rows="5"></textarea>
                 </div>
 
-                
+
+
+
                 <button type="submit" id="botao" class="btn btn-warning">Enviar</button>
             </form>
         </div>
 
-        
+
         <!-- IMPORTANTE - SCRIPTS NECESSARIOS PARA O FUNCIONAMENTO DO DROPDOWN, DEVE SER A ULTIMA COISA ANTES DE FECHAR O BODY -->
         <script src="http://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> <!-- ajax -->
         <script type="text/javascript" src="js/GetCidades.js"></script> <!-- Meu arquivo ajax -->
+
         <script>
-            $(document).ready(function(){
-               //console.log($("#estado").name);
-               //console.log($("#cidade").name);
-               //console.log($("#categoria").name);
-               
-               $("#cidade").change(function(){
-                   console.log("Nome da cidade:"+$("#cidade :selected").text());
-                   console.log("Value da cidade:"+$("#cidade").val());
-                   
-               });
-               
-               $("#categoria").change(function(){
-                   //console.log($("#categoria").val());
-                   //console.log(document.getElementsByName("nCategoria")[0].value)
-                   
-               });
-                
+            $(document).ready(function () {
+                //console.log($("#estado").name);
+                //console.log($("#cidade").name);
+                //console.log($("#categoria").name);
+
+                $("#cidade").change(function () {
+                    console.log("Nome da cidade:" + $("#cidade :selected").text());
+                    console.log("Value da cidade:" + $("#cidade").val());
+
+                });
+
+                $("#categoria").change(function () {
+                    //console.log($("#categoria").val());
+                    //console.log(document.getElementsByName("nCategoria")[0].value)
+
+                });
+
             });
         </script>
     </body>

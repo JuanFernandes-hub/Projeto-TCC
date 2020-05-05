@@ -28,7 +28,7 @@ public class LugarDAO {
     public static boolean insereLugar(Lugar lugar) {
         c = ConnectionFactory.getConnection();
 
-        String sql = "INSERT INTO lugar(nome,avaliacao,fkidcategoria,fkidlocalizacao) "
+        String sql = "INSERT INTO lugar(nome,avaliacao,fkidcategoria,fkidlocalizacao)\n"
                 + "VALUES (?,?,?,?);";
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
@@ -49,15 +49,15 @@ public class LugarDAO {
     //pegar avaliacao, fazer a media e mandar para o banco
     //Procurar pelo nome do lugar
     public Lugar getLugar(Lugar lugar) {
-        String sql = "SELECT lug.pkidlugar, lug.nome AS lugarnome, lug.avaliacao, lug.fkidcategoria, lug.fkidlocalizacao,"
-                + "	   cat.nome AS categorianome, loc.rua, loc.fkidcidade, loc.complemento, cid.nome AS nomecidade, cid.fkidestado,"
-                + "	   est.nome AS estadonome, est.sigla"
-                + "FROM lugar lug"
-                + "INNER JOIN categoria AS cat ON (lug.fkidcategoria = cat.pkidcategoria)"
-                + "INNER JOIN localizacao AS loc ON (lug.fkidlocalizacao = loc.pkidlocalizacao)"
-                + "INNER JOIN cidade AS cid ON (loc.fkidcidade = cid.pkidcidade)"
-                + "INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)"
-                + "AND lug.nome = '?' ";
+        String sql = "SELECT lug.pkidlugar, lug.nome AS lugarnome, lug.avaliacao, lug.fkidcategoria, lug.fkidlocalizacao,\n"
+                + "cat.nome AS categorianome, loc.rua, loc.fkidcidade, loc.complemento, cid.nome AS nomecidade, cid.fkidestado,\n"
+                + "est.nome AS estadonome, est.sigla\n"
+                + "FROM lugar lug\n"
+                + "INNER JOIN categoria AS cat ON (lug.fkidcategoria = cat.pkidcategoria)\n"
+                + "INNER JOIN localizacao AS loc ON (lug.fkidlocalizacao = loc.pkidlocalizacao)\n"
+                + "INNER JOIN cidade AS cid ON (loc.fkidcidade = cid.pkidcidade)\n"
+                + "INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)\n"
+                + "AND lug.nome = '?' \n";
         c = ConnectionFactory.getConnection();
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
@@ -103,14 +103,14 @@ public class LugarDAO {
 
     public static List<Lugar> getLugar() {
         List<Lugar> lugares = new ArrayList<Lugar>();
-        String sql = "SELECT lug.pkidlugar, lug.nome AS lugarnome, lug.avaliacao, lug.fkidcategoria, lug.fkidlocalizacao,"
-                + "	   cat.nome AS categorianome, loc.rua, loc.fkidcidade, loc.complemento, cid.nome AS nomecidade, cid.fkidestado,\n"
-                + "	   est.nome AS estadonome, est.sigla"
-                + "FROM lugar lug"
-                + "INNER JOIN categoria AS cat ON (lug.fkidcategoria = cat.pkidcategoria)"
-                + "INNER JOIN localizacao AS loc ON (lug.fkidlocalizacao = loc.pkidlocalizacao)"
-                + "INNER JOIN cidade AS cid ON (loc.fkidcidade = cid.pkidcidade)"
-                + "INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)";
+        String sql = "SELECT lug.pkidlugar, lug.nome AS lugarnome, lug.avaliacao, lug.fkidcategoria, lug.fkidlocalizacao,\n"
+                + "cat.nome AS categorianome, loc.rua, loc.fkidcidade, loc.complemento, cid.nome AS nomecidade, cid.fkidestado,\n"
+                + "est.nome AS estadonome, est.sigla\n"
+                + "FROM lugar lug\n"
+                + "INNER JOIN categoria AS cat ON (lug.fkidcategoria = cat.pkidcategoria)\n"
+                + "INNER JOIN localizacao AS loc ON (lug.fkidlocalizacao = loc.pkidlocalizacao)\n"
+                + "INNER JOIN cidade AS cid ON (loc.fkidcidade = cid.pkidcidade)\n"
+                + "INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)\n";
         c = ConnectionFactory.getConnection();
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
