@@ -27,13 +27,15 @@ public class LocalizacaoDAO {
     public static boolean insereLocalizacao(Localizacao localizacao) {
         c = ConnectionFactory.getConnection();
 
-        String sql = "INSERT INTO localizacao(rua,fkidcidade,complemento)\n"
-                + "VALUES (?,?,?);";
+        String sql = "INSERT INTO localizacao(rua,fkidcidade,complemento,bairro,numero)\n"
+                + "VALUES (?,?,?,?,?);";
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
             ppstt.setString(1, localizacao.getRua());
             ppstt.setInt(2, localizacao.getCidade().getIdCidade());
             ppstt.setString(3, localizacao.getComplemento());
+            ppstt.setString(4, localizacao.getBairro());
+            ppstt.setString(5, localizacao.getNumero());
             ppstt.execute();
             ppstt.close();
         } catch (SQLException e) {
@@ -47,13 +49,15 @@ public class LocalizacaoDAO {
     public static int insere(Localizacao localizacao) {
         c = ConnectionFactory.getConnection();
 
-        String sql = "INSERT INTO localizacao(rua,fkidcidade,complemento)\n"
-                + "VALUES (?,?,?);";
+        String sql = "INSERT INTO localizacao(rua,fkidcidade,complemento,bairro,numero)\n"
+                + "VALUES (?,?,?,?,?);";
         try {
             PreparedStatement ppstt = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ppstt.setString(1, localizacao.getRua());
             ppstt.setInt(2, localizacao.getCidade().getIdCidade());
             ppstt.setString(3, localizacao.getComplemento());
+            ppstt.setString(4, localizacao.getBairro());
+            ppstt.setString(5, localizacao.getNumero());
             ppstt.execute();
             ResultSet rs = ppstt.getGeneratedKeys();
             int id = 0;

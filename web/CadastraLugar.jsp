@@ -64,18 +64,18 @@
                     </select>
                 </div>
 
-                
+
 
 
                 <div class="form-row ">
                     <div class="col-5">
-                    <label for="acesso">Acesso</label>
-                    <select class="form-control" name="nAcesso" id="acesso">
-                        <option name="nAcesso" value="gratuito">Gratuito</option>
-                        <option name="nAcesso" value="pago">Pago</option>
-                        <option name="nAcesso" value="Requer Permissão">Requer Permissão</option>
-                    </select>
-                </div>
+                        <label for="acesso">Acesso</label>
+                        <select class="form-control" name="nAcesso" id="acesso">
+                            <option name="nAcesso" value="gratuito">Gratuito</option>
+                            <option name="nAcesso" value="pago">Pago</option>
+                            <option name="nAcesso" value="Requer Permissão">Requer Permissão</option>
+                        </select>
+                    </div>
                     <div class="col">
                         <label for="horarioInicial" class="" style="color: black;">Das</label>
                         <input type="text" class="form-control" name="nHorarioInicial" id="horarioInicial" placeholder="Horário Inicial">
@@ -85,6 +85,9 @@
                         <input type="text" class="form-control" name="nHorarioFinal" id="horarioFinal" placeholder="Horário Final">
                     </div>
                 </div>
+
+                <br>
+                <br>
 
 
 
@@ -135,6 +138,13 @@
                 <div class="form-group">
                     <label for="complemento" class="" style="color: black;">Complemento (opcional)</label>
                     <textarea class="form-control" name="nComplemento" id="complemento" placeholder="Digite alguns detalhes." rows="5"></textarea>
+                </div>
+                
+                <br>
+                
+                <div class="form-group">
+                    <label for="descricao" class="" style="color: black;">Descrição</label>
+                    <input type="text" class="form-control" name="nDescricao" id="descricao" placeholder="Descreva o lugar em uma frase">
                 </div>
 
 

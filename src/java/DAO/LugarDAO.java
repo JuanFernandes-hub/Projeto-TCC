@@ -28,18 +28,22 @@ public class LugarDAO {
     public static boolean insereLugar(Lugar lugar) {
         c = ConnectionFactory.getConnection();
 
-        String sql = "INSERT INTO lugar(nome,avaliacao,fkidcategoria,fkidlocalizacao)\n"
-                + "VALUES (?,?,?,?);";
+        String sql = "INSERT INTO lugar(nome,avaliacao,fkidcategoria,fkidlocalizacao,acesso,horainicial,horafinal,descricao)\n"
+                + "VALUES (?,?,?,?,?,?,?,?);";
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
             ppstt.setString(1, lugar.getNome());
             ppstt.setFloat(2, lugar.getAvaliacao()); //Passar avaliacao?
             ppstt.setInt(3, lugar.getCategoria().getIdCategoria());
             ppstt.setInt(4, lugar.getLocalizacao().getIdLocalizacao());
+            ppstt.setString(5, lugar.getAcesso());
+            ppstt.setTime(6, lugar.getHoraInicial());
+            ppstt.setTime(7, lugar.getHoraFinal());
+            ppstt.setString(8, lugar.getDescricao());
             ppstt.execute();
             ppstt.close();
         } catch (SQLException e) {
-            System.out.print("nao deu");
+            System.out.print("Erro no sistema. Desculpe.");
             return false;
         }
         return true;

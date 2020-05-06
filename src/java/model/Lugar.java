@@ -5,6 +5,9 @@
  */
 package model;
 
+import java.sql.Time;
+
+
 /**
  *
  * @author juann
@@ -15,6 +18,10 @@ public class Lugar {
     private float avaliacao;
     private Categoria categoria;
     private Localizacao localizacao;
+    private String acesso;
+    private Time horaInicial;
+    private Time horaFinal;
+    private String descricao;
 
     public Lugar() {
         this.avaliacao = 0;
@@ -51,9 +58,7 @@ public class Lugar {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
-
     
-
     public Localizacao getLocalizacao() {
         return localizacao;
     }
@@ -61,5 +66,39 @@ public class Lugar {
     public void setLocalizacao(Localizacao localizacao) {
         this.localizacao = localizacao;
     }
+
+    public String getAcesso() {
+        return acesso;
+    }
+
+    public void setAcesso(String acesso) {
+        this.acesso = acesso;
+    }
+
+    public Time getHoraInicial() {
+        return horaInicial;
+    }
+
+    public void setHoraInicial(Time horaInicial) {
+        this.horaInicial = horaInicial;
+    }
+
+    public Time getHoraFinal() {
+        return horaFinal;
+    }
+
+    public void setHoraFinal(Time horaFinal) {
+        this.horaFinal = horaFinal;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+    
+    
     
 }

@@ -7,6 +7,10 @@ package model;
 
 import DAO.CidadeDAO;
 import DAO.EstadoDAO;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import model.Cidade;
 
@@ -16,14 +20,11 @@ import model.Cidade;
  */
 public class Testes {
 
-    public static void main(String[] args) {
-        CidadeDAO dao = new CidadeDAO();
-        List<Cidade> cidades = dao.getCidade();
-
-        for (Cidade cidade : cidades) {
-            System.out.print(cidade.getNome());
-            
-        }
+    public static void main(String[] args) throws ParseException {
+        DateFormat formato = new SimpleDateFormat("HH:mm");
+            String horarioInicial_lugar = "08:00";
+            Time horaInicial_lugar = new java.sql.Time(formato.parse(horarioInicial_lugar).getTime());
+            System.out.println(horaInicial_lugar);
         
         /*
         EstadoDAO dao1 = new EstadoDAO();
