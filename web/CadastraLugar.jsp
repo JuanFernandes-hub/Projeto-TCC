@@ -21,11 +21,9 @@
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> <!-- pasta Bootstrap -->
         <link rel="stylesheet" href="css/EstilosCadastro.css"> <!-- css entrar -->
         <link rel="stylesheet" href="css/EstilosRodape.css"> <!-- css do rodape -->
+        <script type="text/javascript" src="js/ValidaCadLugar.js"></script> <!-- Validação -->
 
-
-        <!--
         
-        -->
     </head>
     <body>
 
@@ -42,7 +40,7 @@
                 List<Categoria> categorias = daoCategoria.getCategoria();
             %>
 
-            <form action="CadastraLugar" method="post" class="col-sm-6" id="formLugar">
+            <form action="CadastraLugar" method="post" onsubmit="return validaForm(this)" class="col-sm-6" id="formLugar">
                 <div class="row justify-content-md-center">
                     <h1 style="color: black">Crie sua conta</h1>
                 </div>
@@ -88,12 +86,6 @@
 
                 <br>
                 <br>
-
-
-
-
-
-
 
                 <!-- SELECT ESTADO-->
                 <div class="form-group">
@@ -155,32 +147,16 @@
         </div>
 
 
-        <!-- IMPORTANTE - SCRIPTS NECESSARIOS PARA O FUNCIONAMENTO DO DROPDOWN, DEVE SER A ULTIMA COISA ANTES DE FECHAR O BODY -->
+        <!-- IMPORTANTE - SCRIPTS NECESSARIOS PARA O FUNCIONAMENTO DO DROPDOWN -->
         <script src="http://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> <!-- MASCARAS -->
+        <script type="text/javascript" src="js/jquery.mask.min.js"></script> <!-- MASCARAS -->
+        <script type="text/javascript" src="js/Mascaras.js"></script> <!-- FORMATA MASCARAS -->
         <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> <!-- ajax -->
-        <script type="text/javascript" src="js/GetCidades.js"></script> <!-- Meu arquivo ajax -->
-
-        <script>
-            $(document).ready(function () {
-                //console.log($("#estado").name);
-                //console.log($("#cidade").name);
-                //console.log($("#categoria").name);
-
-                $("#cidade").change(function () {
-                    console.log("Nome da cidade:" + $("#cidade :selected").text());
-                    console.log("Value da cidade:" + $("#cidade").val());
-
-                });
-
-                $("#categoria").change(function () {
-                    //console.log($("#categoria").val());
-                    //console.log(document.getElementsByName("nCategoria")[0].value)
-
-                });
-
-            });
-        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> <!-- AJAX -->
+        <script type="text/javascript" src="js/GetCidades.js"></script> <!-- MEU AJAX -->
+        
+        
     </body>
 </html>
