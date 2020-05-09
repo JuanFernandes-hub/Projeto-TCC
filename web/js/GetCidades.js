@@ -17,13 +17,13 @@ $(document).ready(function(){
                 $("#cidade").empty();
                 for(var i in data.dados){
                     var nome = data.dados[i].nome;
-                    console.log("dataNome"+nome); //atributo nome da classe Cidade
+                    //console.log("dataNome"+nome); //atributo nome da classe Cidade
                     var id = data.dados[i].idCidade; //atributo idCidade da classe Cidade
-                    console.log("dataId"+id);
+                    //console.log("dataId"+id);
                     
                     var novaOpc = $('<option name="nCidade" value='+id+'>'+nome+' </option>');
                     $("#cidade").append(novaOpc);
-                    console.log("NovaOpcVal: "+novaOpc.val());
+                    //console.log("NovaOpcVal: "+novaOpc.val());
                     
                 }
             },

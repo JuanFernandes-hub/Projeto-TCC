@@ -75,7 +75,7 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("        <link href=\"bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\" type=\"text/css\" /> <!-- pasta Bootstrap -->\n");
       out.write("        <link rel=\"stylesheet\" href=\"css/EstilosCadastro.css\"> <!-- css entrar -->\n");
       out.write("        <link rel=\"stylesheet\" href=\"css/EstilosRodape.css\"> <!-- css do rodape -->\n");
-      out.write("        <script type=\"text/javascript\" src=\"js/ValidaCadLugar.js\"></script> <!-- Validação -->\n");
+      out.write("        \n");
       out.write("\n");
       out.write("        \n");
       out.write("    </head>\n");
@@ -130,11 +130,11 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                    </div>\n");
       out.write("                    <div class=\"col\">\n");
       out.write("                        <label for=\"horarioInicial\" class=\"\" style=\"color: black;\">Das</label>\n");
-      out.write("                        <input type=\"text\" class=\"form-control\" name=\"nHorarioInicial\" id=\"horarioInicial\" placeholder=\"Horário Inicial\">\n");
+      out.write("                        <input type=\"text\" class=\"form-control\" name=\"nHorarioInicial\" id=\"horarioInicial\" placeholder=\"08:00\" required>\n");
       out.write("                    </div>\n");
       out.write("                    <div class=\"col\">\n");
       out.write("                        <label for=\"horarioFinal\" class=\"\" style=\"color: black;\">Às</label>\n");
-      out.write("                        <input type=\"text\" class=\"form-control\" name=\"nHorarioFinal\" id=\"horarioFinal\" placeholder=\"Horário Final\">\n");
+      out.write("                        <input type=\"text\" class=\"form-control\" name=\"nHorarioFinal\" id=\"horarioFinal\" placeholder=\"17:00\" required>\n");
       out.write("                    </div>\n");
       out.write("                </div>\n");
       out.write("\n");
@@ -171,11 +171,12 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                        <!-- option gerados por ajax, de acordo com o estado selecionado -->\n");
       out.write("                        <option value=\"\" disabled selected hidden>Selecione...</option>\n");
       out.write("                    </select>\n");
+      out.write("                    <small><i>Selecione um estado primeiro</i></small>\n");
       out.write("                </div>\n");
       out.write("\n");
       out.write("                <div class=\"form-group\">\n");
       out.write("                    <label for=\"bairro\" class=\"\" style=\"color: black;\">Bairro (opcional)</label>\n");
-      out.write("                    <input type=\"text\" class=\"form-control\" name=\"nBairro\" id=\"bairro\" placeholder=\"Bairro\">\n");
+      out.write("                    <input type=\"text\" class=\"form-control\" name=\"nBairro\" id=\"bairro\" placeholder=\"Bairro\" autofocus >\n");
       out.write("                </div>\n");
       out.write("\n");
       out.write("                <div class=\"form-group\">\n");
@@ -217,6 +218,7 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("        <script src=\"bootstrap/js/bootstrap.min.js\"></script>\n");
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\"></script> <!-- AJAX -->\n");
       out.write("        <script type=\"text/javascript\" src=\"js/GetCidades.js\"></script> <!-- MEU AJAX -->\n");
+      out.write("        <script type=\"text/javascript\" src=\"js/ValidaCadLugar.js\"></script> <!-- Validação -->\n");
       out.write("        \n");
       out.write("        \n");
       out.write("    </body>\n");

@@ -4,17 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/Home.jsp</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/DAO/LoginDAO.java</file>
             <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/CadastraLugar.jsp</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/model/Cidade.java</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/DAO/LugarDAO.java</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/DAO/LocalizacaoDAO.java</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/model/Localizacao.java</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/model/Lugar.java</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/DAO/ConnectionFactory.java</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/DAO/EstadoDAO.java</file>
+            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/servlet/CadastraLogin.java</file>
+            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/js/GetCidades.js</file>
+            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/js/Mascaras.js</file>
+            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/js/ValidaCadLugar.js</file>
             <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/servlet/CadastraLugar.java</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/DAO/CidadeDAO.java</file>
         </group>
     </open-files>
 </project-private>

@@ -21,9 +21,9 @@
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" /> <!-- pasta Bootstrap -->
         <link rel="stylesheet" href="css/EstilosCadastro.css"> <!-- css entrar -->
         <link rel="stylesheet" href="css/EstilosRodape.css"> <!-- css do rodape -->
-        <script type="text/javascript" src="js/ValidaCadLugar.js"></script> <!-- Validação -->
 
-        
+
+
     </head>
     <body>
 
@@ -54,6 +54,7 @@
                 <div class="form-group">
                     <label for="categoria" class="" style="color: black;">Categoria</label>
                     <select class="form-control" name="nCategoria" id="categoria">
+                        <option class="Selecione" value="" disabled selected hidden>Selecione...</option>
                         <%
                             for (Categoria categoria : categorias) {
                         %><option name="nCategoria" value="<% out.print(categoria.getIdCategoria()); %>"><% out.print(categoria.getNome());
@@ -68,7 +69,7 @@
                 <div class="form-row ">
                     <div class="col-5">
                         <label for="acesso">Acesso</label>
-                        <select class="form-control" name="nAcesso" id="acesso">
+                        <select class="form-control" name="nAcesso" id="acesso" required>
                             <option name="nAcesso" value="gratuito">Gratuito</option>
                             <option name="nAcesso" value="pago">Pago</option>
                             <option name="nAcesso" value="Requer Permissão">Requer Permissão</option>
@@ -76,12 +77,16 @@
                     </div>
                     <div class="col">
                         <label for="horarioInicial" class="" style="color: black;">Das</label>
-                        <input type="text" class="form-control" name="nHorarioInicial" id="horarioInicial" placeholder="Horário Inicial">
+                        <input type="text" class="form-control" name="nHorarioInicial" id="horarioInicial" placeholder="08:00" required>
                     </div>
                     <div class="col">
                         <label for="horarioFinal" class="" style="color: black;">Às</label>
-                        <input type="text" class="form-control" name="nHorarioFinal" id="horarioFinal" placeholder="Horário Final">
+                        <input type="text" class="form-control" name="nHorarioFinal" id="horarioFinal" placeholder="17:00" required>
                     </div>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="semHorario" value="semHorario">
+                    <label class="form-check-label" for="semHorario">Sem horário</label>
                 </div>
 
                 <br>
@@ -110,16 +115,17 @@
                         <!-- option gerados por ajax, de acordo com o estado selecionado -->
                         <option value="" disabled selected hidden>Selecione...</option>
                     </select>
+                    <small><i>Selecione um estado primeiro</i></small>
                 </div>
 
                 <div class="form-group">
-                    <label for="bairro" class="" style="color: black;">Bairro (opcional)</label>
-                    <input type="text" class="form-control" name="nBairro" id="bairro" placeholder="Bairro">
+                    <label for="bairro" class="" style="color: black;">Bairro</label>
+                    <input type="text" class="form-control" name="nBairro" id="bairro" placeholder="Bairro" required >
                 </div>
 
                 <div class="form-group">
-                    <label for="rua" class="" style="color: black;">Rua (opcional)</label>
-                    <input type="text" class="form-control" name="nRua" id="rua" placeholder="R. Rio Branco">
+                    <label for="rua" class="" style="color: black;">Rua</label>
+                    <input type="text" class="form-control" name="nRua" id="rua" placeholder="R. Rio Branco" required>
                 </div>
 
                 <div class="form-group">
@@ -131,9 +137,9 @@
                     <label for="complemento" class="" style="color: black;">Complemento (opcional)</label>
                     <textarea class="form-control" name="nComplemento" id="complemento" placeholder="Digite alguns detalhes." rows="5"></textarea>
                 </div>
-                
+
                 <br>
-                
+
                 <div class="form-group">
                     <label for="descricao" class="" style="color: black;">Descrição</label>
                     <input type="text" class="form-control" name="nDescricao" id="descricao" placeholder="Descreva o lugar em uma frase">
@@ -156,7 +162,8 @@
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> <!-- AJAX -->
         <script type="text/javascript" src="js/GetCidades.js"></script> <!-- MEU AJAX -->
-        
-        
+        <script type="text/javascript" src="js/ValidaCadLugar.js"></script> <!-- Validação -->
+
+
     </body>
 </html>
