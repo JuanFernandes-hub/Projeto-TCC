@@ -42,7 +42,7 @@
 
             <form action="CadastraLugar" method="post" onsubmit="return validaForm(this)" class="col-sm-6" id="formLugar">
                 <div class="row justify-content-md-center">
-                    <h1 style="color: black">Crie sua conta</h1>
+                    <h1 style="color: black">Cadastre o lugar</h1>
                 </div>
 
                 <div class="form-group">

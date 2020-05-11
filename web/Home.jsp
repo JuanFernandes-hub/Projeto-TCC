@@ -106,11 +106,14 @@
                         <div class="card">
                             <div class="card-body">
                                 <h3 class="card-title"> <% out.print(lugar.getNome()); %> </h3>
+                                <p class="card-text"><% out.print(lugar.getDescricao()); %></p>
                             </div>
                         </div>
                     </div> <%    
                     }    
                 %>
+                
+                
 
 
             </div>
