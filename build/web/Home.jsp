@@ -101,15 +101,16 @@
                 %>
 
                 <%
-                    for(Lugar lugar: lugares){
+                    //Limitar numero de cards na home
+                    for(int  i=0 ; i < 9; i++){
                 %>  <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
-                                <h3 class="card-title"> <% out.print(lugar.getNome()); %> </h3>
-                                <p class="card-text"><% out.print(lugar.getDescricao()); %></p>
+                                <h3 class="card-title"> <% out.print(lugares.get(i).getNome()); %> </h3>
+                                <p class="card-text"><% out.print(lugares.get(i).getDescricao()); %></p>
                             </div>
                         </div>
-                    </div> <%    
+                    </div> <%
                     }    
                 %>
                 

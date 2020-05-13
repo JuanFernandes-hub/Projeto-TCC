@@ -150,21 +150,27 @@ public final class Home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("                ");
 
-                    for(Lugar lugar: lugares){
+                    //Limitar numero de cards na home
+                    for(int  i=0 ; i < 9; i++){
                 
       out.write("  <div class=\"col-md-4\">\n");
       out.write("                        <div class=\"card\">\n");
       out.write("                            <div class=\"card-body\">\n");
       out.write("                                <h3 class=\"card-title\"> ");
- out.print(lugar.getNome()); 
+ out.print(lugares.get(i).getNome()); 
       out.write(" </h3>\n");
+      out.write("                                <p class=\"card-text\">");
+ out.print(lugares.get(i).getDescricao()); 
+      out.write("</p>\n");
       out.write("                            </div>\n");
       out.write("                        </div>\n");
       out.write("                    </div> ");
-    
+
                     }    
                 
       out.write("\n");
+      out.write("                \n");
+      out.write("                \n");
       out.write("\n");
       out.write("\n");
       out.write("            </div>\n");

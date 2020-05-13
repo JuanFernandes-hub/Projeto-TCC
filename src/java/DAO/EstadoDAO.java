@@ -51,8 +51,8 @@ public class EstadoDAO {
             if(rs.next()){
                 Estado estadoObj = new Estado();
                 estadoObj.setIdEstado(rs.getInt("pkidestado"));
-                estadoObj.setNome(rs.getString("nome"));
                 estadoObj.setSigla("sigla");
+                estadoObj.setNome(rs.getString("nome"));
                 return estadoObj;
             }
         }catch(SQLException e){

@@ -7,6 +7,7 @@ package model;
 
 import DAO.CidadeDAO;
 import DAO.EstadoDAO;
+import DAO.LugarDAO;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -21,10 +22,11 @@ import model.Cidade;
 public class Testes {
 
     public static void main(String[] args) throws ParseException {
-        DateFormat formato = new SimpleDateFormat("HH:mm");
-            String horarioInicial_lugar = "08:00";
-            Time horaInicial_lugar = new java.sql.Time(formato.parse(horarioInicial_lugar).getTime());
-            System.out.println(horaInicial_lugar);
+        Lugar lugar = new Lugar();
+        LugarDAO lugardao = new LugarDAO();
+        lugar = lugardao.getLugar(12);
+        
+        System.out.println(lugar.getNome());
         
         /*
         EstadoDAO dao1 = new EstadoDAO();
