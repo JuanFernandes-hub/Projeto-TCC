@@ -24,9 +24,7 @@ public class Testes {
 
     public static void main(String[] args) throws ParseException {
         LoginDAO dao = new LoginDAO();
-        Login login = dao.getLogin("Juan", "Fernandes");
-        System.out.println("Usuario; "+login.getUsuario());
-        System.out.println("Senha: "+login.getSenha());
+
         
         /*
         EstadoDAO dao1 = new EstadoDAO();

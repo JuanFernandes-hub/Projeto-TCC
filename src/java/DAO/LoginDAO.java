@@ -38,14 +38,15 @@ public class LoginDAO {
         return true;
     }
 
-    public Login getLogin(String usuario, String senha) {
+    public Login getLogin(String usuario, String senha, String email) {
         String sql = "SELECT * FROM login\n"
-                + "WHERE usuario = ? AND senha = ? ";
+                + "WHERE (usuario = ? OR email = ?) AND senha = ? ";
         c = ConnectionFactory.getConnection();
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
             ppstt.setString(1, usuario);
-            ppstt.setString(2, senha);
+            ppstt.setString(2, email);
+            ppstt.setString(3, senha);
             ResultSet rs = ppstt.executeQuery();
             if (rs.next()) {
                 Login login = new Login();

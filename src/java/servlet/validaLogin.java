@@ -40,11 +40,12 @@ public class validaLogin extends HttpServlet{
         Login login = null;
         String usuario_form = request.getParameter("nUsuario");
         String senha_form = request.getParameter("nSenha");
+        String email_form = request.getParameter("nUsuario");
         
         try {
             LoginDAO dao = new LoginDAO();
             //recebe o usuario do banco
-            login = dao.getLogin(usuario_form, senha_form);
+            login = dao.getLogin(usuario_form, senha_form, email_form);
             
         }catch( Exception e ){
             e.printStackTrace();
@@ -54,7 +55,7 @@ public class validaLogin extends HttpServlet{
         
         if( login == null ) {
             sessao.invalidate();
-            String mensagem = "Nao deu";
+            String mensagem = "Usuário ou senha incorretos. Tente novamente.";
             request.setAttribute("mensagem", mensagem);
             RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
             rd.forward(request, response);

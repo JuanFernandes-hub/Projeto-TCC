@@ -87,7 +87,7 @@
                         </div>
                         <div class="row justify-content-center">
                             <div class="group-form">
-                                <label for="idUsuario" style="color: #ffffff;">Nome</label>
+                                <label for="idUsuario" style="color: #ffffff;">Usuário ou Email</label>
                                 <input type="text" class="form-control" name="nUsuario" id="idUsuario" required autofocus>
                             </div>
                         </div>
