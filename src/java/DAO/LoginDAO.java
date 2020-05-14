@@ -16,57 +16,60 @@ import model.Login;
  * @author user
  */
 public class LoginDAO {
+
     static Connection c;
-    
-    public static boolean insereLogin(Login login){
+
+    public static boolean insereLogin(Login login) {
         c = ConnectionFactory.getConnection();
-        
+
         //mudar banco
         String sql = "INSERT INTO login(usuario,senha,email)\n"
                 + "VALUES (?,?,?);";
-        try{
+        try {
             PreparedStatement ppstt = c.prepareStatement(sql);
-            ppstt.setString(1,login.getUsuario());
-            ppstt.setString(2,login.getSenha());
-            ppstt.setString(3,login.getEmail());
+            ppstt.setString(1, login.getUsuario());
+            ppstt.setString(2, login.getSenha());
+            ppstt.setString(3, login.getEmail());
             ppstt.execute();
             ppstt.close();
-        }catch(SQLException e){
+        } catch (SQLException e) {
             return false;
         }
         return true;
     }
-    
-    public Login getLogin(String usuario, String senha){
-        String sql = "SELECT * FROM login WHERE usuario = ? AND senha = ?";
+
+    public Login getLogin(String usuario, String senha) {
+        String sql = "SELECT * FROM login\n"
+                + "WHERE usuario = ? AND senha = ? ";
         c = ConnectionFactory.getConnection();
-        try{
+        try {
             PreparedStatement ppstt = c.prepareStatement(sql);
-            ppstt.setString(1,usuario);
-            ppstt.setString(2,senha);
+            ppstt.setString(1, usuario);
+            ppstt.setString(2, senha);
             ResultSet rs = ppstt.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 Login login = new Login();
                 login.setIdUsuario(rs.getInt("pkidusuario"));
                 login.setUsuario(rs.getString("usuario"));
                 login.setSenha(rs.getString("senha"));
-                login.setClasse(rs.getString("classe"));
-                System.out.println(login);
+                //login.setClasse(rs.getString("classe"));
+                System.out.println("ESSE é o usuario do banco" + login.getUsuario());
                 return login;
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
+            System.out.println("ERROOO");
         }
-        
+
         return null;
     }
-    
-    private static void fecharConexao(){
-        try{
-        c.close();
-        }catch(SQLException e){
+
+    private static void fecharConexao() {
+        try {
+            c.close();
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-    
+
 }

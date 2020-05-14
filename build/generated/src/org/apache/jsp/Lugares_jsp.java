@@ -68,50 +68,57 @@ public final class Lugares_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <div class=\"container\">\n");
       out.write("            ");
 
-                    for(Lugar lugar: lugares){
-                
+                for (Lugar lugar : lugares) {
+            
       out.write("  <div class=\"col-md-4\">\n");
-      out.write("                    <div class=\"card\" name=\" jbj\" id=\"");
+      out.write("                <div class=\"card\" name=\" jbj\" id=\"");
  out.print(lugar.getIdLugar()); 
       out.write("\" onclick=\"geraPg(this);\">\n");
-      out.write("                            <div class=\"card-body\">\n");
-      out.write("                                <h3 class=\"card-title\"> ");
+      out.write("                    <div class=\"card-body\">\n");
+      out.write("                        <h3 class=\"card-title\"> ");
  out.print(lugar.getNome()); 
       out.write(" </h3>\n");
-      out.write("                                <p class=\"card-text\">");
+      out.write("                        <p class=\"card-text\">");
  out.print(lugar.getDescricao()); 
       out.write("</p>\n");
-      out.write("                            </div>\n");
-      out.write("                        </div>\n");
-      out.write("                    </div> ");
+      out.write("                    </div>\n");
+      out.write("                </div>\n");
+      out.write("            </div> ");
 
-                    }    
-                
+                }
+            
       out.write("\n");
-      out.write("                \n");
-      out.write("            \n");
+      out.write("\n");
+      out.write("\n");
       out.write("        </div>\n");
-      out.write("        \n");
+      out.write("\n");
       out.write("        <script src=\"http://code.jquery.com/jquery-3.4.1.min.js\" integrity=\"sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=\" crossorigin=\"anonymous\"></script>\n");
       out.write("        <script src=\"http://code.jquery.com/jquery-3.4.1.min.js\"></script>\n");
       out.write("        <script src=\"bootstrap/js/bootstrap.min.js\"></script>\n");
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\"></script> <!-- ajax -->\n");
       out.write("        <script type=\"text/javascript\">\n");
-      out.write("                function geraPg(e){\n");
-      out.write("                    //redirecionar para uma página\n");
-      out.write("                    window.location.assign(\"Lugar.jsp\");\n");
-      out.write("                    console.log($(e).find(\".card-title\").text());\n");
-      out.write("                    console.log($(e).id);\n");
-      out.write("                    /*function redireciona(e){\n");
-      out.write("                        e.getId();\n");
-      out.write("                        e.getNome();\n");
-      out.write("                    }*/\n");
-      out.write("                }\n");
-      out.write("                \n");
-      out.write("                //criar função que recebe id do card e buscar dados para por em campos\n");
-      out.write("                \n");
-      out.write("                \n");
-      out.write("            \n");
+      out.write("                    function geraPg(e) {\n");
+      out.write("                        //redirecionar para uma página\n");
+      out.write("                        \n");
+      out.write("                         //console.log($(e).find(\".card-title\").text());\n");
+      out.write("                         //id = $(e).attr(\"id\");\n");
+      out.write("                         //console.log(id);\n");
+      out.write("                         \n");
+      out.write("\n");
+      out.write("                        var dados = JSON.stringify($(e).attr(\"id\"));\n");
+      out.write("                        sessionStorage.setItem('chave', dados);\n");
+      out.write("                        window.location.assign(\"Lugar.jsp\");\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                       \n");
+      out.write("                    }\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                    //criar função que recebe id do card e buscar dados para por em campos\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("        </script>\n");
       out.write("    </body>\n");
       out.write("</html>\n");

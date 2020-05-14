@@ -75,7 +75,7 @@ public class LocalizacaoDAO {
 
     //Filtar localizacao por cidade
     public Localizacao getLocalizacao(Cidade cidade) {
-        String sql = "SELECT loc.pkidlocalizacao, loc.rua, loc.fkidcidade, loc.complemento,\n"
+        String sql = "SELECT loc.pkidlocalizacao, loc.rua, loc.fkidcidade, loc.complemento,loc.bairro, loc.numero, \n"
                 + "cid.nome AS cidadenome, cid.fkidestado, est.nome AS estadonome, est.sigla\n"
                 + "FROM localizacao loc\n"
                 + "INNER JOIN cidade AS cid ON (loc.fkidcidade = ?)\n" //recebe o pkid da cidade
@@ -90,6 +90,8 @@ public class LocalizacaoDAO {
                 localizacao.setIdLocalizacao(rs.getInt("pkidlocalizacao"));
                 localizacao.setRua(rs.getString("rua"));
                 localizacao.setComplemento("complemento");
+                localizacao.setBairro(rs.getString("bairro")); ///
+                localizacao.setNumero(rs.getString("numero")); ///
 
                 //objeto cidade 
                 Cidade cidadeObj = new Cidade();
@@ -117,7 +119,7 @@ public class LocalizacaoDAO {
 
     public  List<Localizacao> getLocalizacao() {
         List<Localizacao> localizacoes = new ArrayList<Localizacao>();
-        String sql = "SELECT loc.pkidlocalizacao, loc.rua, loc.fkidcidade, loc.complemento,\n"
+        String sql = "SELECT loc.pkidlocalizacao, loc.rua, loc.fkidcidade, loc.complemento, loc.bairro, loc.numero, \n"
                 + "cid.nome AS cidadenome, cid.fkidestado, est.nome AS estadonome, est.sigla\n"
                 + "FROM localizacao loc\n"
                 + "INNER JOIN cidade AS cid ON (loc.fkidcidade = cid.pkidcidade)\n"
@@ -131,6 +133,8 @@ public class LocalizacaoDAO {
                 localizacao.setIdLocalizacao(rs.getInt("pkidlocalizacao"));
                 localizacao.setRua(rs.getString("rua"));
                 localizacao.setComplemento("complemento");
+                localizacao.setBairro(rs.getString("bairro")); ///
+                localizacao.setNumero(rs.getString("numero")); ///
 
                 //objeto cidade 
                 Cidade cidadeObj = new Cidade();

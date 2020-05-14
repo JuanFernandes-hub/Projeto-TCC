@@ -53,16 +53,18 @@ public class LugarDAO {
     //pegar avaliacao, fazer a media e mandar para o banco
     //Procurar pelo nome do lugar
     public Lugar getLugar(Lugar lugar) {
-        String sql = "SELECT lug.pkidlugar, lug.nome AS lugarnome, lug.avaliacao, lug.fkidcategoria, lug.fkidlocalizacao,\n" +
-"		 lug.acesso, lug.horainicial, lug.horafinal, lug.descricao,\n" +
-"                cat.nome AS categorianome, loc.rua, loc.fkidcidade, loc.complemento, cid.nome AS nomecidade, cid.fkidestado,\n" +
-"                est.nome AS estadonome, est.sigla\n" +
-"                FROM lugar lug\n" +
-"                INNER JOIN categoria AS cat ON (lug.fkidcategoria = cat.pkidcategoria)\n" +
-"                INNER JOIN localizacao AS loc ON (lug.fkidlocalizacao = loc.pkidlocalizacao)\n" +
-"                INNER JOIN cidade AS cid ON (loc.fkidcidade = cid.pkidcidade)\n" +
-"                INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)\n" +
-"                AND lug.nome = '?' ";
+        String sql = "SELECT lug.pkidlugar, lug.nome AS lugarnome, lug.avaliacao, lug.fkidcategoria, lug.fkidlocalizacao,\n"
+                + "     lug.acesso, lug.horainicial, lug.horafinal, lug.descricao,\n"
+                + "     cat.nome AS categorianome, \n"
+                + "	loc.rua, loc.fkidcidade, loc.complemento, loc.bairro, loc.numero, \n"
+                + "	cid.nome AS nomecidade, cid.fkidestado,\n"
+                + "     est.nome AS estadonome, est.sigla\n"
+                + "     FROM lugar lug\n"
+                + "     INNER JOIN categoria AS cat ON (lug.fkidcategoria = cat.pkidcategoria)\n"
+                + "     INNER JOIN localizacao AS loc ON (lug.fkidlocalizacao = loc.pkidlocalizacao)\n"
+                + "     INNER JOIN cidade AS cid ON (loc.fkidcidade = cid.pkidcidade)\n"
+                + "     INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)\n"
+                + "     AND lug.nome = '?' "; //talvez nao precise de  ' '
         c = ConnectionFactory.getConnection();
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
@@ -87,6 +89,8 @@ public class LugarDAO {
                 localizacao.setIdLocalizacao(rs.getInt("fkidlocalizacao"));
                 localizacao.setRua(rs.getString("rua"));
                 localizacao.setComplemento("complemento");
+                localizacao.setBairro(rs.getString("bairro"));
+                localizacao.setNumero(rs.getString("numero"));
 
                 Cidade cidade = new Cidade();
                 cidade.setIdCidade(rs.getInt("fkidcidade"));
@@ -109,20 +113,21 @@ public class LugarDAO {
 
         return null;
     }
-    
-    
+
     //Retornar Pagina de Lugar
-     public Lugar getLugar(int id) {
-        String sql = "SELECT lug.pkidlugar, lug.nome AS lugarnome, lug.avaliacao, lug.fkidcategoria, lug.fkidlocalizacao,\n" +
-"		 lug.acesso, lug.horainicial, lug.horafinal, lug.descricao,\n" +
-"                cat.nome AS categorianome, loc.rua, loc.fkidcidade, loc.complemento, cid.nome AS nomecidade, cid.fkidestado,\n" +
-"                est.nome AS estadonome, est.sigla\n" +
-"                FROM lugar lug\n" +
-"                INNER JOIN categoria AS cat ON (lug.fkidcategoria = cat.pkidcategoria)\n" +
-"                INNER JOIN localizacao AS loc ON (lug.fkidlocalizacao = loc.pkidlocalizacao)\n" +
-"                INNER JOIN cidade AS cid ON (loc.fkidcidade = cid.pkidcidade)\n" +
-"                INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)\n" +
-"                AND lug.pkidlugar = ? ";
+    public Lugar getLugar(int id) {
+        String sql = "SELECT lug.pkidlugar, lug.nome AS lugarnome, lug.avaliacao, lug.fkidcategoria, lug.fkidlocalizacao,\n"
+                + "     lug.acesso, lug.horainicial, lug.horafinal, lug.descricao,\n"
+                + "     cat.nome AS categorianome, \n"
+                + "	loc.rua, loc.fkidcidade, loc.complemento, loc.bairro, loc.numero, \n"
+                + "	cid.nome AS nomecidade, cid.fkidestado,\n"
+                + "     est.nome AS estadonome, est.sigla\n"
+                + "     FROM lugar lug\n"
+                + "     INNER JOIN categoria AS cat ON (lug.fkidcategoria = cat.pkidcategoria)\n"
+                + "     INNER JOIN localizacao AS loc ON (lug.fkidlocalizacao = loc.pkidlocalizacao)\n"
+                + "     INNER JOIN cidade AS cid ON (loc.fkidcidade = cid.pkidcidade)\n"
+                + "     INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)\n"
+                + "     AND lug.pkidlugar= ? ";
         c = ConnectionFactory.getConnection();
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
@@ -147,6 +152,8 @@ public class LugarDAO {
                 localizacao.setIdLocalizacao(rs.getInt("fkidlocalizacao"));
                 localizacao.setRua(rs.getString("rua"));
                 localizacao.setComplemento("complemento");
+                localizacao.setBairro(rs.getString("bairro"));
+                localizacao.setNumero(rs.getString("numero"));
 
                 Cidade cidade = new Cidade();
                 cidade.setIdCidade(rs.getInt("fkidcidade"));
@@ -173,15 +180,17 @@ public class LugarDAO {
 
     public static List<Lugar> getLugar() {
         List<Lugar> lugares = new ArrayList<Lugar>();
-        String sql = "SELECT lug.pkidlugar, lug.nome AS lugarnome, lug.avaliacao, lug.fkidcategoria, lug.fkidlocalizacao, \n" +
-"		 lug.acesso, lug.horainicial, lug.horafinal, lug.descricao,\n" +
-"                cat.nome AS categorianome, loc.rua, loc.fkidcidade, loc.complemento, cid.nome AS nomecidade, cid.fkidestado,\n" +
-"                est.nome AS estadonome, est.sigla\n" +
-"                FROM lugar lug\n" +
-"                INNER JOIN categoria AS cat ON (lug.fkidcategoria = cat.pkidcategoria)\n" +
-"                INNER JOIN localizacao AS loc ON (lug.fkidlocalizacao = loc.pkidlocalizacao)\n" +
-"                INNER JOIN cidade AS cid ON (loc.fkidcidade = cid.pkidcidade)\n" +
-"                INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)";
+        String sql = "SELECT lug.pkidlugar, lug.nome AS lugarnome, lug.avaliacao, lug.fkidcategoria, lug.fkidlocalizacao,\n"
+                + "lug.acesso, lug.horainicial, lug.horafinal, lug.descricao,\n"
+                + "cat.nome AS categorianome, \n"
+                + "loc.rua, loc.fkidcidade, loc.complemento, loc.bairro, loc.numero,\n"
+                + "cid.nome AS nomecidade, cid.fkidestado,\n"
+                + "est.nome AS estadonome, est.sigla\n"
+                + "FROM lugar lug\n"
+                + "INNER JOIN categoria AS cat ON (lug.fkidcategoria = cat.pkidcategoria)\n"
+                + "INNER JOIN localizacao AS loc ON (lug.fkidlocalizacao = loc.pkidlocalizacao)\n"
+                + "INNER JOIN cidade AS cid ON (loc.fkidcidade = cid.pkidcidade)\n"
+                + "INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)";
         c = ConnectionFactory.getConnection();
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
@@ -195,7 +204,7 @@ public class LugarDAO {
                 lugarObj.setHoraInicial(rs.getTime("horainicial"));
                 lugarObj.setHoraFinal(rs.getTime("horafinal"));
                 lugarObj.setDescricao(rs.getString("descricao"));
-                
+
                 Categoria categoria = new Categoria();
                 categoria.setIdCategoria(rs.getInt("fkidcategoria"));
                 categoria.setNome(rs.getString("categorianome"));
@@ -205,6 +214,8 @@ public class LugarDAO {
                 localizacao.setIdLocalizacao(rs.getInt("fkidlocalizacao"));
                 localizacao.setRua(rs.getString("rua"));
                 localizacao.setComplemento("complemento");
+                localizacao.setBairro(rs.getString("bairro"));
+                localizacao.setNumero(rs.getString("numero"));
 
                 Cidade cidade = new Cidade();
                 cidade.setIdCidade(rs.getInt("fkidcidade"));

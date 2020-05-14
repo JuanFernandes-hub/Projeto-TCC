@@ -7,6 +7,7 @@ package model;
 
 import DAO.CidadeDAO;
 import DAO.EstadoDAO;
+import DAO.LoginDAO;
 import DAO.LugarDAO;
 import java.sql.Time;
 import java.text.DateFormat;
@@ -22,11 +23,10 @@ import model.Cidade;
 public class Testes {
 
     public static void main(String[] args) throws ParseException {
-        Lugar lugar = new Lugar();
-        LugarDAO lugardao = new LugarDAO();
-        lugar = lugardao.getLugar(12);
-        
-        System.out.println(lugar.getNome());
+        LoginDAO dao = new LoginDAO();
+        Login login = dao.getLogin("Juan", "Fernandes");
+        System.out.println("Usuario; "+login.getUsuario());
+        System.out.println("Senha: "+login.getSenha());
         
         /*
         EstadoDAO dao1 = new EstadoDAO();

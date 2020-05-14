@@ -54,7 +54,7 @@ public class validaLogin extends HttpServlet{
         
         if( login == null ) {
             sessao.invalidate();
-            String mensagem = "Nome ou Senha incorretos. Tente novamente";
+            String mensagem = "Nao deu";
             request.setAttribute("mensagem", mensagem);
             RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
             rd.forward(request, response);

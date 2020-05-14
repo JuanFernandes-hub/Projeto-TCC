@@ -14,13 +14,29 @@ $(document).ready(function(){
                 $("#resposta").html("");
                 console.log(data);
                 var nome = data.dados.nome;
+                var avaliacao = data.dados.avaliacao;
                 var categoria = data.dados.categoria.nome;
+                var acesso = data.dados.acesso;
+                var horaInicial = data.dados.horaInicial;
+                var horaFinal = data.dados.horaFinal;
+                var descricao = data.dados.descricao;
                 var estado = data.dados.localizacao.cidade.estado.nome;
                 var cidade = data.dados.localizacao.cidade.nome;
-                    $("#Nome").append(nome);
-                    $("#Categoria").append(categoria);
-                    $("#Estado").append(estado);
-                    $("#Cidade").append(cidade);
+                var bairro = data.dados.localizacao.bairro;
+                var rua = data.dados.localizacao.rua;
+                var numero = data.dados.localizacao.numero;
+                    $("#nome").append(nome);
+                    $("#avaliacao").append(avaliacao);
+                    $("#acesso").append(acesso);
+                    $("#horaInicial").append(horaInicial);
+                    $("#horaFinal").append(horaFinal);
+                    $("#descricao").append(descricao);
+                    $("#categoria").append(categoria);
+                    $("#estado").append(estado);
+                    $("#cidade").append(cidade);
+                    $("#bairro").append(bairro);
+                    $("#rua").append(rua);
+                    $("#numero").append(numero);
                     console.log(data.dados);
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -28,7 +44,7 @@ $(document).ready(function(){
             },
             beforeSend: function (xhr) {
                 $("#botao").attr("disabled",true);
-                $("#cidade").html("Aguarde...")
+                //$("#cidade").html("Aguarde...")
             },
             complete: function (jqXHR, textStatus) {
                 $("#botao").attr("disabled",false);
