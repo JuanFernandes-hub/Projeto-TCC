@@ -54,12 +54,12 @@
 .active a{
     color: #423DD9 !important;
     font: bold !important;
-    
+
 }
 
 .nav-item a:hover{
     background-color: #ffffff;
-    
+
 }
 
 .nav-item a:hover b{
@@ -81,6 +81,19 @@
 
 .navbar-brand:hover span{
     color: #423DD9 !important;
+}
+
+.mycard {
+    min-height: 300px;
+    background-image: url("..//imagens/morretes.jpg");
+    background-color: #cccccc;
+    background-position: center;
+    background-size: cover;
+    color: #ffffff;
+}
+
+.cardCol{
+    padding-top: 30px;
 }
 
 

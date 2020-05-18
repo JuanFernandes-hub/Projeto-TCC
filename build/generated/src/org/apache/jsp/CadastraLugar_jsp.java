@@ -75,9 +75,9 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("        <link href=\"bootstrap/css/bootstrap.min.css\" rel=\"stylesheet\" type=\"text/css\" /> <!-- pasta Bootstrap -->\n");
       out.write("        <link rel=\"stylesheet\" href=\"css/EstilosCadastro.css\"> <!-- css entrar -->\n");
       out.write("        <link rel=\"stylesheet\" href=\"css/EstilosRodape.css\"> <!-- css do rodape -->\n");
-      out.write("        \n");
       out.write("\n");
-      out.write("        \n");
+      out.write("\n");
+      out.write("\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("\n");
@@ -89,7 +89,7 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("\n");
       out.write("            <form action=\"CadastraLugar\" method=\"post\" onsubmit=\"return validaForm(this)\" class=\"col-sm-6\" id=\"formLugar\">\n");
       out.write("                <div class=\"row justify-content-md-center\">\n");
-      out.write("                    <h1 style=\"color: black\">Crie sua conta</h1>\n");
+      out.write("                    <h1 style=\"color: black\">Cadastre o lugar</h1>\n");
       out.write("                </div>\n");
       out.write("\n");
       out.write("                <div class=\"form-group\">\n");
@@ -101,6 +101,7 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                <div class=\"form-group\">\n");
       out.write("                    <label for=\"categoria\" class=\"\" style=\"color: black;\">Categoria</label>\n");
       out.write("                    <select class=\"form-control\" name=\"nCategoria\" id=\"categoria\">\n");
+      out.write("                        <option class=\"Selecione\" value=\"\" disabled selected hidden>Selecione...</option>\n");
       out.write("                        ");
 
                             for (Categoria categoria : categorias) {
@@ -122,7 +123,7 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                <div class=\"form-row \">\n");
       out.write("                    <div class=\"col-5\">\n");
       out.write("                        <label for=\"acesso\">Acesso</label>\n");
-      out.write("                        <select class=\"form-control\" name=\"nAcesso\" id=\"acesso\">\n");
+      out.write("                        <select class=\"form-control\" name=\"nAcesso\" id=\"acesso\" required>\n");
       out.write("                            <option name=\"nAcesso\" value=\"gratuito\">Gratuito</option>\n");
       out.write("                            <option name=\"nAcesso\" value=\"pago\">Pago</option>\n");
       out.write("                            <option name=\"nAcesso\" value=\"Requer Permissão\">Requer Permissão</option>\n");
@@ -136,6 +137,10 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                        <label for=\"horarioFinal\" class=\"\" style=\"color: black;\">Às</label>\n");
       out.write("                        <input type=\"text\" class=\"form-control\" name=\"nHorarioFinal\" id=\"horarioFinal\" placeholder=\"17:00\" required>\n");
       out.write("                    </div>\n");
+      out.write("                </div>\n");
+      out.write("                <div class=\"form-check form-check-inline\">\n");
+      out.write("                    <input class=\"form-check-input\" type=\"checkbox\" id=\"semHorario\" value=\"semHorario\">\n");
+      out.write("                    <label class=\"form-check-label\" for=\"semHorario\">Sem horário</label>\n");
       out.write("                </div>\n");
       out.write("\n");
       out.write("                <br>\n");
@@ -175,13 +180,13 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                </div>\n");
       out.write("\n");
       out.write("                <div class=\"form-group\">\n");
-      out.write("                    <label for=\"bairro\" class=\"\" style=\"color: black;\">Bairro (opcional)</label>\n");
-      out.write("                    <input type=\"text\" class=\"form-control\" name=\"nBairro\" id=\"bairro\" placeholder=\"Bairro\" autofocus >\n");
+      out.write("                    <label for=\"bairro\" class=\"\" style=\"color: black;\">Bairro</label>\n");
+      out.write("                    <input type=\"text\" class=\"form-control\" name=\"nBairro\" id=\"bairro\" placeholder=\"Bairro\" required >\n");
       out.write("                </div>\n");
       out.write("\n");
       out.write("                <div class=\"form-group\">\n");
-      out.write("                    <label for=\"rua\" class=\"\" style=\"color: black;\">Rua (opcional)</label>\n");
-      out.write("                    <input type=\"text\" class=\"form-control\" name=\"nRua\" id=\"rua\" placeholder=\"R. Rio Branco\">\n");
+      out.write("                    <label for=\"rua\" class=\"\" style=\"color: black;\">Rua</label>\n");
+      out.write("                    <input type=\"text\" class=\"form-control\" name=\"nRua\" id=\"rua\" placeholder=\"R. Rio Branco\" required>\n");
       out.write("                </div>\n");
       out.write("\n");
       out.write("                <div class=\"form-group\">\n");
@@ -193,9 +198,9 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                    <label for=\"complemento\" class=\"\" style=\"color: black;\">Complemento (opcional)</label>\n");
       out.write("                    <textarea class=\"form-control\" name=\"nComplemento\" id=\"complemento\" placeholder=\"Digite alguns detalhes.\" rows=\"5\"></textarea>\n");
       out.write("                </div>\n");
-      out.write("                \n");
+      out.write("\n");
       out.write("                <br>\n");
-      out.write("                \n");
+      out.write("\n");
       out.write("                <div class=\"form-group\">\n");
       out.write("                    <label for=\"descricao\" class=\"\" style=\"color: black;\">Descrição</label>\n");
       out.write("                    <input type=\"text\" class=\"form-control\" name=\"nDescricao\" id=\"descricao\" placeholder=\"Descreva o lugar em uma frase\">\n");
@@ -219,8 +224,8 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\"></script> <!-- AJAX -->\n");
       out.write("        <script type=\"text/javascript\" src=\"js/GetCidades.js\"></script> <!-- MEU AJAX -->\n");
       out.write("        <script type=\"text/javascript\" src=\"js/ValidaCadLugar.js\"></script> <!-- Validação -->\n");
-      out.write("        \n");
-      out.write("        \n");
+      out.write("\n");
+      out.write("\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

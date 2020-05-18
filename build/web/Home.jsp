@@ -1,3 +1,5 @@
+<%@page import="model.Cidade"%>
+<%@page import="DAO.CidadeDAO"%>
 <%@page import="DAO.LugarDAO"%>
 <%@page import="model.Lugar"%>
 <%@page import="java.util.List"%>
@@ -77,17 +79,16 @@
         <div class="container pt-5">
 
             <div class="row">
-                <div class="col-md-4">
-                    <div class="card bg-dark text-white">
-                        <img class="card-img" src="imagens/vila.jpg" alt="Imagem do card">
-                        <div class="card-img-overlay">
-                            <h5 class="card-title">Título do card</h5>
-                            <p class="card-text">Este é um card.</p>
+                <div class="col-md-3 cardCol">
+                    <div class="card mycard">
+                        <div class="card-body">
+                            <h3 class="card-title">Title</h3>
+                            <p class="card-text">Text</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
+                <div class="col-md-3 cardCol">
+                    <div class="card mycard">
                         <div class="card-body">
                             <h3 class="card-title">Title</h3>
                             <p class="card-text">Text</p>
@@ -103,8 +104,8 @@
                 <%
                     //Limitar numero de cards na home
                     for(int  i=0 ; i < 9; i++){
-                %>  <div class="col-md-4">
-                        <div class="card">
+                %>  <div class="col-md-3 cardCol">
+                        <div class="card mycard">
                             <div class="card-body">
                                 <h3 class="card-title"> <% out.print(lugares.get(i).getNome()); %> </h3>
                                 <p class="card-text"><% out.print(lugares.get(i).getDescricao()); %></p>
@@ -196,5 +197,16 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+        
+        
+        <!-- EM OBRAS -->
+        <% 
+            CidadeDAO cidadedao = new CidadeDAO();
+            List<Cidade> cidades = cidadedao.getCidade();
+        %>
+        <script>
+            var cidade = <% out.print(lugares); %>
+            console.log(cidade);
+        </script>
     </body>
 </html>

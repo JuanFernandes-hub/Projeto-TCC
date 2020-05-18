@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import model.Categoria;
@@ -31,7 +32,7 @@ public class LugarDAO {
         String sql = "INSERT INTO lugar(nome,avaliacao,fkidcategoria,fkidlocalizacao,acesso,horainicial,horafinal,descricao)\n"
                 + "VALUES (?,?,?,?,?,?,?,?);";
         try {
-            PreparedStatement ppstt = c.prepareStatement(sql);
+            PreparedStatement ppstt = c.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ppstt.setString(1, lugar.getNome());
             ppstt.setFloat(2, lugar.getAvaliacao()); //Passar avaliacao?
             ppstt.setInt(3, lugar.getCategoria().getIdCategoria());
@@ -41,12 +42,37 @@ public class LugarDAO {
             ppstt.setTime(7, lugar.getHoraFinal());
             ppstt.setString(8, lugar.getDescricao());
             ppstt.execute();
+            //Pega o pk gerado
+            ResultSet rs = ppstt.getGeneratedKeys();
+            rs.next();
+            int id = rs.getInt(1);
+            rs.close();
+            //relaciona pk gerado com o lugar
+            LugarDAO.loginLugar(id);
             ppstt.close();
         } catch (SQLException e) {
             System.out.print("Erro no sistema. Desculpe.");
             return false;
         }
         return true;
+    }
+
+    //Tabela usuarioLugar
+    public static void loginLugar(int idLugar) {
+        c = ConnectionFactory.getConnection();
+
+        String sql = "INSERT INTO usuariolugar(fkidlogin,fkidlugar)\n"
+                + "VALUES (?,?);";
+        try {
+            PreparedStatement ppstt = c.prepareStatement(sql);
+            ppstt.setInt(1, 1);
+            ppstt.setInt(2, idLugar);
+            ppstt.execute();
+            ppstt.close();
+        } catch (SQLException e) {
+            System.out.print("Erro no sistema. Desculpe.");
+        }
+
     }
 
     //metodo para passar a avaliacao(update) 
