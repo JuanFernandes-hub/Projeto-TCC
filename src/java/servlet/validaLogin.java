@@ -35,7 +35,8 @@ public class validaLogin extends HttpServlet{
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8"); 
         
-        HttpSession sessao = request.getSession();
+        HttpSession sessao = request.getSession(true);
+        sessao.setMaxInactiveInterval(60*60); //1hora
         
         Login login = null;
         String usuario_form = request.getParameter("nUsuario");
@@ -71,8 +72,7 @@ public class validaLogin extends HttpServlet{
             sessao.setAttribute("classeUsuarioLogado", classeUsuario);
             sessao.setAttribute("nomeUsuarioLogado", usuario);
             
-            //pagina que abre
-            RequestDispatcher rd = request.getRequestDispatcher("index.html");
+            RequestDispatcher rd = request.getRequestDispatcher("TesteSessao.jsp");
             rd.forward(request, response);
             
         }

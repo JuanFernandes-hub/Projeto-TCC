@@ -54,7 +54,7 @@
         <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> <!-- ajax -->
-        <script src="js/GeraPgCidade.js"></script> <!-- Guarda dados perfil do lugar  -->
+        <script src="js/GeraPgLugar.js"></script> <!-- Guarda dados perfil do lugar  -->
         <script type="text/javascript">
             let lugares = [];
             

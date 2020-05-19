@@ -23,17 +23,15 @@ import model.Cidade;
 public class Testes {
 
     public static void main(String[] args) throws ParseException {
-        LoginDAO dao = new LoginDAO();
-
         
-        /*
-        EstadoDAO dao1 = new EstadoDAO();
-        List<Estado> estados = dao1.getEstado();
+        LoginDAO dao = new LoginDAO();
+        List<Lugar> lugares = dao.getLugaresCad(1);
 
-        for (Estado estado : estados) {
-            System.out.print(estado.getNome());
+        for (Lugar lugar : lugares) {
+            System.out.println(lugar.getNome());
+            System.out.println(lugar.getCategoria().getNome());
             
-        }*/
+        }
         
     }
 
