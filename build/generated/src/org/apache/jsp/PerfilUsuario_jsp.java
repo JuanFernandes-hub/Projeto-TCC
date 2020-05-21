@@ -48,13 +48,13 @@ public final class PerfilUsuario_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>JSP Page</title>\n");
+      out.write("        <title>Colibri - Perfil</title>\n");
+      out.write("        <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\"\n");
+      out.write("              integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        ");
@@ -77,7 +77,7 @@ public final class PerfilUsuario_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                    <p> ");
       out.print( sessao.getAttribute("classeUsuarioLogado"));
       out.write(" </p>\n");
-      out.write("                    <a href=\"Sair.jsp\">Sair</a> ");
+      out.write("                    <a href=\"SairPerfil\">Sair</a> ");
 
                     }
                         
@@ -116,7 +116,11 @@ public final class PerfilUsuario_jsp extends org.apache.jasper.runtime.HttpJspBa
         
       out.write("\n");
       out.write("\n");
-      out.write("\n");
+      out.write("        <script src=\"http://code.jquery.com/jquery-3.4.1.min.js\" integrity=\"sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=\" crossorigin=\"anonymous\"></script>\n");
+      out.write("        <script src=\"http://code.jquery.com/jquery-3.4.1.min.js\"></script>\n");
+      out.write("        <script src=\"bootstrap/js/bootstrap.min.js\"></script>\n");
+      out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js\"></script> <!-- ajax -->\n");
+      out.write("        <script src=\"js/GeraPgLugar.js\"></script> <!-- Guarda dados perfil do lugar  -->\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

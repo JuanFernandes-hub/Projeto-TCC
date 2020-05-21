@@ -13,10 +13,7 @@
     </head>
     <body>
         <%
-            HttpSession sessao = request.getSession(false);
-            sessao.invalidate();
-            RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
-            rd.forward(request, response);
+            
         %>
     </body>
 </html>

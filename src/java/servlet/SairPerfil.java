@@ -5,21 +5,20 @@
  */
 package servlet;
 
-import DAO.LoginDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.Login;
 
 /**
  *
- * @author user
+ * @author juann
  */
-public class validaLogin extends HttpServlet{
+public class SairPerfil extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,48 +32,13 @@ public class validaLogin extends HttpServlet{
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8"); 
-        
-        HttpSession sessao = request.getSession(true);
-        sessao.setMaxInactiveInterval(60*60); 
-        
-        Login login = null;
-        String usuario_form = request.getParameter("nUsuario");
-        String senha_form = request.getParameter("nSenha");
-        String email_form = request.getParameter("nUsuario");
-        
         try {
-            LoginDAO dao = new LoginDAO();
-            //recebe o usuario do banco
-            login = dao.getLogin(usuario_form, senha_form, email_form);
-            
-        }catch( Exception e ){
-            e.printStackTrace();
-            RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
-            rd.forward(request, response);
-        }
-        
-        if( login == null ) {
+            HttpSession sessao = request.getSession(false);
             sessao.invalidate();
-            String mensagem = "Usuário ou senha incorretos. Tente novamente.";
-            request.setAttribute("mensagem", mensagem);
             RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
             rd.forward(request, response);
-        //se tiver um usuario no banco
-        }else{
-            //variaveis que recebem os atributos da classe Login
-            int idUsuario = login.getIdUsuario();
-            String classeUsuario = login.getClasse();
-            String usuario = login.getUsuario();
-            
-            //sessao seta os atributos
-            sessao.setAttribute("idUsuarioLogado", idUsuario);
-            sessao.setAttribute("classeUsuarioLogado", classeUsuario);
-            sessao.setAttribute("nomeUsuarioLogado", usuario);
-            
-            RequestDispatcher rd = request.getRequestDispatcher("PerfilUsuario.jsp");
-            rd.forward(request, response);
-            
+        }catch(Exception e){
+            e.printStackTrace();
         }
     }
 
