@@ -1,6 +1,6 @@
 $(document).ready(function(){
      
-   //Ajax para puxar cidades de acordo com estado selecionado  
+   //Ajax para puxar dados do Lugar 
        var pesquisa = dadosArquivados;
        
        $("#resposta").html(dadosArquivados+"esse é o id");

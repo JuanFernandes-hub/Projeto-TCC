@@ -20,6 +20,10 @@
         <servlet-name>GetLugar</servlet-name>
         <servlet-class>servlet.GetLugar</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeletaLugar</servlet-name>
+        <servlet-class>servlet.DeletaLugar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>validaLogin</servlet-name>
         <url-pattern>/validaLogin</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>GetLugar</servlet-name>
         <url-pattern>/GetLugar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletaLugar</servlet-name>
+        <url-pattern>/DeletaLugar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

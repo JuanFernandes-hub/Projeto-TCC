@@ -60,11 +60,12 @@ public final class TesteSessao_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <body>\n");
       out.write("        ");
 
-            HttpSession sessao = request.getSession();
+            HttpSession sessao = request.getSession(true);
             int id = (Integer) sessao.getAttribute("idUsuarioLogado");
             LoginDAO logindao = new LoginDAO();
             List<Lugar> lugares = logindao.getLugaresCad(id);
         
+      out.write("\n");
       out.write("\n");
       out.write("\n");
       out.write("        ");
@@ -72,13 +73,13 @@ public final class TesteSessao_jsp extends org.apache.jasper.runtime.HttpJspBase
             if (sessao.getAttribute("nomeUsuarioLogado") != null) {
         
       out.write(" <p> ");
- out.print(sessao.getAttribute("idUsuarioLogado")); 
+      out.print( sessao.getAttribute("idUsuarioLogado"));
       out.write(" </p> \n");
       out.write("        <p> ");
- out.print(sessao.getAttribute("nomeUsuarioLogado")); 
+      out.print( sessao.getAttribute("nomeUsuarioLogado"));
       out.write(" </p>\n");
       out.write("        <p> ");
- out.print(sessao.getAttribute("classeUsuarioLogado")); 
+      out.print( sessao.getAttribute("classeUsuarioLogado"));
       out.write(" </p>\n");
       out.write("        <a href=\"Sair.jsp\">Sair</a>\n");
       out.write("        ");
@@ -99,26 +100,34 @@ public final class TesteSessao_jsp extends org.apache.jasper.runtime.HttpJspBase
         
       out.write("  <div class=\"col-md-4\">\n");
       out.write("            <div class=\"card\" name=\" jbj\" id=\"");
- out.print(lugar.getIdLugar()); 
+      out.print( lugar.getIdLugar());
       out.write("\" onclick=\"geraPg(this)\">\n");
       out.write("                <div class=\"card-body\">\n");
       out.write("                    <h3 class=\"card-title\"> ");
- out.print(lugar.getNome()); 
+      out.print( lugar.getNome());
       out.write(" </h3>\n");
       out.write("                    <p class=\"card-text\">");
- out.print(lugar.getCategoria().getNome()); 
+      out.print( lugar.getCategoria().getNome());
       out.write("</p>\n");
       out.write("                    <p class=\"card-text\">");
- out.print(lugar.getDescricao()); 
+      out.print( lugar.getDescricao());
       out.write("</p>\n");
+      out.write("\n");
       out.write("                </div>\n");
+      out.write("\n");
       out.write("            </div>\n");
+      out.write("            \n");
+      out.write("\n");
       out.write("        </div> ");
 
             }
+
         
       out.write("\n");
-      out.write("        \n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
       out.write("        <script src=\"http://code.jquery.com/jquery-3.4.1.min.js\" integrity=\"sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=\" crossorigin=\"anonymous\"></script>\n");
       out.write("        <script src=\"http://code.jquery.com/jquery-3.4.1.min.js\"></script>\n");
       out.write("        <script src=\"bootstrap/js/bootstrap.min.js\"></script>\n");

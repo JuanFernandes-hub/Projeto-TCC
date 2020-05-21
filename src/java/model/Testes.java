@@ -24,14 +24,9 @@ public class Testes {
 
     public static void main(String[] args) throws ParseException {
         
-        LoginDAO dao = new LoginDAO();
-        List<Lugar> lugares = dao.getLugaresCad(1);
+        LugarDAO dao = new LugarDAO();
 
-        for (Lugar lugar : lugares) {
-            System.out.println(lugar.getNome());
-            System.out.println(lugar.getCategoria().getNome());
-            
-        }
+       dao.deletaLoginLugar(8);
         
     }
 

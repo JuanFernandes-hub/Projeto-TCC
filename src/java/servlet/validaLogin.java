@@ -72,7 +72,7 @@ public class validaLogin extends HttpServlet{
             sessao.setAttribute("classeUsuarioLogado", classeUsuario);
             sessao.setAttribute("nomeUsuarioLogado", usuario);
             
-            RequestDispatcher rd = request.getRequestDispatcher("TesteSessao.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("PerfilUsuario.jsp");
             rd.forward(request, response);
             
         }
