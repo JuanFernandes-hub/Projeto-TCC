@@ -3,12 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/servlet/DeletaLugar.java</file>
             <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/CadastraLugar.jsp</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/servlet/CadastraLogin.java</file>
             <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/DAO/LugarDAO.java</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/TesteSessao.jsp</file>
+            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/js/SugestaoBusca.js</file>
+            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/js/Mascaras.js</file>
+            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/js/jquery.mask.min.js</file>
+            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/PerfilUsuario.jsp</file>
+            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/newjsp.jsp</file>
             <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/servlet/CadastraLugar.java</file>
+            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/js/ValidaCadLugar.js</file>
         </group>
     </open-files>
 </project-private>

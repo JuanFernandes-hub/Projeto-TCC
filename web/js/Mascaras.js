@@ -1,4 +1,5 @@
 $(function(){
+    
     var options = {
         translation:{
            'H': {pattern: /[0-23]/},

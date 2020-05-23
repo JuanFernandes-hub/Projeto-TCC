@@ -1,19 +1,32 @@
-
+//Valida
 function validaForm(form) {
     if (form.nome.value == "" || form.nome.value == null || form.nome.value.length < 3) {
         alert("Digite o nome do Lugar");
         form.nome.focus();
         return false;
     }
+    /*
+     if(form.bairro.value == "" || form.bairro.value == null || form.bairro.value.length < 3){
+     alert("Digite o Bairro");
+     form.bairro.focus();
+     return false;
+     }
+     
+     if(form.rua.value == "" || form.rua.value == null || form.rua.value.length < 3){
+     alert("Digite a Rua");
+     form.rua.focus();
+     return false;
+     } */
 
 
 }
 
+//Verifica na hora e avisa
 $(function () {
-
     $("input").on("click", function () {
         $("input").css("border", "1px solid #CCCCCC");
     });
+
 
     $("#nome").on("blur", function () {
         nome = $("#nome");
@@ -42,33 +55,32 @@ $(function () {
         }
     });
 
-    $("#numero").on("blur", function () {
-        numero = $("#numero");
-        if (numero.val().length === 0 || !numero.val().trim()) {
-            numero.css("border", "1px solid red");
-        } else {
-            numero.css("border", "1px solid #CCCCCC");
-        }
+    $("#semHorario").trigger("change");
+
+    $("#semHorario").change(function () {
+        console.log("Checkbox esta " + $(this).prop("checked"));
+        console.log("Antes" + $("#horarioInicial").val());
+        desabilita($(this).prop("checked"));
     });
 
     //Desativar-Ativar campos de horario
-    function setDisabled(state) {
-        $("#horarioInicial").prop("disabled", state);
-        $("#horarioFinal").prop("disabled", state);
+    function desabilita(state) {
+        $("#horarioInicial").prop("readonly", state);
+        $("#horarioFinal").prop("readonly", state);
 
-        if (state) {
-            $("#horarioInicial").attr("value", "00:00");
-            $("#horarioFinal").attr("value", "00:00");
+
+        if (state == true) {
+            $("#horarioInicial").val("00:00");
+            $("#horarioFinal").val("00:00");
+
+        } else {
+            $("#horarioInicial").val(null);
+            $("#horarioFinal").val(null);
+            $("#bairro").val($("#horarioFinal").val());
         }
-        else{
-            $("#horarioInicial").attr("value", null);
-            $("#horarioFinal").attr("value", null);
-        }
+
+        console.log("Depois: " + $("#horarioInicial").val());
     }
-
-    $("#semHorario").on("click", function () {
-        setDisabled($("#semHorario").is(":checked"));
-    });
 
 
 

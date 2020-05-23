@@ -101,7 +101,7 @@ public final class PerfilUsuario_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("                </div>\n");
       out.write("                    <a href=\"DeletaLugar?id=");
       out.print( lugar.getIdLugar() );
-      out.write("\">Deletar</a>\n");
+      out.write("\">Deletar</a> <!-- Colocar dentro do card, Arruma onmouseover do card para poder clicar no link-->\n");
       out.write("            </div>\n");
       out.write("            \n");
       out.write("\n");
@@ -112,7 +112,7 @@ public final class PerfilUsuario_jsp extends org.apache.jasper.runtime.HttpJspBa
             } catch (Exception e) {
                 RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
                 rd.forward(request, response);
-            }
+            } 
         
       out.write("\n");
       out.write("\n");

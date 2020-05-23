@@ -28,7 +28,7 @@
     <body>
 
 
-        <div class="container">
+        
 
             <%!
                 //Pegar estado para select
@@ -38,9 +38,18 @@
                 //Pegar categorias para selecr
                 CategoriaDAO daoCategoria = new CategoriaDAO();
                 List<Categoria> categorias = daoCategoria.getCategoria();
+                
             %>
-
-            <form action="CadastraLugar" method="post" onsubmit="return validaForm(this)" class="col-sm-6" id="formLugar">
+            
+            <%
+            try {
+                HttpSession sessao = request.getSession();
+                int idUsuario = (Integer) sessao.getAttribute("idUsuarioLogado"); //tentar pegar id
+                if (sessao.getAttribute("nomeUsuarioLogado") != null
+                   && !sessao.getAttribute("nomeUsuarioLogado").equals("")) {
+                 %>
+                 <div class="container">
+                 <form action="CadastraLugar" method="post" onsubmit="return validaForm(this)" class="col-sm-6" id="formLugar">
                 <div class="row justify-content-md-center">
                     <h1 style="color: black">Cadastre o lugar</h1>
                 </div>
@@ -150,7 +159,19 @@
 
                 <button type="submit" id="botao" class="btn btn-warning">Enviar</button>
             </form>
-        </div>
+            </div>        
+                    
+                 <%   
+                }
+        } catch (Exception e) {
+                RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+                rd.include(request, response);
+                System.out.println("CHEgou aqui");
+            }
+        %>
+
+            
+        
 
 
         <!-- IMPORTANTE - SCRIPTS NECESSARIOS PARA O FUNCIONAMENTO DO DROPDOWN -->

@@ -69,6 +69,9 @@ public class CadastraLugar extends HttpServlet {
             Time horaInicial_lugar = new java.sql.Time(formato.parse(horarioInicial_lugar).getTime());
             Time horaFinal_lugar = new java.sql.Time(formato.parse(horarioFinal_lugar).getTime());
             
+            System.out.println("Chegou AQUI: "+horaInicial_lugar);
+            System.out.println("Chegou AQUI: "+horaFinal_lugar);
+            
             estado.setIdEstado(estado_lugar);
             cidade.setIdCidade(cidade_lugar);
             cidade.setEstado(estado);
@@ -103,10 +106,10 @@ public class CadastraLugar extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
              */
-            RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("PerfilUsuario.jsp");
             rd.forward(request, response);
         } catch (Exception e) {
-            RequestDispatcher rd = request.getRequestDispatcher("index.html");
+            RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
             rd.forward(request, response);
         }
     }

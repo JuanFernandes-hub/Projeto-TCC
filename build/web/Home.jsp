@@ -103,19 +103,20 @@
 
                 <%
                     //Limitar numero de cards na home
-                    for(int  i=0 ; i < 9; i++){
+                    for (int i = 0; i < 10; i++) {
                 %>  <div class="col-md-3 cardCol">
-                        <div class="card mycard">
-                            <div class="card-body">
-                                <h3 class="card-title"> <% out.print(lugares.get(i).getNome()); %> </h3>
-                                <p class="card-text"><% out.print(lugares.get(i).getDescricao()); %></p>
-                            </div>
+                    <div class="card mycard" id="<%= lugares.get(i).getIdLugar()%>" onclick="geraPg(this)">
+                        <div class="card-body">
+                            <h3 class="card-title"> <% out.print(lugares.get(i).getNome()); %> </h3>
+                            <p class="card-text"><% out.print(lugares.get(i).getCategoria().getNome()); %></p>
+                            <p class="card-text"><% out.print(lugares.get(i).getDescricao()); %></p>
                         </div>
-                    </div> <%
-                    }    
+                    </div>
+                </div> <%
+                    }
                 %>
-                
-                
+
+
 
 
             </div>
@@ -197,15 +198,16 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-        
-        
+        <script src="js/GeraPgLugar.js"></script> <!-- Guarda dados perfil do lugar  -->
+
+
         <!-- EM OBRAS -->
-        <% 
+        <%
             CidadeDAO cidadedao = new CidadeDAO();
             List<Cidade> cidades = cidadedao.getCidade();
         %>
         <script>
-            var cidade = <% out.print(lugares); %>
+            var cidade = <% out.print(lugares);%>
             console.log(cidade);
         </script>
     </body>
