@@ -75,4 +75,28 @@ public class CategoriaDAO {
         
         return categorias;
     }
+    
+    
+    
+    public void deletaCategoria(Categoria categoria) {
+        String sql = "DELETE FROM categoria WHERE pkidcategoria=?";
+        try {
+            PreparedStatement stmt = c.prepareStatement(sql);
+            stmt.setInt(1, categoria.getIdCategoria());
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }finally{
+            fecharConexao();
+        }
+    }
+    
+    private static void fecharConexao() {
+        try {
+            c.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 }
