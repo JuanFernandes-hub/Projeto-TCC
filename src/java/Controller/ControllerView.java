@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -20,6 +21,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.Categoria;
 
 public class ControllerView implements Initializable {
+
+    @FXML
+    private Tab tabCategoria;
+
+    @FXML
+    private Tab tabLugares;
 
     @FXML
     private TextField inpCatg;

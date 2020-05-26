@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Categoria;
 import model.Cidade;
 import model.Estado;
@@ -95,8 +96,10 @@ public class CadastraLugar extends HttpServlet {
             lugar.setHoraFinal(horaFinal_lugar);
             lugar.setDescricao(descricao_lugar);
             
-
-            LugarDAO.insereLugar(lugar);
+            HttpSession sessao = request.getSession();
+            int idLoginLugar = (Integer) sessao.getAttribute("idUsuarioLogado");
+            LugarDAO.insereLugar(lugar,idLoginLugar);
+            
 
             /*
             out.println("<html>");

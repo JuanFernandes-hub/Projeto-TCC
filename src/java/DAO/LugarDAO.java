@@ -26,7 +26,7 @@ public class LugarDAO {
 
     static Connection c;
 
-    public static boolean insereLugar(Lugar lugar) {
+    public static boolean insereLugar(Lugar lugar, int idLoginLugar) {
         c = ConnectionFactory.getConnection();
 
         String sql = "INSERT INTO lugar(nome,avaliacao,fkidcategoria,fkidlocalizacao,acesso,horainicial,horafinal,descricao)\n"
@@ -48,7 +48,7 @@ public class LugarDAO {
             int id = rs.getInt(1);
             rs.close();
             //relaciona pk gerado com o lugar
-            LugarDAO.loginLugar(id);
+            LugarDAO.loginLugar(id, idLoginLugar);
             ppstt.close();
         } catch (SQLException e) {
             System.out.print("Erro no sistema. Desculpe.");
@@ -58,14 +58,14 @@ public class LugarDAO {
     }
 
     //Tabela usuarioLugar
-    public static void loginLugar(int idLugar) { //Adicionar mais parametro para pega id do login
+    public static void loginLugar(int idLugar, int idLoginLugar) { //Adicionar mais parametro para pega id do login
         c = ConnectionFactory.getConnection();
 
         String sql = "INSERT INTO usuariolugar(fkidlogin,fkidlugar)\n"
                 + "VALUES (?,?);";
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
-            ppstt.setInt(1, 1);
+            ppstt.setInt(1, idLoginLugar);
             ppstt.setInt(2, idLugar);
             ppstt.execute();
             ppstt.close();

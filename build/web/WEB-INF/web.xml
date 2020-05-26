@@ -28,6 +28,10 @@
         <servlet-name>SairPerfil</servlet-name>
         <servlet-class>servlet.SairPerfil</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateLugar</servlet-name>
+        <servlet-class>servlet.UpdateLugar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>validaLogin</servlet-name>
         <url-pattern>/validaLogin</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>SairPerfil</servlet-name>
         <url-pattern>/SairPerfil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateLugar</servlet-name>
+        <url-pattern>/UpdateLugar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
