@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import static DAO.LugarDAO.c;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -73,6 +74,27 @@ public class LocalizacaoDAO {
         return (0);
     }
 
+    public static boolean atualizaLocalizacao(Localizacao localizacao) {
+        c = ConnectionFactory.getConnection();
+
+        String sql = "UPDATE localizacao SET rua=?, fkidcidade=?, complemento=?, bairro=?, numero=?\n "
+                + " WHERE pkidlocalizacao = ?";
+        try {
+            PreparedStatement ppstt = c.prepareStatement(sql);
+            ppstt.setString(1, localizacao.getRua());
+            ppstt.setInt(2, localizacao.getCidade().getIdCidade());
+            ppstt.setString(3, localizacao.getComplemento());
+            ppstt.setString(4, localizacao.getBairro());
+            ppstt.setString(5, localizacao.getNumero());
+            ppstt.setInt(6, localizacao.getIdLocalizacao());
+            ppstt.execute();
+            ppstt.close();
+        } catch (SQLException e) {
+            return false;
+        }
+        return true;
+    }
+    
     //Filtar localizacao por cidade
     public Localizacao getLocalizacao(Cidade cidade) {
         String sql = "SELECT loc.pkidlocalizacao, loc.rua, loc.fkidcidade, loc.complemento,loc.bairro, loc.numero, \n"

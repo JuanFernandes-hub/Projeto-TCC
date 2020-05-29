@@ -115,6 +115,77 @@ public class CadastraLugar extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
             rd.forward(request, response);
         }
+        try (PrintWriter out = response.getWriter()) {
+            
+            Lugar lugar = new Lugar();
+            Localizacao localizacao = new Localizacao();
+            Categoria categoria = new Categoria();
+            Cidade cidade = new Cidade();
+            Estado estado = new Estado();
+            
+            String nome_lugar = request.getParameter("nNome");
+            int categoria_lugar = parseInt(request.getParameter("nCategoria"));
+            String acesso_lugar = request.getParameter("nAcesso");
+            String horarioInicial_lugar = request.getParameter("nHorarioInicial");
+            String horarioFinal_lugar = request.getParameter("nHorarioFinal");
+            int estado_lugar = parseInt(request.getParameter("nEstado"));
+            int cidade_lugar = parseInt(request.getParameter("nCidade"));
+            String bairro_lugar = request.getParameter("nBairro");
+            String rua_lugar = request.getParameter("nRua");
+            String numero_lugar = request.getParameter("nNumero");
+            String complemento_lugar = request.getParameter("nComplemento");
+            String descricao_lugar = request.getParameter("nDescricao");
+            
+            //Transgormando Horas em Time(SQL)
+            DateFormat formato = new SimpleDateFormat("HH:mm");
+            Time horaInicial_lugar = new java.sql.Time(formato.parse(horarioInicial_lugar).getTime());
+            Time horaFinal_lugar = new java.sql.Time(formato.parse(horarioFinal_lugar).getTime());
+            
+            System.out.println("Chegou AQUI: "+horaInicial_lugar);
+            System.out.println("Chegou AQUI: "+horaFinal_lugar);
+            
+            estado.setIdEstado(estado_lugar);
+            cidade.setIdCidade(cidade_lugar);
+            cidade.setEstado(estado);
+
+            localizacao.setRua(rua_lugar);
+            localizacao.setComplemento(complemento_lugar);
+            localizacao.setCidade(cidade);
+            localizacao.setBairro(bairro_lugar);
+            localizacao.setNumero(numero_lugar);
+            int idLocal = LocalizacaoDAO.insere(localizacao); //manda para o banco e pega o id
+            localizacao.setIdLocalizacao(idLocal);
+
+            categoria.setIdCategoria(categoria_lugar);
+
+            lugar.setNome(nome_lugar);
+            lugar.setLocalizacao(localizacao);
+            lugar.setCategoria(categoria);
+            lugar.setAvaliacao(5);
+            lugar.setAcesso(acesso_lugar);
+            lugar.setHoraInicial(horaInicial_lugar);
+            lugar.setHoraFinal(horaFinal_lugar);
+            lugar.setDescricao(descricao_lugar);
+            
+            HttpSession sessao = request.getSession();
+            int idLoginLugar = (Integer) sessao.getAttribute("idUsuarioLogado");
+            LugarDAO.insereLugar(lugar,idLoginLugar);
+            
+
+            /*
+            out.println("<html>");
+            out.println("<body>");
+            out.println("Categoria " + categoria_lugar
+                    + " adicionado com sucesso");
+            out.println("</body>");
+            out.println("</html>");
+             */
+            RequestDispatcher rd = request.getRequestDispatcher("PerfilUsuario.jsp");
+            rd.forward(request, response);
+        } catch (Exception e) {
+            RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
+            rd.forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

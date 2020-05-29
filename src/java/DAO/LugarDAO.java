@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import static DAO.LocalizacaoDAO.c;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -52,6 +53,31 @@ public class LugarDAO {
             ppstt.close();
         } catch (SQLException e) {
             System.out.print("Erro no sistema. Desculpe.");
+            return false;
+        }
+        return true;
+    }
+    
+    public static boolean atualizaLugar(Lugar lugar) {
+        c = ConnectionFactory.getConnection();
+
+        String sql = "UPDATE lugar SET nome=?, avaliacao=?, fkidcategoria=?, fkidlocalizacao=?,\n"
+                + " acesso=?, horainicial=?, horafinal=?, descricao=?\n"
+                + " WHERE pkidlugar = ?";
+        try {
+            PreparedStatement ppstt = c.prepareStatement(sql);
+            ppstt.setString(1, lugar.getNome());
+            ppstt.setFloat(2, lugar.getAvaliacao());
+            ppstt.setInt(3, lugar.getCategoria().getIdCategoria());
+            ppstt.setInt(4, lugar.getLocalizacao().getIdLocalizacao());
+            ppstt.setString(5, lugar.getAcesso());
+            ppstt.setTime(6, lugar.getHoraInicial());
+            ppstt.setTime(7, lugar.getHoraFinal());
+            ppstt.setString(8, lugar.getDescricao());
+            ppstt.setInt(9, lugar.getIdLugar());
+            ppstt.execute();
+            ppstt.close();
+        } catch (SQLException e) {
             return false;
         }
         return true;
@@ -141,7 +167,7 @@ public class LugarDAO {
     }
 
     //Retornar Pagina de Lugar
-    public Lugar getLugar(int id) {
+    public static Lugar getLugar(int id) {
         String sql = "SELECT lug.pkidlugar, lug.nome AS lugarnome, lug.avaliacao, lug.fkidcategoria, lug.fkidlocalizacao,\n"
                 + "     lug.acesso, lug.horainicial, lug.horafinal, lug.descricao,\n"
                 + "     cat.nome AS categorianome, \n"

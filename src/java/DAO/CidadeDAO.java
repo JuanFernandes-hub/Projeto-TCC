@@ -40,7 +40,7 @@ public class CidadeDAO {
         }
         return true;
     }
-
+    
     //Recebe cidade atraves do nome
     public static Cidade getCidade(Cidade cidade) {
         String sql = "SELECT cidade.pkidcidade, cidade.nome AS cidadenome, cidade.fkidestado, estado.nome AS estadonome, estado.sigla\n"
@@ -61,7 +61,7 @@ public class CidadeDAO {
                 estado.setIdEstado(rs.getInt("fkidestado"));
                 estado.setNome("estadonome");
                 estado.setSigla("sigla");
-                cidade.setEstado(estado);
+                cidadeObj.setEstado(estado);
                 return cidadeObj;
             }
         } catch (SQLException e) {
@@ -70,6 +70,8 @@ public class CidadeDAO {
 
         return null;
     }
+    
+
     
     //Recebe todas as cidade
     public static List<Cidade> getCidade() {

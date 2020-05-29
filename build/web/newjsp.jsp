@@ -4,6 +4,8 @@
     Author     : juann
 --%>
 
+<%@page import="model.LoginLugar"%>
+<%@page import="DAO.LoginLugarDAO"%>
 <%@page import="javax.jms.Session"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,63 +15,71 @@
         <title>JSP Page</title>
     </head>
     <body>
-       <script>
+        <script>
             var dadosArquivados = JSON.parse(sessionStorage.getItem('chave'));
             console.log(dadosArquivados);
+            /* var update = JSON.parse(sessionStorage.getItem('update'));
+            console.log(update);
+            var coluna = JSON.parse(sessionStorage.getItem('coluna'));
+            console.log(coluna); */
         </script>
-        
+
         <%
-            try{
+            try {
                 HttpSession sessao = request.getSession();
                 int id = (Integer) sessao.getAttribute("idUsuarioLogado");
-                if(id = )
-            }catch(Exception e){
-            
-            }
-        
         %>
+        <!-- Achar um jeito de alterar mandando coluna, novoValor, e id do Lugar -->
+        
         <label style="color: black;">Nome:</label>
-        <label class="" id="nome" style="color: black;"></label>
+        <label class="dados" id="nome" style="color: black;"></label>
         <br/>
         <label style="color: black;">Avaliacao:</label>
-        <label class="" id="avaliacao" style="color: black;"></label>
+        <label class="dados" id="avaliacao" style="color: black;"></label>
         <br/>
         <label style="color: black;">Categoria:</label>
-        <label class="" id="categoria" style="color: black;"></label>
+        <label class="dados" id="categoria" style="color: black;"></label>
         <br/>
         <label style="color: black;">Acesso:</label>
-        <label class="" id="acesso" style="color: black;"></label>
+        <label class="dados" id="acesso" style="color: black;"></label>
         <br/>
         <label style="color: black;">Abre:</label>
-        <label class="" id="horaInicial" style="color: black;"></label>
+        <label class="dados" id="horaInicial" style="color: black;"></label>
         <br/>
         <label style="color: black;">Fecha:</label>
-        <label class="" id="horaFinal" style="color: black;"></label>
+        <label class="dados" id="horaFinal" style="color: black;"></label>
         <br/>
         <label style="color: black;">Descrição:</label>
-        <label class="" id="descricao" style="color: black;"></label>
+        <label class="dados" id="descricao" style="color: black;"></label>
         <br/>
         <label style="color: black;">Estado:</label>
-        <label class="" id="estado" style="color: black;"></label>
+        <label class="dados" id="estado" style="color: black;"></label>
         <br/>
         <label style="color: black;">Cidade:</label>
-        <label class="" id="cidade" style="color: black;"></label>
+        <label class="dados" id="cidade" style="color: black;"></label>
         <br/>
         <label style="color: black;">Bairro:</label>
-        <label class="" id="bairro" style="color: black;"></label>
+        <label class="dados" id="bairro" style="color: black;"></label>
         <br/>
         <label style="color: black;">Rua:</label>
-        <label class="" id="rua" style="color: black;"></label>
+        <label class="dados" id="rua" style="color: black;"></label>
         <br/>
         <label style="color: black;">N:</label>
         <label class="" id="numero" style="color: black;"></label>
         
+        <button id="editar" onclick="window.location.assign('LugarUpdate.jsp')">Editar</button>
+
         <h1>Hello World!</h1>
-        
-        <script src="http://code.jquery.com/jquery-3.4.1.min.js"
-        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <%
+            } catch (Exception e) {
+                RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+                rd.forward(request, response);
+            }
+        %>
+
+
+        <script src="http://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> <!-- AJAX -->
         <script type="text/javascript" src="js/GetLugar.js"></script> <!-- MEU AJAX para pegar lugar-->
-        <script type="text/javascript" src="js/GetLugar.js"></script> <!-- MEU AJAX para atualizar lugar-->
     </body>
 </html>

@@ -5,12 +5,21 @@
  */
 package servlet;
 
+import DAO.LocalizacaoDAO;
+import DAO.LugarDAO;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Categoria;
+import model.Cidade;
+import model.Localizacao;
+import model.Lugar;
 
 /**
  *
@@ -30,14 +39,39 @@ public class UpdateLugar extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try{
-            String pesquisa = request.getParameter("pesquisa");
+        request.setCharacterEncoding("UTF-8");
+        try {
+            LugarDAO ldao = new LugarDAO();
+            String lugar_json = request.getParameter("lugar");
+            String localizacao_json = request.getParameter("localizacao");
+            String cidade_json = request.getParameter("cidade");
+            String categoria_json = request.getParameter("categoria");
+            Gson gson = new Gson();
+            //Transforma json em objeto java
+            Cidade cidade = gson.fromJson(cidade_json, Cidade.class);
+            Categoria categoria = gson.fromJson(categoria_json, Categoria.class);
+            Lugar lugar = gson.fromJson(lugar_json, Lugar.class);
+            Localizacao localizacao = gson.fromJson(localizacao_json, Localizacao.class);
             
+            localizacao.setCidade(cidade);
+            LocalizacaoDAO.atualizaLocalizacao(localizacao);
+            lugar.setCategoria(categoria);
+            lugar.setLocalizacao(localizacao);
+            LugarDAO.atualizaLugar(lugar);
+
+
+            //Json para retornar ao ajax
+            Gson retorno = new Gson();
+            JsonObject obj = new JsonObject();
+            JsonElement jsonobj = retorno.toJsonTree(LugarDAO.getLugar(lugar.getIdLugar()));
+            obj.add("dados",jsonobj);
             
-            PrintWriter out = response.getWriter();
-            //out.println(obj.toString());
-            out.close();
-        }catch(IOException ex){
+            //resposta
+            PrintWriter outAlt = response.getWriter();
+            outAlt.println(obj.toString());
+            outAlt.close();
+            
+        }catch(IOException ex) {
             ex.printStackTrace();
         }
     }

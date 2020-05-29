@@ -1,18 +1,18 @@
 //Valida
 function validaForm(form) {
-    if (form.nome.value == "" || form.nome.value == null || form.nome.value.length < 3) {
+    if (form.nome.value === "" || form.nome.value === null || form.nome.value.length < 3) {
         alert("Digite o nome do Lugar");
         form.nome.focus();
         return false;
     }
     /*
-     if(form.bairro.value == "" || form.bairro.value == null || form.bairro.value.length < 3){
+     if(form.bairro.value === "" || form.bairro.value == null || form.bairro.value.length < 3){
      alert("Digite o Bairro");
      form.bairro.focus();
      return false;
      }
      
-     if(form.rua.value == "" || form.rua.value == null || form.rua.value.length < 3){
+     if(form.rua.value === "" || form.rua.value == null || form.rua.value.length < 3){
      alert("Digite a Rua");
      form.rua.focus();
      return false;
@@ -58,8 +58,6 @@ $(function () {
     $("#semHorario").trigger("change");
 
     $("#semHorario").change(function () {
-        console.log("Checkbox esta " + $(this).prop("checked"));
-        console.log("Antes" + $("#horarioInicial").val());
         desabilita($(this).prop("checked"));
     });
 
@@ -69,17 +67,14 @@ $(function () {
         $("#horarioFinal").prop("readonly", state);
 
 
-        if (state == true) {
+        if (state) {
             $("#horarioInicial").val("00:00");
             $("#horarioFinal").val("00:00");
 
         } else {
             $("#horarioInicial").val(null);
             $("#horarioFinal").val(null);
-            $("#bairro").val($("#horarioFinal").val());
         }
-
-        console.log("Depois: " + $("#horarioInicial").val());
     }
 
 

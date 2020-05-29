@@ -61,7 +61,34 @@ public class LoginDAO {
                 Login login = new Login();
                 login.setIdUsuario(rs.getInt("pkidusuario"));
                 login.setUsuario(rs.getString("usuario"));
+                //login.setEmail(rs.getString("email"));
                 login.setSenha(rs.getString("senha"));
+                login.setClasse(rs.getString("classe"));
+                return login;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("ERROR");
+        }
+
+        return null;
+    }
+    
+    public static Login getLogin(int idLogin) {
+        String sql = "SELECT login.pkidusuario, login.usuario, login.senha, login.email,classe.nome AS classe\n" +
+"                FROM login, classe\n" +
+"                WHERE login.pkidusuario = ? AND login.fkidclasse = classe.pkidclasse";
+        c = ConnectionFactory.getConnection();
+        try {
+            PreparedStatement ppstt = c.prepareStatement(sql);
+            ppstt.setInt(1, idLogin);
+            ResultSet rs = ppstt.executeQuery();
+            if (rs.next()) {
+                Login login = new Login();
+                login.setIdUsuario(rs.getInt("pkidusuario"));
+                login.setUsuario(rs.getString("usuario"));
+                login.setSenha(rs.getString("senha"));
+                login.setEmail(rs.getString("email"));
                 login.setClasse(rs.getString("classe"));
                 return login;
             }
