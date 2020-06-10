@@ -1,3 +1,7 @@
+<%@page import="model.Estado"%>
+<%@page import="DAO.EstadoDAO"%>
+<%@page import="model.Cidade"%>
+<%@page import="DAO.CidadeDAO"%>
 <%@page import="model.Categoria"%>
 <%@page import="DAO.CategoriaDAO"%>
 <%@page import="java.util.List"%>
@@ -19,26 +23,49 @@
             
             CategoriaDAO categoriadao = new CategoriaDAO();
             List<Categoria> categorias = categoriadao.getCategoria();
+            
+            EstadoDAO estado = new EstadoDAO();
+            List<Estado> estados = estado.getEstado();
+            
+            CidadeDAO cidade = new CidadeDAO();
+            List<Cidade> cidades = cidade.getCidade();
         %>
         <div class="container">
-            <select id="filtroCatg">
+            <select class="filtroCatg" id="filtroCatg">
                  <option class="Selecione" value="" disabled selected hidden>Selecione...</option>
                 <%
                     for(Categoria categoria : categorias){
-                        %><option> <% out.println(categoria.getNome()); %> </option>
+                %><option value="<%= categoria.getIdCategoria() %>"> <%= categoria.getNome() %> </option>
                         <%
                     }
                 %>
             </select>
             
+            <select class="filtroCatg">
+                 <option class="Selecione" value="" disabled selected hidden>Selecione...</option>
+                <%
+                    for(Estado estado : estados){
+                %><option value="<%= estado.getSigla() %>"> <%= estado.getNome() %> </option>
+                        <%
+                    }
+                %>
+            </select>
+            
+            <button class="filtroCatg" value="semFiltro" onclick="limpaFiltro()">Sem filtro</button>
+            
             <%
                 for (Lugar lugar : lugares) {
+                    //variaveis para colocar classe para filtar
+                    int idCategoria = lugar.getCategoria().getIdCategoria();
+                    int idCidade = lugar.getLocalizacao().getCidade().getIdCidade();
+                    String siglaEst = lugar.getLocalizacao().getCidade().getEstado().getSigla();
+                    
             %>  <div class="col-md-4">
-                <div class="card" name=" jbj" id="<% out.print(lugar.getIdLugar()); %>" onclick="geraPg(this)">
+                <div class="card <%= idCategoria %> <%= siglaEst %>" id="<%= lugar.getIdLugar() %>" onclick="geraPg(this)">
                     <div class="card-body">
-                        <h3 class="card-title"> <% out.print(lugar.getNome()); %> </h3>
-                        <p class="card-text"><% out.print(lugar.getCategoria().getNome()); %></p>
-                        <p class="card-text"><% out.print(lugar.getDescricao()); %></p>
+                        <h3 class="card-title"> <%= lugar.getNome() %> </h3>
+                        <p class="card-text"><%= lugar.getCategoria().getNome() %></p>
+                        <p class="card-text"><%= lugar.getDescricao() %></p>
                     </div>
                 </div>
             </div> <%
@@ -56,20 +83,23 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> <!-- ajax -->
         <script src="js/GeraPgLugar.js"></script> <!-- Guarda dados perfil do lugar  -->
         <script type="text/javascript">
-            let lugares = [];
-            
-            <%
-                for(Lugar lugar : lugares){
-                    %> let lugar <% out.println(lugar.getNome());
-                }
-            %>
-            
-            
-            
-            
-            $("#filtroCatg").on("change",function(){
-                console.log($("#filtroCatg").val());
+            $(".filtroCatg").on("change",function(){
+                let ctg = $(this).val();
+                let cards = $(".card")
+                console.log(ctg);
+                //$(cards).fadeOut();
+                $(cards).each(function(){
+                    if(!$(this).hasClass(ctg)){
+                        $(this).fadeOut();
+                    }
+                })
             });
+            
+            function limpaFiltro(){
+                let cards = $(".card");
+                $(cards).fadeIn();
+            }
+
         </script>
     </body>
 </html>

@@ -47,7 +47,7 @@ public class LoginDAO {
     }
 
     public Login getLogin(String usuario, String senha, String email) {
-        String sql = "SELECT login.pkidusuario, login.usuario, login.senha, classe.nome AS classe\n"
+        String sql = "SELECT login.pkidusuario, login.usuario, login.senha, login.email, classe.nome AS classe\n"
                 + "FROM login, classe\n"
                 + "WHERE (usuario = ? OR email = ?) AND senha = ? AND login.fkidclasse = classe.pkidclasse";
         c = ConnectionFactory.getConnection();
@@ -61,7 +61,7 @@ public class LoginDAO {
                 Login login = new Login();
                 login.setIdUsuario(rs.getInt("pkidusuario"));
                 login.setUsuario(rs.getString("usuario"));
-                //login.setEmail(rs.getString("email"));
+                login.setEmail(rs.getString("email"));
                 login.setSenha(rs.getString("senha"));
                 login.setClasse(rs.getString("classe"));
                 return login;

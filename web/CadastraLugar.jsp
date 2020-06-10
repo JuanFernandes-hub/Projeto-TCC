@@ -62,7 +62,7 @@
                 <!-- SELECT CATEGORIAS -->
                 <div class="form-group">
                     <label for="categoria" class="" style="color: black;">Categoria</label>
-                    <select class="form-control" name="nCategoria" id="categoria">
+                    <select class="form-control" name="nCategoria" id="categoria" required>
                         <option class="Selecione" value="" disabled selected hidden>Selecione...</option>
                         <%
                             for (Categoria categoria : categorias) {

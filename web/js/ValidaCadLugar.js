@@ -1,22 +1,34 @@
 //Valida
 function validaForm(form) {
-    if (form.nome.value === "" || form.nome.value === null || form.nome.value.length < 3) {
+    if (!form.nome.value.trim() || form.nome.value === null || form.nome.value.length < 3 ) {
         alert("Digite o nome do Lugar");
         form.nome.focus();
         return false;
     }
-    /*
-     if(form.bairro.value === "" || form.bairro.value == null || form.bairro.value.length < 3){
+    
+     if(!form.bairro.value.trim() || form.bairro.value === null || form.bairro.value.length < 3){
      alert("Digite o Bairro");
      form.bairro.focus();
      return false;
      }
      
-     if(form.rua.value === "" || form.rua.value == null || form.rua.value.length < 3){
+     if(!form.rua.value.trim() || form.rua.value === null || form.rua.value.length < 3){
      alert("Digite a Rua");
      form.rua.focus();
      return false;
-     } */
+     }
+     
+     if(!form.estado.value.trim() || form.estado.value === null){
+     alert("Selecione um estado");
+     form.estado.focus();
+     return false;
+     }
+     
+     if(!form.cidade.value.trim() || form.cidade.value === null){
+     alert("Selecione uma cidade");
+     form.cidade.focus();
+     return false;
+     }
 
 
 }

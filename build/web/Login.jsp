@@ -31,7 +31,7 @@
                 <span class="mx-3" style="font-size: 25px; color: #ffffff;">
                     <i class="far fa-compass"></i>
                 </span>
-                <a class="navbar-brand" href="index.html" style="color: #ffffff;">
+                <a class="navbar-brand" href="Home.jsp" style="color: #ffffff;">
                     <b>
                         NomeLegal
                     </b>
@@ -49,12 +49,12 @@
                         <!-- a lista aumenta automaticamente -->
                         <li class="nav-item active">
                             <!-- opcao ativa -->
-                            <a class="nav-link" href="index.html" style="color: #ffffff;"><b>Home</b></a>
+                            <a class="nav-link" href="Home.jsp" style="color: #ffffff;"><b>Home</b></a>
                             <!-- como um """botao""" , mas e um link-->
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#" style="color: #ffffff;"><b>Lugares</b></a>
+                            <a class="nav-link" href="Lugares.jsp" style="color: #ffffff;"><b>Lugares</b></a>
                             <!-- como um """botao""" , mas e um link-->
                         </li>
 

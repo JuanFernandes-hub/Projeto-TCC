@@ -16,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Lugar;
 
 /**
  *
@@ -39,10 +40,12 @@ public class GetLugar extends HttpServlet {
             LugarDAO ldao = new LugarDAO();
             String pesquisa = request.getParameter("pesquisa");
             
+            Lugar lugar = ldao.getLugar(parseInt(pesquisa));
+            
             //Json para retornar ao ajax
             Gson gson = new Gson();
             JsonObject obj = new JsonObject();
-            JsonElement jsonobj = gson.toJsonTree(ldao.getLugar(parseInt(pesquisa)));
+            JsonElement jsonobj = gson.toJsonTree(lugar);
             obj.add("dados",jsonobj);
             
             //resposta

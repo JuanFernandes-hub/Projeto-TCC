@@ -71,7 +71,7 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <span class=\"mx-3\" style=\"font-size: 25px; color: #ffffff;\">\n");
       out.write("                    <i class=\"far fa-compass\"></i>\n");
       out.write("                </span>\n");
-      out.write("                <a class=\"navbar-brand\" href=\"index.html\" style=\"color: #ffffff;\">\n");
+      out.write("                <a class=\"navbar-brand\" href=\"Home.jsp\" style=\"color: #ffffff;\">\n");
       out.write("                    <b>\n");
       out.write("                        NomeLegal\n");
       out.write("                    </b>\n");
@@ -89,12 +89,12 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                        <!-- a lista aumenta automaticamente -->\n");
       out.write("                        <li class=\"nav-item active\">\n");
       out.write("                            <!-- opcao ativa -->\n");
-      out.write("                            <a class=\"nav-link\" href=\"index.html\" style=\"color: #ffffff;\"><b>Home</b></a>\n");
+      out.write("                            <a class=\"nav-link\" href=\"Home.jsp\" style=\"color: #ffffff;\"><b>Home</b></a>\n");
       out.write("                            <!-- como um \"\"\"botao\"\"\" , mas e um link-->\n");
       out.write("                        </li>\n");
       out.write("\n");
       out.write("                        <li class=\"nav-item\">\n");
-      out.write("                            <a class=\"nav-link\" href=\"#\" style=\"color: #ffffff;\"><b>Lugares</b></a>\n");
+      out.write("                            <a class=\"nav-link\" href=\"Lugares.jsp\" style=\"color: #ffffff;\"><b>Lugares</b></a>\n");
       out.write("                            <!-- como um \"\"\"botao\"\"\" , mas e um link-->\n");
       out.write("                        </li>\n");
       out.write("\n");

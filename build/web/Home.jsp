@@ -48,7 +48,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="#" style="color: #ffffff;"><b>Lugares</b></a>
+                                <a class="nav-link" href="Lugares.jsp" style="color: #ffffff;"><b>Lugares</b></a>
                                 <!-- como um """botao""" , mas e um link-->
                             </li>
 
@@ -67,10 +67,23 @@
                 </div>
             </nav>
             <div class="fundo-texto">
+                <%!
+                    List<Cidade> cidades = CidadeDAO.getCidade();
+                %>
 
                 <h1 style="font-size:50px">Descubra sua cidade</h1>
-                <form>
-                    <input class="input-imagem" type="search" name="" id="" placeholder="Pesquise Lugares">
+                <form method="get" action="GetLugarCidade">
+                    <!--<input class="input-imagem" type="search" name="" id="" placeholder="Pesquise Lugares">-->
+                    <select class="form-control" name="nCidade" id="cidade" required>
+                        <!-- option gerados por ajax, de acordo com o estado selecionado -->
+                        <option value="" disabled selected hidden>Selecione...</option>
+                        <% 
+                            for(Cidade cidade : cidades){
+                        %> <option value="<%= cidade.getIdCidade() %>"> <% out.print(cidade.getNome()+" - "+cidade.getEstado().getSigla()); %> </option><%
+                            }
+                        %>
+                    </select>
+                    <button class="form-control" type="submit">OK</button>
                 </form>
             </div>
 
@@ -200,15 +213,5 @@
         crossorigin="anonymous"></script>
         <script src="js/GeraPgLugar.js"></script> <!-- Guarda dados perfil do lugar  -->
 
-
-        <!-- EM OBRAS -->
-        <%
-            CidadeDAO cidadedao = new CidadeDAO();
-            List<Cidade> cidades = cidadedao.getCidade();
-        %>
-        <script>
-            var cidade = <% out.print(lugares);%>
-            console.log(cidade);
-        </script>
     </body>
 </html>

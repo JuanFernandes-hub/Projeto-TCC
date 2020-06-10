@@ -99,7 +99,10 @@ public class Lugar {
         this.descricao = descricao;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Lugar{" + "idLugar=" + idLugar + ", nome=" + nome + ", avaliacao=" + avaliacao + ", categoria=" + categoria + ", localizacao=" + localizacao + ", acesso=" + acesso + ", horaInicial=" + horaInicial + ", horaFinal=" + horaFinal + ", descricao=" + descricao + '}';
+    }
     
     
 }
