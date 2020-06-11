@@ -1,4 +1,5 @@
-$(function(){
+//Cria botão de editar e deletar, se o usuario logado for quem cadastrou
+$(function () {
     var pesquisa = dadosArquivados;
     $.ajax({
         type: "GET",
@@ -7,23 +8,26 @@ $(function(){
         dataType: "json",
         success: function (data, textStatus, jqXHR) {
             var UsuarioCadastrou = data.dados;
+            var admLogado = data.dados2;
+            console.log(admLogado);
             console.log(UsuarioCadastrou);
-            if (UsuarioCadastrou) {
-                $("#editar").css("visibility", "visible");
-            } else {
-                $("#editar").css("visibility", "hidden");
+            if (UsuarioCadastrou || admLogado) {
+                $('<button>', {
+                    text: "Editar",
+                    id: "editar",
+                    onclick: "window.location.assign('LugarUpdate.jsp')"
+                }).appendTo('.divBtn');
+                
+                $('<button>', {
+                    text: "Deletar",
+                    id: "deletar",
+                    onclick: "deleteLugar()"
+                }).appendTo('.divBtn');
             }
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            $("#resposta").html(jqXHR.responseText + "Desculpe.");
+            $(".divBtn").html(jqXHR.responseText + "Desculpe.");
         },
-        beforeSend: function (xhr) {
-            $("#botao").attr("disabled", true);
-            //$("#cidade").html("Aguarde...")
-        },
-        complete: function (jqXHR, textStatus) {
-            $("#botao").attr("disabled", false);
-        }
     });
 });
 

@@ -84,7 +84,7 @@ public class LugarDAO {
     }
 
     //Tabela usuarioLugar
-    public static void loginLugar(int idLugar, int idLoginLugar) { //Adicionar mais parametro para pega id do login
+    public static void loginLugar(int idLugar, int idLoginLugar) {
         c = ConnectionFactory.getConnection();
 
         String sql = "INSERT INTO usuariolugar(fkidlogin,fkidlugar)\n"

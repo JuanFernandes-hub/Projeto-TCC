@@ -15,11 +15,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <script>
-            //id do Lugar clicado
-            var dadosArquivados = JSON.parse(sessionStorage.getItem('chave'));
-        </script>
-
         <label style="color: black;">Nome:</label>
         <label class="dados" id="nome" style="color: black;"></label>
         <br/>
@@ -55,13 +50,20 @@
         <br/>
         <label style="color: black;">N:</label>
         <label class="" id="numero" style="color: black;"></label>
+        
+        
+        <div class="divBtn"></div><!-- div para colocar btn -->
 
-        <button id="editar" style="visibility: hidden" onclick="window.location.assign('LugarUpdate.jsp')">Editar</button>
-
+        <script>
+            //id do Lugar clicado
+            var dadosArquivados = JSON.parse(sessionStorage.getItem('chave'));
+        </script>
         <script src="http://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> <!-- AJAX -->
         <script type="text/javascript" src="js/GetLugar.js"></script> <!-- MEU AJAX para pegar lugar-->
+        <script type="text/javascript" src="js/DeleteLugar.js"> </script>
         <script type="text/javascript" src="js/BtnUpdate.js"> </script>
+        
 
     </body>
 </html>

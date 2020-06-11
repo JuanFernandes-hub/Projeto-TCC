@@ -25,7 +25,7 @@ public class LoginLugarDAO {
 
 
     public static LoginLugar getLugar(int idLogin, int idLugar) {
-        String sql = "SELECT pkidusuarioLugar, fkidlogin, fkidlugar\n"
+        String sql = "SELECT pkidusuariolugar, fkidlogin, fkidlugar\n"
                 + "FROM usuarioLugar\n"
                 + "WHERE fkidlogin = ? AND fkidlugar = ?";
         c = ConnectionFactory.getConnection();
@@ -35,10 +35,12 @@ public class LoginLugarDAO {
             ppstt.setInt(2, idLugar);
             ResultSet rs = ppstt.executeQuery();
             if (rs.next()) {
+                idLugar = rs.getInt("fkidlugar");
+                idLogin = rs.getInt("fkidlogin");
                 Lugar lugar = LugarDAO.getLugar(idLugar);
                 Login login = LoginDAO.getLogin(idLogin);
                 LoginLugar loginLugar = new LoginLugar();
-                loginLugar.setIdUsuarioLugar(rs.getInt("pkidusuarioLugar"));
+                loginLugar.setIdUsuarioLugar(rs.getInt("pkidusuariolugar"));
                 loginLugar.setLogin(login);
                 loginLugar.setLugar(lugar);
                 

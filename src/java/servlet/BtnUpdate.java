@@ -39,29 +39,70 @@ public class BtnUpdate extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try{
+        try {
             LugarDAO ldao = new LugarDAO();
             int idLugar = parseInt(request.getParameter("pesquisa"));
             HttpSession sessao = request.getSession();
+            boolean UsuarioCadastrou = false;
+            boolean AdmLogado = false;
+
+            if (sessao.getAttribute("idUsuarioLogado") != null) {
+                int idLogado = (int) sessao.getAttribute("idUsuarioLogado");
+                String classeLogado = (String) sessao.getAttribute("classeUsuarioLogado");
+                LoginLugar loginLugar = LoginLugarDAO.getLugar(idLogado, idLugar);
+                System.out.println(classeLogado);
+
+                //se cadastrou o lugar
+                System.out.println("LoginLugar: " + loginLugar);
+                if (loginLugar != null) {
+                    UsuarioCadastrou = true;
+                    System.out.println("UsuarioCAD: " + UsuarioCadastrou);
+                } else {
+                    //Não cadastrou
+                    UsuarioCadastrou = false;
+                }
+                //É administrador
+                if (!classeLogado.equalsIgnoreCase("comum")) {
+                    AdmLogado = true;
+                    System.out.println("ADM: " + AdmLogado);
+                }
+            }else{
+                UsuarioCadastrou = false;
+                AdmLogado = false;
+            }
+
+            /*
             int idLogado = (int) sessao.getAttribute("idUsuarioLogado");
             String classeLogado = (String) sessao.getAttribute("classeUsuarioLogado");
             LoginLugar loginLugar = LoginLugarDAO.getLugar(idLogado, idLugar);
             System.out.println(classeLogado);
-            
-            boolean UsuarioCadastrou;
-            //se cadastrou o lugar ou é um administrador
-            if(loginLugar != null || !classeLogado.equalsIgnoreCase("comum")){
-                 UsuarioCadastrou = true;
-            }else{
+
+            boolean UsuarioCadastrou = false;
+            boolean AdmLogado = false;
+            //se cadastrou o lugar
+            System.out.println("LoginLugar: "+loginLugar);
+            if (loginLugar != null) {
+                UsuarioCadastrou = true;
+                System.out.println("UsuarioCAD: "+UsuarioCadastrou);
+            } else {
                 UsuarioCadastrou = false;
+                
             }
-            
+            //É administrador
+            if (!classeLogado.equalsIgnoreCase("comum")) {
+                AdmLogado = true;
+                System.out.println("ADM: "+ AdmLogado);
+            }
+
+             */
             //Json para retornar ao ajax
             Gson gson = new Gson();
             JsonObject obj = new JsonObject();
             JsonElement jsonobj = gson.toJsonTree(UsuarioCadastrou);
-            obj.add("dados",jsonobj);
-            
+            JsonElement jsonobj2 = gson.toJsonTree(AdmLogado);
+            obj.add("dados", jsonobj);
+            obj.add("dados2", jsonobj2);
+
             //resposta
             PrintWriter out = response.getWriter();
             out.println(obj.toString());

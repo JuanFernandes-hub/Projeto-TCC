@@ -4,20 +4,18 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/Lugar.jsp</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/Home.jsp</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/servlet/CadastraLogin.java</file>
+            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/js/BtnUpdate.js</file>
             <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/DAO/LugarDAO.java</file>
+            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/DAO/LocalizacaoDAO.java</file>
+            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/js/DeleteLugar.js</file>
             <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/servlet/BtnUpdate.java</file>
             <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/DAO/EstadoDAO.java</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/model/LoginLugar.java</file>
             <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/DAO/CidadeDAO.java</file>
             <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/servlet/validaLogin.java</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/js/GeraPgLugar.js</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/Input.jsp</file>
+            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/servlet/DeletaLugar.java</file>
+            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/DAO/LoginDAO.java</file>
             <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/PerfilUsuario.jsp</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/DAO/LoginLugarDAO.java</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/js/GetLugar.js</file>
-            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/web/Lugares.jsp</file>
+            <file>file:/C:/Users/juann/OneDrive/Área%20de%20Trabalho/Projeto%20TCC/src/java/DAO/CategoriaDAO.java</file>
         </group>
     </open-files>
 </project-private>

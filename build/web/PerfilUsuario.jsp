@@ -36,7 +36,7 @@
                     <p class="card-text"><%= lugar.getDescricao()%></p>
 
                 </div>
-                <a href="DeletaLugar?id=<%= lugar.getIdLugar()%>">Deletar</a> <!-- Colocar dentro do card, Arruma onmouseover do card para poder clicar no link-->
+                <a href="DeletaLugar?pesquisa=<%= lugar.getIdLugar()%>">Deletar</a> <!-- Colocar dentro do card, Arruma onmouseover do card para poder clicar no link-->
             </div>
 
 

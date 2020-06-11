@@ -100,7 +100,7 @@ public class UpdateLugar extends HttpServlet {
             
             lugar.toString();
             
-            RequestDispatcher rd = request.getRequestDispatcher("newjsp.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("Lugar.jsp");
             rd.forward(request, response);
         } catch (Exception e) {
             RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
