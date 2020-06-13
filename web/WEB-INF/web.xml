@@ -40,6 +40,10 @@
         <servlet-name>BtnUpdate</servlet-name>
         <servlet-class>servlet.BtnUpdate</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeletaPerfil</servlet-name>
+        <servlet-class>servlet.DeletaPerfil</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>validaLogin</servlet-name>
         <url-pattern>/validaLogin</url-pattern>
@@ -79,6 +83,10 @@
     <servlet-mapping>
         <servlet-name>BtnUpdate</servlet-name>
         <url-pattern>/BtnUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletaPerfil</servlet-name>
+        <url-pattern>/DeletaPerfil</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

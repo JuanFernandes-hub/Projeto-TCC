@@ -77,9 +77,9 @@
                     <select class="form-control" name="nCidade" id="cidade" required>
                         <!-- option gerados por ajax, de acordo com o estado selecionado -->
                         <option value="" disabled selected hidden>Selecione...</option>
-                        <% 
-                            for(Cidade cidade : cidades){
-                        %> <option value="<%= cidade.getIdCidade() %>"> <% out.print(cidade.getNome()+" - "+cidade.getEstado().getSigla()); %> </option><%
+                        <%
+                            for (Cidade cidade : cidades) {
+                        %> <option value="<%= cidade.getIdCidade()%>"> <% out.print(cidade.getNome() + " - " + cidade.getEstado().getSigla()); %> </option><%
                             }
                         %>
                     </select>
@@ -112,6 +112,7 @@
                 <%!
                     LugarDAO lugardao = new LugarDAO();
                     List<Lugar> lugares = lugardao.getLugar();
+                    String test = "TESTEEE";
                 %>
 
                 <%
@@ -122,8 +123,9 @@
                         <div class="card-body">
                             <h3 class="card-title"> <% out.print(lugares.get(i).getNome()); %> </h3>
                             <p class="card-text"><% out.print(lugares.get(i).getCategoria().getNome()); %></p>
-                            <p class="card-text"><% out.print(lugares.get(i).getDescricao()); %></p>
+                            <p class="card-text"><% out.print(lugares.get(i).getDescricao());%></p>
                         </div>
+                        <p><%= test%></p>
                     </div>
                 </div> <%
                     }
@@ -212,6 +214,13 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
         <script src="js/GeraPgLugar.js"></script> <!-- Guarda dados perfil do lugar  -->
+        <script>
+                        $(function () {
+                            $(window).on('popstate', function () {
+                                location.reload(true);
+                            });
+                        });
+        </script>
 
     </body>
 </html>

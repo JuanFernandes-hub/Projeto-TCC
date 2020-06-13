@@ -9,8 +9,6 @@ $(function () {
         success: function (data, textStatus, jqXHR) {
             var UsuarioCadastrou = data.dados;
             var admLogado = data.dados2;
-            console.log(admLogado);
-            console.log(UsuarioCadastrou);
             if (UsuarioCadastrou || admLogado) {
                 $('<button>', {
                     text: "Editar",

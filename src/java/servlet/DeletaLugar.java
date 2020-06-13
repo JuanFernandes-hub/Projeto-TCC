@@ -43,6 +43,7 @@ public class DeletaLugar extends HttpServlet {
         try{
             LugarDAO ldao = new LugarDAO();
             int idLugar = parseInt(request.getParameter("pesquisa"));
+            System.out.println(idLugar);
             Lugar lugar = ldao.getLugar(idLugar);
             String mensagem;
             
@@ -63,10 +64,7 @@ public class DeletaLugar extends HttpServlet {
             PrintWriter out = response.getWriter();
             out.println(obj.toString());
             out.close();
-            
-            RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
-            rd.forward(request, response);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         /*try {

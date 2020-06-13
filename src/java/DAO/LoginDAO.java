@@ -17,6 +17,7 @@ import model.Cidade;
 import model.Estado;
 import model.Localizacao;
 import model.Login;
+import model.LoginLugar;
 import model.Lugar;
 
 /**
@@ -73,11 +74,11 @@ public class LoginDAO {
 
         return null;
     }
-    
+
     public static Login getLogin(int idLogin) {
-        String sql = "SELECT login.pkidusuario, login.usuario, login.senha, login.email,classe.nome AS classe\n" +
-"                FROM login, classe\n" +
-"                WHERE login.pkidusuario = ? AND login.fkidclasse = classe.pkidclasse";
+        String sql = "SELECT login.pkidusuario, login.usuario, login.senha, login.email,classe.nome AS classe\n"
+                + "                FROM login, classe\n"
+                + "                WHERE login.pkidusuario = ? AND login.fkidclasse = classe.pkidclasse";
         c = ConnectionFactory.getConnection();
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
@@ -119,11 +120,10 @@ public class LoginDAO {
                 lugarObj.setIdLugar(rs.getInt("pkidlugar"));
                 lugarObj.setNome(rs.getString("nome"));
                 lugarObj.setDescricao(rs.getString("descricao"));
-                
+
                 categoria.setIdCategoria(rs.getInt("fkidcategoria"));
                 categoria.setNome("nomecategoria");
                 lugarObj.setCategoria(categoria);
-                
 
                 lugares.add(lugarObj);
             }
@@ -132,6 +132,33 @@ public class LoginDAO {
         }
 
         return lugares;
+    }
+
+    public static void deletaLogin(Login login) {
+        c = ConnectionFactory.getConnection();
+        String sql = "DELETE FROM login WHERE pkidusuario= ? ";
+        try {
+            //Verifica se o usuário tem algum lugar cadastrado
+            List<LoginLugar> lugaresCad = LoginLugarDAO.getLoginLugar(login);
+            if (lugaresCad != null) {
+                //Deleta Lugares
+                for (LoginLugar loginL : lugaresCad) {
+                    Lugar lugar = LugarDAO.getLugar(loginL.getLugar().getIdLugar());
+                    LugarDAO.deletaLugar(lugar);
+                }
+            }
+            //Deleta associação de login e lugar da Tabela LoginLugar
+            LoginLugarDAO.deletaLoginLugar(login);
+
+            PreparedStatement ppstt = c.prepareStatement(sql);
+            ppstt.setInt(1, login.getIdUsuario());
+            ppstt.execute();
+            ppstt.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            fecharConexao();
+        }
     }
 
     private static void fecharConexao() {

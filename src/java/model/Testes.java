@@ -26,7 +26,6 @@ public class Testes {
         
         LugarDAO dao = new LugarDAO();
 
-       dao.deletaLoginLugar(8);
         
     }
 
