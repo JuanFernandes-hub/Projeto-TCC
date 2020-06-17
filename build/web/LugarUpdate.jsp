@@ -113,7 +113,7 @@
             <br/>
             <button id="botao" type="submit">Salvar</button>
         </form>
-        <button  onclick="window.location.assign('newjsp.jsp');">Cancelar</button>
+        <button  onclick="window.location.assign('Lugar.jsp');">Cancelar</button>
 
         <h1>Hello World!</h1>
         <%
@@ -131,7 +131,5 @@
         <script type="text/javascript" src="js/Mascaras.js"></script>
         <script type="text/javascript" src="js/ValidaCadLugar.js"></script>
         <script type="text/javascript" src="js/UpdateLugar.js"></script> <!-- MEU AJAX  para atualizar dados-->
-        <!--<script type="text/javascript" src="js/GetCidades.js"></script> -->
-
     </body>
 </html>

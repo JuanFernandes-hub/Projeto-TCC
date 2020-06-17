@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Categoria;
 import model.Cidade;
+import model.Classe;
 import model.Estado;
 import model.Localizacao;
 import model.Login;
@@ -32,13 +33,14 @@ public class LoginDAO {
         c = ConnectionFactory.getConnection();
 
         //mudar banco
-        String sql = "INSERT INTO login(usuario,senha,email)\n"
-                + "VALUES (?,?,?);";
+        String sql = "INSERT INTO login(usuario,senha,email,fkidclasse)\n"
+                + "VALUES (?,?,?,?);";
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
             ppstt.setString(1, login.getUsuario());
             ppstt.setString(2, login.getSenha());
             ppstt.setString(3, login.getEmail());
+            ppstt.setInt(4, login.getClasse().getIdClasse());
             ppstt.execute();
             ppstt.close();
         } catch (SQLException e) {
@@ -47,8 +49,29 @@ public class LoginDAO {
         return true;
     }
 
+    public static boolean atualizaLogin(Login login) {
+        c = ConnectionFactory.getConnection();
+
+        String sql = "UPDATE login SET usuario=?, senha=?, email=?, fkidclasse=?\n"
+                + " WHERE pkidusuario = ?";
+        try {
+            PreparedStatement ppstt = c.prepareStatement(sql);
+            ppstt.setString(1, login.getUsuario());
+            ppstt.setString(2, login.getSenha());
+            ppstt.setString(3, login.getEmail());
+            ppstt.setInt(4, login.getClasse().getIdClasse());
+            ppstt.setInt(5, login.getIdUsuario());
+            ppstt.execute();
+            ppstt.close();
+            System.out.println(login.toString());
+        } catch (SQLException e) {
+            return false;
+        }
+        return true;
+    }
+
     public Login getLogin(String usuario, String senha, String email) {
-        String sql = "SELECT login.pkidusuario, login.usuario, login.senha, login.email, classe.nome AS classe\n"
+        String sql = "SELECT login.pkidusuario, login.usuario, login.senha, login.email, classe.pkidclasse, classe.nome AS classe\n"
                 + "FROM login, classe\n"
                 + "WHERE (usuario = ? OR email = ?) AND senha = ? AND login.fkidclasse = classe.pkidclasse";
         c = ConnectionFactory.getConnection();
@@ -60,11 +83,12 @@ public class LoginDAO {
             ResultSet rs = ppstt.executeQuery();
             if (rs.next()) {
                 Login login = new Login();
+                Classe classe = new Classe(rs.getInt("pkidclasse"), rs.getString("classe"));
                 login.setIdUsuario(rs.getInt("pkidusuario"));
                 login.setUsuario(rs.getString("usuario"));
                 login.setEmail(rs.getString("email"));
                 login.setSenha(rs.getString("senha"));
-                login.setClasse(rs.getString("classe"));
+                login.setClasse(classe);
                 return login;
             }
         } catch (SQLException e) {
@@ -76,9 +100,9 @@ public class LoginDAO {
     }
 
     public static Login getLogin(int idLogin) {
-        String sql = "SELECT login.pkidusuario, login.usuario, login.senha, login.email,classe.nome AS classe\n"
-                + "                FROM login, classe\n"
-                + "                WHERE login.pkidusuario = ? AND login.fkidclasse = classe.pkidclasse";
+        String sql = "SELECT login.pkidusuario, login.usuario, login.senha, login.email, classe.pkidclasse, classe.nome AS classe\n"
+                + "   FROM login, classe\n"
+                + "   WHERE login.pkidusuario = ? AND login.fkidclasse = classe.pkidclasse";
         c = ConnectionFactory.getConnection();
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
@@ -86,11 +110,12 @@ public class LoginDAO {
             ResultSet rs = ppstt.executeQuery();
             if (rs.next()) {
                 Login login = new Login();
+                Classe classe = new Classe(rs.getInt("pkidclasse"), rs.getString("classe"));
                 login.setIdUsuario(rs.getInt("pkidusuario"));
                 login.setUsuario(rs.getString("usuario"));
                 login.setSenha(rs.getString("senha"));
                 login.setEmail(rs.getString("email"));
-                login.setClasse(rs.getString("classe"));
+                login.setClasse(classe);
                 return login;
             }
         } catch (SQLException e) {
@@ -104,28 +129,18 @@ public class LoginDAO {
     //Retornar Lugares Cadastrados por Usuarios
     public static List<Lugar> getLugaresCad(int id) {
         List<Lugar> lugares = new ArrayList<Lugar>();
-        String sql = "SELECT lugar.pkidlugar, lugar.nome, lugar.descricao, lugar.fkidcategoria ,categoria.nome AS categorianome\n"
-                + "FROM lugar, categoria, usuarioLugar\n"
-                + "WHERE usuarioLugar.fkidlugar = lugar.pkidlugar AND\n"
-                + "lugar.fkidcategoria = categoria.pkidcategoria AND\n"
-                + "usuarioLugar.fkidlogin = ?";
+        String sql = "SELECT lugar.pkidlugar\n"
+                + "FROM lugar, usuariolugar\n"
+                + "WHERE usuariolugar.fkidlugar = lugar.pkidlugar AND\n"
+                + "usuariolugar.fkidlogin = ?";
         c = ConnectionFactory.getConnection();
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
             ppstt.setInt(1, id);
             ResultSet rs = ppstt.executeQuery();
             while (rs.next()) {
-                Lugar lugarObj = new Lugar();
-                Categoria categoria = new Categoria();
-                lugarObj.setIdLugar(rs.getInt("pkidlugar"));
-                lugarObj.setNome(rs.getString("nome"));
-                lugarObj.setDescricao(rs.getString("descricao"));
-
-                categoria.setIdCategoria(rs.getInt("fkidcategoria"));
-                categoria.setNome("nomecategoria");
-                lugarObj.setCategoria(categoria);
-
-                lugares.add(lugarObj);
+                Lugar lugar = LugarDAO.getLugar(rs.getInt("pkidlugar"));
+                lugares.add(lugar);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

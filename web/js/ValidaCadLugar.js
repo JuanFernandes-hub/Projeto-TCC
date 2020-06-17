@@ -29,8 +29,6 @@ function validaForm(form) {
      form.cidade.focus();
      return false;
      }
-
-
 }
 
 //Verifica na hora e avisa

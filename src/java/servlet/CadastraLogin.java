@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import DAO.ClasseDAO;
 import DAO.LoginDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Classe;
 import model.Login;
 
 /**
@@ -43,6 +45,8 @@ public class CadastraLogin extends HttpServlet {
             login.setUsuario(usuario_form);
             login.setSenha(senha_form);
             login.setEmail(email_form);
+            Classe classe = ClasseDAO.getClasse("comum");
+            login.setClasse(classe);
             
             LoginDAO.insereLogin(login);
             RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");

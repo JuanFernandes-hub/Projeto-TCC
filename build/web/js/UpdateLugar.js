@@ -27,8 +27,6 @@ $(document).ready(function () {
                 $("#nome").val(nome);
                 $("#avaliacao").val(avaliacao);
                 $("#acesso").val(acesso);
-                $("#horaInicial").val(horaInicial);
-                $("#horaFinal").val(horaFinal);
                 $("#complemento").val(complemento);
                 $("#descricao").val(descricao);
                 $("#categoria").val(categoria);
@@ -37,13 +35,18 @@ $(document).ready(function () {
                 $("#bairro").val(bairro);
                 $("#rua").val(rua);
                 $("#numero").val(numero);
+                console.log(data.dados);
+                //Formatar data HH:mm
+                let horaInicialFormt = horaInicial.split(":",2);
+                let horaFinalFormt = horaFinal.split(":",2);
+                $("#horarioInicial").val(horaInicialFormt[0]+":"+horaInicialFormt[1]);
+                $("#horarioFinal").val(horaFinalFormt[0]+":"+horaFinalFormt[1]);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 $("#resposta").html(jqXHR.responseText + "Desculpe.");
             },
             beforeSend: function (xhr) {
                 $("#botao").attr("disabled", true);
-                //$("#cidade").html("Aguarde...")
             },
             complete: function (jqXHR, textStatus) {
                 $("#botao").attr("disabled", false);

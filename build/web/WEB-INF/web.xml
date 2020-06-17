@@ -44,6 +44,14 @@
         <servlet-name>DeletaPerfil</servlet-name>
         <servlet-class>servlet.DeletaPerfil</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetLogin</servlet-name>
+        <servlet-class>servlet.GetLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateLogin</servlet-name>
+        <servlet-class>servlet.UpdateLogin</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>validaLogin</servlet-name>
         <url-pattern>/validaLogin</url-pattern>
@@ -87,6 +95,14 @@
     <servlet-mapping>
         <servlet-name>DeletaPerfil</servlet-name>
         <url-pattern>/DeletaPerfil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetLogin</servlet-name>
+        <url-pattern>/GetLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateLogin</servlet-name>
+        <url-pattern>/UpdateLogin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

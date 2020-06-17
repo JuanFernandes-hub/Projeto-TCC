@@ -56,6 +56,26 @@ public class CategoriaDAO {
         return null;
     }
     
+    public static Categoria getCategoria(int idCategoria){
+        String sql = "SELECT * FROM categoria WHERE pkidcategoria = ?";
+        c = ConnectionFactory.getConnection();
+        try{
+            PreparedStatement ppstt = c.prepareStatement(sql);
+            ppstt.setInt(1, idCategoria);
+            ResultSet rs = ppstt.executeQuery();
+            if(rs.next()){
+                Categoria categoriaObj = new Categoria();
+                categoriaObj.setIdCategoria(rs.getInt("pkidcategoria"));
+                categoriaObj.setNome(rs.getString("nome"));
+                return categoriaObj;
+            }
+        }catch(SQLException e){
+            System.out.println(e.getMessage());
+        }
+        
+        return null;
+    }
+    
     public static List<Categoria> getCategoria(){
         List<Categoria> categorias = new ArrayList<Categoria>();
         String sql = "SELECT * FROM categoria;";

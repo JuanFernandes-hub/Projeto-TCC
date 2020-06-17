@@ -64,7 +64,7 @@ public class validaLogin extends HttpServlet{
         }else{
             //variaveis que recebem os atributos da classe Login
             int idUsuario = login.getIdUsuario();
-            String classeUsuario = login.getClasse();
+            String classeUsuario = login.getClasse().getNome();
             String usuario = login.getUsuario();
             
             //sessao seta os atributos

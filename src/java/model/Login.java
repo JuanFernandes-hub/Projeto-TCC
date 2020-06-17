@@ -14,7 +14,7 @@ public class Login {
     private String usuario;
     private String senha;
     private String email;
-    private String classe;
+    private Classe classe;
 
 
     public Login() {
@@ -44,11 +44,11 @@ public class Login {
         this.email = email;
     }
 
-    public String getClasse() {
+    public Classe getClasse() {
         return classe;
     }
 
-    public void setClasse(String classe) {
+    public void setClasse(Classe classe) {
         this.classe = classe;
     }
 

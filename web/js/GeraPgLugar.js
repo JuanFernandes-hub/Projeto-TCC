@@ -10,5 +10,13 @@ function geraPg(e) {
     window.location.assign("Lugar.jsp");
 }
 
+//pegar Id do Login
+function updateLogin(e){
+    var nameId = $(e).attr("name"); //id do login esta no name
+    var dados = JSON.stringify(nameId);
+    sessionStorage.setItem('idLogin', dados);
+    window.location.assign("UsuarioUpdate.jsp");
+}
+
 
 

@@ -20,6 +20,17 @@
         <link rel="stylesheet" href="css/EstilosRodape.css"> <!-- css do rodape -->
     </head>
     <body>
+        <!--Verificar se o usuário está online para poder ter acesso a esta
+                        página
+        -->
+        <%
+            HttpSession sessao = request.getSession();
+            if (sessao.getAttribute("idUsuarioLogado") != null) {%>
+        <jsp:forward page="PerfilUsuario.jsp" />
+        <%
+            }%>
+
+
         <!-- NAVBAR -->
         <nav class="navbar navbar-expand-md navbar-dark " style="background-color:#4A44F2; margin-bottom: 0px; border-radius: 0px">
             <!-- navbar expansiva -->
@@ -101,7 +112,7 @@
                         </div>
 
                         <% if (mensagem != null) {%>
-                            <p> <%= mensagem%> </p>
+                        <p> <%= mensagem%> </p>
                         <% }%>
                         <button type="submit" class="btn btn-botaozinho mt-2">Enviar</button>
                     </form>
