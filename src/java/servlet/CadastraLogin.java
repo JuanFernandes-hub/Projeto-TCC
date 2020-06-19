@@ -8,7 +8,6 @@ package servlet;
 import DAO.ClasseDAO;
 import DAO.LoginDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Classe;
 import model.Login;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -35,25 +35,48 @@ public class CadastraLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        request.setCharacterEncoding("UTF-8"); 
+        request.setCharacterEncoding("UTF-8");
         try {
             Login login = new Login();
-            String usuario_form = (String)request.getParameter("nNome");
-            String senha_form = (String)request.getParameter("nSenha");
-            String email_form = (String)request.getParameter("nEmail");
-            
-            login.setUsuario(usuario_form);
-            login.setSenha(senha_form);
-            login.setEmail(email_form);
-            Classe classe = ClasseDAO.getClasse("comum");
-            login.setClasse(classe);
-            
-            LoginDAO.insereLogin(login);
-            RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
-            rd.forward(request, response);
- 
-        }catch( Exception e ){
-            RequestDispatcher rd = request.getRequestDispatcher("index.html");
+            String usuario_form = (String) request.getParameter("nNome");
+            String senha_form = (String) request.getParameter("nSenha");
+            String email_form = (String) request.getParameter("nEmail");
+            String mensagem = null;
+
+            //verifica se usuario ja esta cadastrado
+            //senha é valida no front
+            if (!LoginDAO.usuarioCadastrado(usuario_form)) {
+                //verifica se email ja esta cadastrado
+                if (!LoginDAO.emailCadastrado(email_form)) {
+                    //hash
+                    senha_form = DigestUtils.sha1Hex(senha_form);
+
+                    login.setUsuario(usuario_form);
+                    login.setSenha(senha_form);
+                    login.setEmail(email_form);
+                    //Só é cadastrado usuário comum
+                    Classe classe = ClasseDAO.getClasse("comum");
+                    login.setClasse(classe);
+
+                    LoginDAO.insereLogin(login);
+                    RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
+                    rd.forward(request, response);
+                } else {
+                    mensagem = "Email já cadastrado. Ultilize outro";
+                    request.setAttribute("mensagem", mensagem);
+                    RequestDispatcher rd = request.getRequestDispatcher("CadastroLogin.jsp");
+                    rd.forward(request, response);
+                }
+            } else {
+                mensagem = "Usuário já cadastrado. Tente outro";
+                request.setAttribute("mensagem", mensagem);
+                RequestDispatcher rd = request.getRequestDispatcher("CadastroLogin.jsp");
+                rd.forward(request, response);
+            }
+        } catch (Exception e) {
+            String mensagem = "Ocorreu algum erro. Desculpe.";
+            request.setAttribute("mensagem", mensagem);
+            RequestDispatcher rd = request.getRequestDispatcher("CadastroLogin.jsp");
             rd.forward(request, response);
         }
     }

@@ -8,7 +8,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home - Colibri</title>
+        <title>Página Inicial - Colibri</title>
         <link rel="stylesheet" href="css/EstiloHome.css">
         <link rel="stylesheet" href="css/EstilosRodape.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -43,7 +43,7 @@
                             <!-- a lista aumenta automaticamente -->
                             <li class="nav-item active">
                                 <!-- opcao ativa -->
-                                <a class="nav-link" href="Home.jsp" style="color: #ffffff;"><b>Home</b></a>
+                                <a class="nav-link" href="Home.jsp" style="color: #ffffff;"><b>Página Inicial</b></a>
                                 <!-- como um """botao""" , mas e um link-->
                             </li>
 
@@ -58,33 +58,29 @@
                                 <!-- como um """botao""" , mas e um link-->
                             </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="Login.jsp" style="color: #ffffff;"><b>Entrar</b></a>
-                                <!-- como um """botao""" , mas e um link-->
-                            </li>
+                            <%
+                                //Verifica se está logado, e substitui li
+                                HttpSession sessao = request.getSession();
+                                if(sessao.getAttribute("nomeUsuarioLogado") != null){
+                                %>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="PerfilUsuario.jsp" style="color: #ffffff;"><b><%= sessao.getAttribute("nomeUsuarioLogado") %></b></a>
+                                    </li>
+                                <%
+                                }else{
+                                %>    <li class="nav-item">
+                                        <a class="nav-link" href="Login.jsp" style="color: #ffffff;"><b>Entrar</b></a>
+                                    </li>
+                                <%    
+                                }
+                            %>
+                            
                         </ul>
                     </div>
                 </div>
             </nav>
             <div class="fundo-texto">
-                <%!
-                    List<Cidade> cidades = CidadeDAO.getCidade();
-                %>
-
                 <h1 style="font-size:50px">Descubra sua cidade</h1>
-                <form method="get" action="GetLugarCidade">
-                    <!--<input class="input-imagem" type="search" name="" id="" placeholder="Pesquise Lugares">-->
-                    <select class="form-control" name="nCidade" id="cidade" required>
-                        <!-- option gerados por ajax, de acordo com o estado selecionado -->
-                        <option value="" disabled selected hidden>Selecione...</option>
-                        <%
-                            for (Cidade cidade : cidades) {
-                        %> <option value="<%= cidade.getIdCidade()%>"> <% out.print(cidade.getNome() + " - " + cidade.getEstado().getSigla()); %> </option><%
-                            }
-                        %>
-                    </select>
-                    <button class="form-control" type="submit">OK</button>
-                </form>
             </div>
 
         </div>
@@ -92,32 +88,15 @@
         <div class="container pt-5">
 
             <div class="row">
-                <div class="col-md-3 cardCol">
-                    <div class="card mycard">
-                        <div class="card-body">
-                            <h3 class="card-title">Title</h3>
-                            <p class="card-text">Text</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 cardCol">
-                    <div class="card mycard">
-                        <div class="card-body">
-                            <h3 class="card-title">Title</h3>
-                            <p class="card-text">Text</p>
-                        </div>
-                    </div>
-                </div>
 
                 <%!
                     LugarDAO lugardao = new LugarDAO();
                     List<Lugar> lugares = lugardao.getLugar();
-                    String test = "TESTEEE";
                 %>
 
                 <%
                     //Limitar numero de cards na home
-                    for (int i = 0; i < 10; i++) {
+                    for (int i = 0; i < 12; i++) {
                 %>  <div class="col-md-3 cardCol">
                     <div class="card mycard" id="<%= lugares.get(i).getIdLugar()%>" onclick="geraPg(this)">
                         <div class="card-body">
@@ -125,68 +104,33 @@
                             <p class="card-text"><% out.print(lugares.get(i).getCategoria().getNome()); %></p>
                             <p class="card-text"><% out.print(lugares.get(i).getDescricao());%></p>
                         </div>
-                        <p><%= test%></p>
                     </div>
                 </div> <%
                     }
                 %>
-
-
-
-
             </div>
-
-
-            <p>Lorem ipsum duis ac nam litora eros molestie fusce urna, imperdiet tortor lectus sapien mollis fames euismod
-                lorem dui, aenean accumsan donec a blandit nisl auctor iaculis. dapibus molestie libero inceptos lobortis
-                vehicula arcu pharetra massa, habitasse imperdiet ad ornare platea at facilisis eleifend, scelerisque metus
-                ultricies donec volutpat potenti class. primis sed varius aliquam luctus dapibus, nostra per malesuada
-                sollicitudin donec placerat, aenean cras lacinia vitae. lobortis auctor senectus vulputate curae ipsum ultricies
-                id urna lorem etiam, imperdiet eleifend fames vestibulum pretium rutrum vel sociosqu mollis sodales diam, mattis
-                conubia lacinia enim mattis nibh fusce cras lacus. </p>
-
-            <p>Lorem ipsum duis ac nam litora eros molestie fusce urna, imperdiet tortor lectus sapien mollis fames euismod
-                lorem dui, aenean accumsan donec a blandit nisl auctor iaculis. dapibus molestie libero inceptos lobortis
-                vehicula arcu pharetra massa, habitasse imperdiet ad ornare platea at facilisis eleifend, scelerisque metus
-                ultricies donec volutpat potenti class. primis sed varius aliquam luctus dapibus, nostra per malesuada
-                sollicitudin donec placerat, aenean cras lacinia vitae. lobortis auctor senectus vulputate curae ipsum ultricies
-                id urna lorem etiam, imperdiet eleifend fames vestibulum pretium rutrum vel sociosqu mollis sodales diam, mattis
-                conubia lacinia enim mattis nibh fusce cras lacus. </p>
-
-            <p style="margin-bottom: 50px">Lorem ipsum duis ac nam litora eros molestie fusce urna, imperdiet tortor lectus sapien mollis fames euismod
-                lorem dui, aenean accumsan donec a blandit nisl auctor iaculis. dapibus molestie libero inceptos lobortis
-                vehicula arcu pharetra massa, habitasse imperdiet ad ornare platea at facilisis eleifend, scelerisque metus
-                ultricies donec volutpat potenti class. primis sed varius aliquam luctus dapibus, nostra per malesuada
-                sollicitudin donec placerat, aenean cras lacinia vitae. lobortis auctor senectus vulputate curae ipsum ultricies
-                id urna lorem etiam, imperdiet eleifend fames vestibulum pretium rutrum vel sociosqu mollis sodales diam, mattis
-                conubia lacinia enim mattis nibh fusce cras lacus. </p>
-
         </div>
 
-        <footer class="myfooter footer mt-auto py-3">
+        <!--Footer -->
+        <footer class="myfooter footer mt-5 py-3">
             <div class="container">
                 <div class="row mx-3">
                     <div class="col-sm-3 mt-3">
                         <i class="far fa-compass" aria-hidden="true" style="font-size: 150px; color: #ffffff;"></i>
                     </div>
                     <div class="col-sm-3 mt-3">
-                        <h2 style="color: #ffffff;"><b>Sobre</b></h2> <!-- //#4A44F2 -->
-                        <div class="col">
-                            <a href="#" style="color: #ffffff;">
-                                <p>Opção 1</p>
-                            </a>
-                        </div>
+                        <a href="sobre.html">
+                            <h2 style="color: #ffffff;">Sobre</h2>
+                        </a>
                     </div>
-                    <div class="col-sm-3 mt-3" style="color: #ffffff;">
-                        <h2><b>Lugares</b></h2>
-                        <a href="#" style="color: #ffffff;">
-                            <p>Opção 1</p>
+                    <div class="col-sm-3 mt-3">
+                        <a href="Lugares.jsp">
+                            <h2 style="color: #ffffff;">Lugares</h2>
                         </a>
                     </div>
                     <div class="col-sm-3 mt-3" style="color: #ffffff;">
-                        <h2><b>Redes Sociais</b></h2>
-                        <a href="#" style="color: #ffffff;">
-                            <p>Opção 1</p>
+                        <a href="Login.jsp">
+                        <h2 style="color: #ffffff;">Entrar</h2>
                         </a>
                     </div>
                 </div>
@@ -195,15 +139,13 @@
         <footer class="myfooter-copyright footer mt-auto">
             <div class="container">
                 <div class="row justify-content-center">
-                    <p><small>Fabricado por Juan - 2020</small></p>
+                    <p><small>Fabricado por Juan Fernandes - 2020</small></p>
                 </div>
             </div>
         </footer><!-- FIM FOOTERS -->
 
         <!-- font awesome -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -214,7 +156,7 @@
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
         <script src="js/GeraPgLugar.js"></script> <!-- Guarda dados perfil do lugar  -->
-        <script>
+        <script type="text/javascript">
                         $(function () {
                             $(window).on('popstate', function () {
                                 location.reload(true);

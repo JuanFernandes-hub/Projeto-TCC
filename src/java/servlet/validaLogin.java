@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Login;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -42,6 +43,8 @@ public class validaLogin extends HttpServlet{
         String usuario_form = request.getParameter("nUsuario");
         String senha_form = request.getParameter("nSenha");
         String email_form = request.getParameter("nUsuario");
+        
+        senha_form = DigestUtils.sha1Hex(senha_form);
         
         try {
             LoginDAO dao = new LoginDAO();

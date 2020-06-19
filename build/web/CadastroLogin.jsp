@@ -102,6 +102,13 @@
                         </div>
                         <button type="submit" class="btn btn-botaozinho ">Enviar</button>
                     </form>
+                    <div class="mensagem">
+                        <% 
+                            String mensagem = (String) request.getAttribute("mensagem");
+                            if (mensagem != null) {%>
+                        <p> <%= mensagem%> </p>
+                        <% }%>
+                    </div>
                 </div>
 
             </div>

@@ -5,18 +5,13 @@
  */
 package DAO;
 
-import static DAO.LugarDAO.c;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Categoria;
-import model.Cidade;
 import model.Classe;
-import model.Estado;
-import model.Localizacao;
 import model.Login;
 import model.LoginLugar;
 import model.Lugar;
@@ -68,6 +63,47 @@ public class LoginDAO {
             return false;
         }
         return true;
+    }
+    
+    //verifica se email ja foi cadastrado
+    //true = cadastrado, false = não cadastrado
+    public static boolean emailCadastrado(String email) {
+        String sql = "SELECT email\n"
+                + "FROM login\n"
+                + "WHERE email = ?";
+        c = ConnectionFactory.getConnection();
+        try {
+            PreparedStatement ppstt = c.prepareStatement(sql);
+            ppstt.setString(1, email);
+            ResultSet rs = ppstt.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("ERROR");
+        }
+        return false;
+    }
+    
+    //Verifica se usuario ja foi cadastrado
+    public static boolean usuarioCadastrado(String usuario) {
+        String sql = "SELECT usuario\n"
+                + "FROM login\n"
+                + "WHERE usuario = ?";
+        c = ConnectionFactory.getConnection();
+        try {
+            PreparedStatement ppstt = c.prepareStatement(sql);
+            ppstt.setString(1, usuario);
+            ResultSet rs = ppstt.executeQuery();
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("ERROR");
+        }
+        return false;
     }
 
     public Login getLogin(String usuario, String senha, String email) {
