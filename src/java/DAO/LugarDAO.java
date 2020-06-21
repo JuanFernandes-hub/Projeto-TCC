@@ -292,13 +292,13 @@ public class LugarDAO {
     }
 
     //Deleta da tabela lugar e da tabela LoginLugar
-    public static void deletaLugar(Lugar lugar) {
+    public static void deletaLugar(int idLugar) {
         c = ConnectionFactory.getConnection();
         String sql = "DELETE FROM lugar WHERE pkidlugar= ? ";
         try {
-            LoginLugarDAO.deletaLoginLugar(lugar.getIdLugar());
+            LoginLugarDAO.deletaLoginLugar(idLugar);
             PreparedStatement ppstt = c.prepareStatement(sql);
-            ppstt.setInt(1, lugar.getIdLugar());
+            ppstt.setInt(1, idLugar);
             ppstt.execute();
             ppstt.close();
         } catch (SQLException e) {

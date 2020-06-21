@@ -17,24 +17,12 @@
         <servlet-class>servlet.Controller</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>GetLugar</servlet-name>
-        <servlet-class>servlet.GetLugar</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DeletaLugar</servlet-name>
-        <servlet-class>servlet.DeletaLugar</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>SairPerfil</servlet-name>
         <servlet-class>servlet.SairPerfil</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UpdateLugar</servlet-name>
         <servlet-class>servlet.UpdateLugar</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>GetLugarCidade</servlet-name>
-        <servlet-class>servlet.GetLugarCidade</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>BtnUpdate</servlet-name>
@@ -51,6 +39,14 @@
     <servlet>
         <servlet-name>UpdateLogin</servlet-name>
         <servlet-class>servlet.UpdateLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetLugar</servlet-name>
+        <servlet-class>servlet.GetLugar</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteLugar</servlet-name>
+        <servlet-class>servlet.DeleteLugar</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>validaLogin</servlet-name>
@@ -69,24 +65,12 @@
         <url-pattern>/Controller</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>GetLugar</servlet-name>
-        <url-pattern>/GetLugar</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DeletaLugar</servlet-name>
-        <url-pattern>/DeletaLugar</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>SairPerfil</servlet-name>
         <url-pattern>/SairPerfil</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateLugar</servlet-name>
         <url-pattern>/UpdateLugar</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>GetLugarCidade</servlet-name>
-        <url-pattern>/GetLugarCidade</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>BtnUpdate</servlet-name>
@@ -103,6 +87,14 @@
     <servlet-mapping>
         <servlet-name>UpdateLogin</servlet-name>
         <url-pattern>/UpdateLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetLugar</servlet-name>
+        <url-pattern>/GetLugar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteLugar</servlet-name>
+        <url-pattern>/DeleteLugar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

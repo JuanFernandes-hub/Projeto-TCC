@@ -77,7 +77,7 @@
             <div class="row justify-content-center mt-5">
                 <div class="col-5 janelaLogin">
 
-                    <form action="CadastraLogin" method="post">
+                    <form id="formLogin"action="CadastraLogin" method="post" onsubmit="return validaForm(this)">
                         <div class="row justify-content-md-center">
                             <h1 style="color: #ffffff">Crie sua conta</h1>
                         </div>
@@ -86,7 +86,7 @@
 
                             <div class="camposCad col-sm-6 text-left">
                                 <label for="nome" class="" style="color: #ffffff;">Nome</label>
-                                <input type="text" class="form-control" name="nNome" id="nome" placeholder="Nome" autofocus required>
+                                <input type="text" class="form-control" name="nNome" id="usuario" placeholder="Nome" autofocus required>
                             </div>
                             <div class="camposCad col-sm-6 text-left" >
                                 <label for="senha" class="" style="color: #ffffff;">Senha</label>
@@ -100,10 +100,10 @@
                                 <input type="email" class="form-control" name="nEmail" id="email" placeholder="Email" required>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-botaozinho ">Enviar</button>
+                        <button type="submit" class="btn btn-botaozinho" onclick="validaForm('#formLogin')">Enviar</button>
                     </form>
                     <div class="mensagem">
-                        <% 
+                        <%
                             String mensagem = (String) request.getAttribute("mensagem");
                             if (mensagem != null) {%>
                         <p> <%= mensagem%> </p>
@@ -159,5 +159,6 @@
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> <!-- ajax -->
+    <script src="js/ValidaLogin.js"></script>
 </body>
 </html>

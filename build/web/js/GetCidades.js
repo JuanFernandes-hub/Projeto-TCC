@@ -16,6 +16,7 @@ $(document).ready(function(){
                 //console.log(data);
                 $("#cidade").empty();
                 for(var i in data.dados){
+                    console.log(data.dados);
                     var nome = data.dados[i].nome;
                     //console.log("dataNome"+nome); //atributo nome da classe Cidade
                     var id = data.dados[i].idCidade; //atributo idCidade da classe Cidade

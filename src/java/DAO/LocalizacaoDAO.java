@@ -138,6 +138,46 @@ public class LocalizacaoDAO {
 
         return null;
     }
+    
+    public static Localizacao getlocalizacao(int idLocalizacao) {
+        String sql = "SELECT loc.pkidlocalizacao, loc.rua, loc.fkidcidade, loc.complemento, loc.bairro, loc.numero, \n"
+                + "cid.nome AS cidadenome, cid.fkidestado, est.nome AS estadonome, est.sigla\n"
+                + "FROM localizacao loc\n"
+                + "INNER JOIN cidade AS cid ON (loc.fkidcidade = cid.pkidcidade)\n"
+                + "INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)\n"
+                + "AND loc.pkidlocalizacao = ?";
+        c = ConnectionFactory.getConnection();
+        try {
+            PreparedStatement ppstt = c.prepareStatement(sql);
+            ppstt.setInt(1, idLocalizacao);
+            ResultSet rs = ppstt.executeQuery();
+            if (rs.next()) {
+                Localizacao localizacao = new Localizacao();
+                localizacao.setIdLocalizacao(rs.getInt("pkidlocalizacao"));
+                localizacao.setRua(rs.getString("rua"));
+                localizacao.setComplemento("complemento");
+                localizacao.setBairro(rs.getString("bairro"));
+                localizacao.setNumero(rs.getString("numero"));
+
+                Cidade cidadeObj = new Cidade();
+                cidadeObj.setIdCidade(rs.getInt("fkidcidade"));
+                cidadeObj.setNome(rs.getString("cidadenome"));
+
+                Estado estado = new Estado();
+                estado.setIdEstado(rs.getInt("fkidestado"));
+                estado.setNome(rs.getString("estadonome"));
+                estado.setSigla(rs.getString("sigla"));
+                
+                cidadeObj.setEstado(estado);
+                localizacao.setCidade(cidadeObj);
+                return localizacao;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
 
     public  List<Localizacao> getLocalizacao() {
         List<Localizacao> localizacoes = new ArrayList<Localizacao>();

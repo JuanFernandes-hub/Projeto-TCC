@@ -42,13 +42,13 @@ public class CidadeDAO {
     }
     
     //Recebe cidade atraves do nome
-    public static Cidade getCidade(Cidade cidade) {
+    public static Cidade getCidade(int idCidade) {
         String sql = "SELECT cidade.pkidcidade, cidade.nome AS cidadenome, cidade.fkidestado, estado.nome AS estadonome, estado.sigla\n"
-                + "FROM cidade INNER JOIN estado ON (cidade.fkidestado = estado.pkidestado) AND cidade.nome = ? ";
+                + "FROM cidade INNER JOIN estado ON (cidade.fkidestado = estado.pkidestado) AND cidade.pkidcidade = ? ";
         c = ConnectionFactory.getConnection();
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
-            ppstt.setString(1, cidade.getNome());
+            ppstt.setInt(1, idCidade);
             ResultSet rs = ppstt.executeQuery();
             if (rs.next()) {
                 Cidade cidadeObj = new Cidade();
@@ -105,7 +105,7 @@ public class CidadeDAO {
     }
 
     //recebe cidades por estado
-    public static List<Cidade> getCidade(int idEstado) {
+    public static List<Cidade> getCidades(int idEstado) {
         List<Cidade> cidades = new ArrayList<Cidade>();
         String sql = "SELECT cid.pkidcidade ,cid.nome AS cidadenome, cid.fkidestado, est.nome AS estadonome, est.sigla AS sigla\n"
                 + "FROM cidade cid\n"

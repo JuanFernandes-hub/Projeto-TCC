@@ -5,7 +5,12 @@
  */
 package servlet;
 
+import DAO.CategoriaDAO;
 import DAO.LoginDAO;
+import DAO.LugarDAO;
+import java.util.List;
+import model.Categoria;
+import model.Lugar;
 
 /**
  *
@@ -13,7 +18,7 @@ import DAO.LoginDAO;
  */
 public class Testes {
     public static void main(String[] args){
-        System.out.println(!LoginDAO.emailCadastrado("jmjkh2@gmail.com"));
-        System.out.println("");
+        List<Categoria> categorias = CategoriaDAO.getCategoria();
+        categorias.listIterator();
     }
 }

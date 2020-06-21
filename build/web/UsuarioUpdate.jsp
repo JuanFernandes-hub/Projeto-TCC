@@ -8,7 +8,6 @@
         <title>Editar informações</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
     </head>
     <body>
 
@@ -19,11 +18,11 @@
             <label style="color: black;">Email:</label>
             <input type="email" class="dados form-control" id="email" name="nEmail" style="color: black;"/>
             <br/>
-            
+
             <label style="color: black;">Senha:</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <div class="input-group-text" onclick="mostraSenha('#senha','#olho1')" style="cursor: pointer">
+                    <div class="input-group-text" onclick="mostraSenha('#senha', '#olho1')" style="cursor: pointer">
                         <i id="olho1" class="far fa-eye-slash"></i>
                     </div>
                 </div>
@@ -34,7 +33,7 @@
             <label style="color: black;">Confirme sua Senha:</label>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <div class="input-group-text" onclick="mostraSenha('#senhaConf','#olho2')" style="cursor: pointer">
+                    <div class="input-group-text" onclick="mostraSenha('#senhaConf', '#olho2')" style="cursor: pointer">
                         <i id="olho2" class="far fa-eye-slash"></i>
                     </div>
                 </div>
@@ -45,7 +44,7 @@
         </form>
         <button  onclick="window.location.assign('PerfilUsuario.jsp');">Cancelar</button>
         <div id="resposta">
-            
+
         </div>
 
 
@@ -56,9 +55,9 @@
         <script src="js/GetLogin.js"></script>
         <script src="js/ValidaLogin.js"></script>
         <script src="js/UpdateLogin.js"></script>
-        
-        
-        
+
+
+
         <script>
             //Mostrar senha
             function mostraSenha(input, icon) {

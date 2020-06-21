@@ -5,6 +5,8 @@
  */
 package servlet;
 
+import DAO.CategoriaDAO;
+import DAO.CidadeDAO;
 import DAO.LocalizacaoDAO;
 import DAO.LugarDAO;
 import java.io.IOException;
@@ -19,7 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Categoria;
 import model.Cidade;
-import model.Estado;
 import model.Localizacao;
 import model.Lugar;
 
@@ -45,62 +46,51 @@ public class UpdateLugar extends HttpServlet {
         try{
             Lugar lugar = new Lugar();
             Localizacao localizacao = new Localizacao();
-            Categoria categoria = new Categoria();
-            Cidade cidade = new Cidade();
-            Estado estado = new Estado();
+
+            int idLugar = parseInt(request.getParameter("idLugar"));
             
-            int id_Lugar = parseInt(request.getParameter("nId"));
-            String nome_lugar = request.getParameter("nNome");
-            int categoria_lugar = parseInt(request.getParameter("nCategoria"));
+            String nome = (String)request.getParameter("nNome");
+            int idCategoria = parseInt(request.getParameter("nCategoria"));
             String acesso_lugar = request.getParameter("nAcesso");
             String horarioInicial_lugar = request.getParameter("nHoraInicial");
             String horarioFinal_lugar = request.getParameter("nHoraFinal");
-            int estado_lugar = parseInt(request.getParameter("nEstado"));
-            int cidade_lugar = parseInt(request.getParameter("nCidade"));
+            int idCidade = parseInt(request.getParameter("nCidade"));
             String bairro_lugar = request.getParameter("nBairro");
             String rua_lugar = request.getParameter("nRua");
             String numero_lugar = request.getParameter("nNumero");
             String complemento_lugar = request.getParameter("nComplemento");
             String descricao_lugar = request.getParameter("nDescricao");
-            
+
             //Transformando Horas em Time(SQL)
             DateFormat formato = new SimpleDateFormat("HH:mm");
             Time horaInicial_lugar = new java.sql.Time(formato.parse(horarioInicial_lugar).getTime());
             Time horaFinal_lugar = new java.sql.Time(formato.parse(horarioFinal_lugar).getTime());
             
-            System.out.println("Chegou AQUI: "+horaInicial_lugar);
-            System.out.println("Chegou AQUI: "+horaFinal_lugar);
+            Categoria categoria = CategoriaDAO.getCategoria(idCategoria);
+            Cidade cidade = CidadeDAO.getCidade(idCidade);
             
-            estado.setIdEstado(estado_lugar);
-            cidade.setIdCidade(cidade_lugar);
-            cidade.setEstado(estado);
-
             localizacao.setRua(rua_lugar);
             localizacao.setComplemento(complemento_lugar);
             localizacao.setCidade(cidade);
             localizacao.setBairro(bairro_lugar);
             localizacao.setNumero(numero_lugar);
-            int idLocalizacao = LugarDAO.getLugar(id_Lugar).getLocalizacao().getIdLocalizacao();
+            int idLocalizacao = LugarDAO.getLugar(idLugar).getLocalizacao().getIdLocalizacao();
             localizacao.setIdLocalizacao(idLocalizacao);
             LocalizacaoDAO.atualizaLocalizacao(localizacao);
-
-            categoria.setIdCategoria(categoria_lugar);
-
-            lugar.setIdLugar(id_Lugar);
-            lugar.setNome(nome_lugar);
+            
+            
+            lugar.setIdLugar(idLugar);
+            lugar.setNome(nome);
             lugar.setLocalizacao(localizacao);
             lugar.setCategoria(categoria);
-            lugar.setAvaliacao(5);
+            lugar.setAvaliacao(5); //Padrão
             lugar.setAcesso(acesso_lugar);
             lugar.setHoraInicial(horaInicial_lugar);
             lugar.setHoraFinal(horaFinal_lugar);
             lugar.setDescricao(descricao_lugar);
-            
             LugarDAO.atualizaLugar(lugar);
-            
-            lugar.toString();
-            
-            RequestDispatcher rd = request.getRequestDispatcher("Lugar.jsp");
+
+            RequestDispatcher rd = request.getRequestDispatcher("GetLugar?idLugar="+idLugar+"&act=get");
             rd.forward(request, response);
         } catch (Exception e) {
             RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");

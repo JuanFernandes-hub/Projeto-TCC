@@ -44,7 +44,7 @@ public class Controller extends HttpServlet {
             //Json para retornar ao ajax
             Gson gson = new Gson();
             JsonObject obj = new JsonObject();
-            JsonElement jsonobj = gson.toJsonTree(cdao.getCidade(parseInt(pesquisa)));
+            JsonElement jsonobj = gson.toJsonTree(cdao.getCidades(parseInt(pesquisa)));
             obj.add("dados",jsonobj);
             
             //resposta

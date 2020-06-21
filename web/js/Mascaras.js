@@ -2,13 +2,13 @@ $(function(){
     
     var options = {
         translation:{
-           'H': {pattern: /[0-23]/},
-           'm': {pattern: /[0-59]/},
+           'H': {pattern: /[0-2]/},
+           'm': {pattern: /[0-6]/}
         }
-    }
+    };
     
-    $("#horarioInicial").mask('HH:mm',options);
-    $("#horarioFinal").mask('HH:mm', options);
+    $("#horarioInicial").mask('H9:m9',options);
+    $("#horarioFinal").mask('H9:m9',options);
     
     
 });

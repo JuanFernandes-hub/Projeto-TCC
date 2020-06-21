@@ -195,7 +195,7 @@ public class LoginDAO {
                 //Deleta Lugares
                 for (LoginLugar loginL : lugaresCad) {
                     Lugar lugar = LugarDAO.getLugar(loginL.getLugar().getIdLugar());
-                    LugarDAO.deletaLugar(lugar);
+                    LugarDAO.deletaLugar(lugar.getIdLugar());
                 }
             }
             //Deleta associação de login e lugar da Tabela LoginLugar
