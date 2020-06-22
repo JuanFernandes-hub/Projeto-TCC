@@ -44,8 +44,8 @@ public class GetLugar extends HttpServlet {
             if (act.equals("get")) {
                 RequestDispatcher rd = request.getRequestDispatcher("Lugar.jsp");
                 rd.forward(request, response);
-            //Lugar - botão editar
-            }else if(act.equals("update")){
+                //Lugar - botão editar
+            } else if (act.equals("update")) {
                 RequestDispatcher rd = request.getRequestDispatcher("UpdateLugar.jsp");
                 rd.forward(request, response);
             } else {
@@ -55,6 +55,8 @@ public class GetLugar extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
+            RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
+            rd.forward(request, response);
         }
     }
 

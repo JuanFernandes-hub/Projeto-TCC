@@ -17,8 +17,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Classe;
 import model.Login;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -38,28 +40,38 @@ public class UpdateLogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try{
-            String pesquisa = request.getParameter("login");
-            String nomeClasse = request.getParameter("nomeClasse");
-            Classe classe = ClasseDAO.getClasse(nomeClasse);
+        try {
+            System.out.println("CHEGOU AQUI");
+            HttpSession sessao = request.getSession(false);
+            int idUsuarioLogado = (Integer) sessao.getAttribute("idUsuarioLogado");
+            String senhaCorreta = LoginDAO.getLogin(idUsuarioLogado).getSenha();
+
+            String usuario = (String) request.getParameter("nUsuario");
+            String email = (String) request.getParameter("nEmail");
+            String senhaDigitada = (String) request.getParameter("nSenha");
+            String nomeClasse = (String) sessao.getAttribute("classeUsuarioLogado");
+            senhaDigitada = DigestUtils.sha1Hex(senhaDigitada);
             
-            Gson gson = new Gson();
-            Login login = gson.fromJson(pesquisa, Login.class);
-            login.setClasse(classe);
-            System.out.println(login.toString());
-            System.out.println(classe.toString());
-            LoginDAO.atualizaLogin(login);
-            
-            JsonObject obj = new JsonObject();
-            JsonElement jsonobj = gson.toJsonTree(login);
-            obj.add("dados",jsonobj);
-            
-            //resposta
-            PrintWriter out = response.getWriter();
-            out.println(obj.toString());
-            out.close();
+            String mensagem = null;
+
+            if (senhaCorreta.equals(senhaDigitada)) {
+                Classe classe = ClasseDAO.getClasse(nomeClasse);
+                Login login = new Login(idUsuarioLogado, usuario, senhaCorreta, email, classe);
+                LoginDAO.atualizaLogin(login);
+
+                mensagem = "Dados alterados com sucesso.";
+                request.setAttribute("mensagem", mensagem);
+                RequestDispatcher rd = request.getRequestDispatcher("UpdateLogin.jsp");
+                rd.forward(request, response);
+            }else{
+                mensagem = "Senha inválida, Tente novamente";
+                request.setAttribute("mensagem", mensagem);
+                RequestDispatcher rd = request.getRequestDispatcher("UpdateLogin.jsp");
+                rd.forward(request, response);
+            }
+
         } catch (Exception ex) {
-            RequestDispatcher rd = request.getRequestDispatcher("PerfilUsuario.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
             rd.forward(request, response);
             ex.printStackTrace();
         }

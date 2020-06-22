@@ -6,16 +6,14 @@
 package servlet;
 
 import DAO.LoginDAO;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import java.io.IOException;
-import java.io.PrintWriter;
 import static java.lang.Integer.parseInt;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Login;
 
 /**
@@ -37,21 +35,20 @@ public class GetLogin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try{
-            LoginDAO ldao = new LoginDAO();
-            String pesquisa = request.getParameter("pesquisa");
-            
-            Login login = ldao.getLogin(parseInt(pesquisa));
-            
-            //Json para retornar ao ajax
-            Gson gson = new Gson();
-            JsonObject obj = new JsonObject();
-            JsonElement jsonobj = gson.toJsonTree(login);
-            obj.add("dados",jsonobj);
-            
-            //resposta
-            PrintWriter out = response.getWriter();
-            out.println(obj.toString());
-            out.close();
+            String act = request.getParameter("act");
+            HttpSession sessao = request.getSession(false);
+            int idUsuarioLogado = (Integer) sessao.getAttribute("idUsuarioLogado");
+            Login login = LoginDAO.getLogin(idUsuarioLogado);
+
+            //Lugares - click card lugar
+            if (act.equals("get")) {
+            } else if (act.equals("update")) {
+                RequestDispatcher rd = request.getRequestDispatcher("UpdateLogin.jsp");
+                rd.forward(request, response);
+            } else {
+                RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
+                rd.forward(request, response);
+            }
         } catch (IOException ex) {
             ex.printStackTrace();
         }

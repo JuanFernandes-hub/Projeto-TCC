@@ -106,7 +106,7 @@ public class LoginDAO {
         return false;
     }
 
-    public Login getLogin(String usuario, String senha, String email) {
+    public static Login getLogin(String usuario, String senha, String email) {
         String sql = "SELECT login.pkidusuario, login.usuario, login.senha, login.email, classe.pkidclasse, classe.nome AS classe\n"
                 + "FROM login, classe\n"
                 + "WHERE (usuario = ? OR email = ?) AND senha = ? AND login.fkidclasse = classe.pkidclasse";

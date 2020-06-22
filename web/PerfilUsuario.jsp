@@ -31,8 +31,8 @@
                     <p> <%= classeLog%> </p>
 
         <a href="CadastraLugar.jsp" class="btn btn-primary">Cadastra Lugar</a>
-
-        <button id="editarUsuario" name="<%= idLog%>" onclick="updateLogin(this)" class="btn btn-primary" >Editar conta</button>
+        
+        <a href="UpdateLogin.jsp" class="btn btn-primary">Editar Conta</a>
         
         <!-- Botão para acionar modal de deletar conta-->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalDeletaConta">
@@ -46,12 +46,12 @@
             List<Lugar> lugares = LoginDAO.getLugaresCad(idLog);
             for (Lugar lugar : lugares) {
         %>  <div class="col-md-4">
-            <div class="card" id="<%= lugar.getIdLugar()%>" onclick="geraPg(this)">
+            <div class="card" id="<%= lugar.getIdLugar()%>">
                 <div class="card-body">
                     <h3 class="card-title"> <%= lugar.getNome()%> </h3>
                     <p class="card-text"><%= lugar.getCategoria().getNome()%></p>
                     <p class="card-text"><%= lugar.getDescricao()%></p>
-
+                    <a href="GetLugar?idLugar=<%= lugar.getIdLugar()%>&act=get">Ver Mais</a>
                 </div>
             </div>
 

@@ -10,6 +10,7 @@ import DAO.LoginDAO;
 import DAO.LugarDAO;
 import java.util.List;
 import model.Categoria;
+import model.Login;
 import model.Lugar;
 
 /**
@@ -18,7 +19,8 @@ import model.Lugar;
  */
 public class Testes {
     public static void main(String[] args){
-        List<Categoria> categorias = CategoriaDAO.getCategoria();
-        categorias.listIterator();
+        Login login = LoginDAO.getLogin(3);
+        login.setEmail("JuanTesteATT@gmail");
+        LoginDAO.atualizaLogin(login);
     }
 }

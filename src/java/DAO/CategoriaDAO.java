@@ -96,6 +96,22 @@ public class CategoriaDAO {
         return categorias;
     }
     
+    public static boolean atualizaCategoria(Categoria categoria) {
+        c = ConnectionFactory.getConnection();
+
+        String sql = "UPDATE categoria SET nome=?\n"
+                + " WHERE pkidcategoria = ?";
+        try {
+            PreparedStatement ppstt = c.prepareStatement(sql);
+            ppstt.setString(1, categoria.getNome());
+            ppstt.setInt(2, categoria.getIdCategoria());
+            ppstt.execute();
+            ppstt.close();
+        } catch (SQLException e) {
+            return false;
+        }
+        return true;
+    }
     
     
     public void deletaCategoria(Categoria categoria) {

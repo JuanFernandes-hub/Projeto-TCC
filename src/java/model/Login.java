@@ -20,6 +20,15 @@ public class Login {
     public Login() {
     }
 
+    public Login(int idUsuario, String usuario, String senha, String email, Classe classe) {
+        this.idUsuario = idUsuario;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.email = email;
+        this.classe = classe;
+    }
+    
+
     public String getUsuario() {
         return usuario;
     }
