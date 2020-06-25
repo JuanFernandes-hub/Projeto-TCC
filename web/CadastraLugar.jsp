@@ -177,7 +177,7 @@
         <!-- IMPORTANTE - SCRIPTS NECESSARIOS PARA O FUNCIONAMENTO DO DROPDOWN -->
         <script src="http://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> <!-- MASCARAS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> 
         <script type="text/javascript" src="js/jquery.mask.min.js"></script> <!-- MASCARAS -->
         <script type="text/javascript" src="js/Mascaras.js"></script> <!-- FORMATA MASCARAS -->
         <script src="bootstrap/js/bootstrap.min.js"></script>

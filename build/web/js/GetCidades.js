@@ -13,7 +13,6 @@ $(document).ready(function(){
           dataType: "json",
             success: function (data, textStatus, jqXHR) {
                 $("#resposta").html("");
-                //console.log(data);
                 $("#cidade").empty();
                 for(var i in data.dados){
                     console.log(data.dados);

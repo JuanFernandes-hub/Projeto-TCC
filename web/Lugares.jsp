@@ -21,38 +21,38 @@
             LugarDAO lugardao = new LugarDAO();
             //resetar List
             List<Lugar> lugares = null;
-            
+
             CategoriaDAO categoriadao = new CategoriaDAO();
             List<Categoria> categorias = categoriadao.getCategoria();
-            
+
             EstadoDAO estado = new EstadoDAO();
             List<Estado> estados = estado.getEstado();
-            
+
             List<Cidade> cidades = CidadeDAO.getCidade();
         %>
         <div class="container">
             <select class="filtroCatg" id="filtroCatg">
-                 <option class="Selecione" value="" disabled selected hidden>Selecione...</option>
+                <option class="Selecione" value="" disabled selected hidden>Selecione...</option>
                 <%
-                    for(Categoria categoria : categorias){
-                %><option value="<%= categoria.getIdCategoria() %>"> <%= categoria.getNome() %> </option>
-                        <%
+                    for (Categoria categoria : categorias) {
+                %><option value="<%= categoria.getIdCategoria()%>"> <%= categoria.getNome()%> </option>
+                <%
                     }
                 %>
             </select>
-            
+
             <select class="filtroCatg">
-                 <option class="Selecione" value="" disabled selected hidden>Selecione...</option>
+                <option class="Selecione" value="" disabled selected hidden>Selecione...</option>
                 <%
-                    for(Estado estado : estados){
-                %><option value="<%= estado.getSigla() %>"> <%= estado.getNome() %> </option>
-                        <%
+                    for (Estado estado : estados) {
+                %><option value="<%= estado.getSigla()%>"> <%= estado.getNome()%> </option>
+                <%
                     }
                 %>
             </select>
-            
+
             <button class="filtroCatg" value="semFiltro" onclick="limpaFiltro()">Sem filtro</button>
-            
+
             <%
                 lugares = LugarDAO.getLugar();
                 for (Lugar lugar : lugares) {
@@ -60,13 +60,13 @@
                     int idCategoria = lugar.getCategoria().getIdCategoria();
                     int idCidade = lugar.getLocalizacao().getCidade().getIdCidade();
                     String siglaEst = lugar.getLocalizacao().getCidade().getEstado().getSigla();
-                    
+
             %>  <div class="col-md-4">
-                <div class="card <%= lugar.getCategoria().getIdCategoria() %>">
+                <div class="card <%= lugar.getCategoria().getIdCategoria()%> <%= lugar.getLocalizacao().getCidade().getEstado().getSigla()%>">
                     <div class="card-body">
-                        <h3 class="card-title"> <%= lugar.getNome() %> </h3>
-                        <p class="card-text"><%= lugar.getCategoria().getNome() %></p>
-                        <p class="card-text"><%= lugar.getDescricao() %></p>
+                        <h3 class="card-title"> <%= lugar.getNome()%> </h3>
+                        <p class="card-text"><%= lugar.getCategoria().getNome()%></p>
+                        <p class="card-text"><%= lugar.getDescricao()%></p>
                         <a href="GetLugar?idLugar=<%= lugar.getIdLugar()%>&act=get">Ver Mais</a>
                     </div>
                 </div>
@@ -74,8 +74,8 @@
                 }
             %>
 
-            
-            
+
+
 
         </div>
 
@@ -84,22 +84,30 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         <script type="text/javascript">
-            $(".filtroCatg").on("change",function(){
-                let ctg = $(this).val();
-                let cards = $(".card")
-                console.log(ctg);
-                //$(cards).fadeOut();
-                $(cards).each(function(){
-                    if(!$(this).hasClass(ctg)){
-                        $(this).fadeOut();
+                var cards = $(".card");
+                var array = [];
+                $(".filtroCatg").on("change", function () {
+                    let ctg = $(this).val();
+                    console.log($(this).val());
+                    console.log(cards);
+                    $(cards).each(function () {
+                        if (!$(this).hasClass(ctg)) {
+                            $(this).fadeOut();
+                        } else {
+                            $(this).fadeIn();
+                        }
+
                     }
-                })
-            });
-            
-            function limpaFiltro(){
-                let cards = $(".card");
-                $(cards).fadeIn();
-            }
+                    );
+                });
+                
+                var elementoCerto; //Variavel que vai armazenar o dados do usuário selecionado
+                                    //acho q deve ser um array na verdade
+
+                function limpaFiltro() {
+                    let cards = $(".card");
+                    $(cards).fadeIn();
+                }
 
         </script>
     </body>
