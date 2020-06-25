@@ -106,6 +106,7 @@ public class LoginDAO {
         return false;
     }
 
+    //Verificar se conta existe
     public static Login getLogin(String usuario, String senha, String email) {
         String sql = "SELECT login.pkidusuario, login.usuario, login.senha, login.email, classe.pkidclasse, classe.nome AS classe\n"
                 + "FROM login, classe\n"

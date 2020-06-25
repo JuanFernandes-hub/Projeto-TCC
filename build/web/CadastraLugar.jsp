@@ -26,10 +26,6 @@
 
     </head>
     <body>
-
-
-        
-
             <%!
                 //Pegar estado para select
                 EstadoDAO daoEstado = new EstadoDAO();
@@ -166,7 +162,6 @@
         } catch (Exception e) {
                 RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
                 rd.include(request, response);
-                System.out.println("CHEgou aqui");
             }
         %>
 

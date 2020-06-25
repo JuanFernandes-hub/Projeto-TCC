@@ -5,7 +5,6 @@
  */
 package DAO;
 
-import static DAO.LugarDAO.c;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,30 +23,9 @@ import model.Localizacao;
 public class LocalizacaoDAO {
 
     static Connection c;
-
-    public static boolean insereLocalizacao(Localizacao localizacao) {
-        c = ConnectionFactory.getConnection();
-
-        String sql = "INSERT INTO localizacao(rua,fkidcidade,complemento,bairro,numero)\n"
-                + "VALUES (?,?,?,?,?);";
-        try {
-            PreparedStatement ppstt = c.prepareStatement(sql);
-            ppstt.setString(1, localizacao.getRua());
-            ppstt.setInt(2, localizacao.getCidade().getIdCidade());
-            ppstt.setString(3, localizacao.getComplemento());
-            ppstt.setString(4, localizacao.getBairro());
-            ppstt.setString(5, localizacao.getNumero());
-            ppstt.execute();
-            ppstt.close();
-        } catch (SQLException e) {
-            return false;
-        }
-        return true;
-    }
-    
-    
-    //Para pegar id da localizacao
-    public static int insere(Localizacao localizacao) {
+        
+    //Insere localizacao e retorna pk gerada
+    public static int insereLocalizacao(Localizacao localizacao) {
         c = ConnectionFactory.getConnection();
 
         String sql = "INSERT INTO localizacao(rua,fkidcidade,complemento,bairro,numero)\n"
@@ -93,50 +71,6 @@ public class LocalizacaoDAO {
             return false;
         }
         return true;
-    }
-    
-    //Filtar localizacao por cidade
-    public Localizacao getLocalizacao(Cidade cidade) {
-        String sql = "SELECT loc.pkidlocalizacao, loc.rua, loc.fkidcidade, loc.complemento,loc.bairro, loc.numero, \n"
-                + "cid.nome AS cidadenome, cid.fkidestado, est.nome AS estadonome, est.sigla\n"
-                + "FROM localizacao loc\n"
-                + "INNER JOIN cidade AS cid ON (loc.fkidcidade = ?)\n" //recebe o pkid da cidade
-                + "INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)\n";
-        c = ConnectionFactory.getConnection();
-        try {
-            PreparedStatement ppstt = c.prepareStatement(sql);
-            ppstt.setInt(1, cidade.getIdCidade());
-            ResultSet rs = ppstt.executeQuery();
-            if (rs.next()) {
-                Localizacao localizacao = new Localizacao();
-                localizacao.setIdLocalizacao(rs.getInt("pkidlocalizacao"));
-                localizacao.setRua(rs.getString("rua"));
-                localizacao.setComplemento("complemento");
-                localizacao.setBairro(rs.getString("bairro")); ///
-                localizacao.setNumero(rs.getString("numero")); ///
-
-                //objeto cidade 
-                Cidade cidadeObj = new Cidade();
-                cidadeObj.setIdCidade(rs.getInt("fkidcidade"));
-                cidadeObj.setNome(rs.getString("cidadenome"));
-
-                //objeto estado
-                Estado estado = new Estado();
-                estado.setIdEstado(rs.getInt("fkidestado"));
-                estado.setNome(rs.getString("estadonome"));
-                estado.setSigla(rs.getString("sigla"));
-
-                //cidade recebe estado
-                cidadeObj.setEstado(estado);
-                //localizacao recebe cidade
-                localizacao.setCidade(cidadeObj);
-                return localizacao;
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        return null;
     }
     
     public static Localizacao getlocalizacao(int idLocalizacao) {

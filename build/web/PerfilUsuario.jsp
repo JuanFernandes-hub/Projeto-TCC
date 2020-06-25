@@ -51,6 +51,8 @@
                     <h3 class="card-title"> <%= lugar.getNome()%> </h3>
                     <p class="card-text"><%= lugar.getCategoria().getNome()%></p>
                     <p class="card-text"><%= lugar.getDescricao()%></p>
+                </div>
+                <div class="card-footer">
                     <a href="GetLugar?idLugar=<%= lugar.getIdLugar()%>&act=get">Ver Mais</a>
                 </div>
             </div>

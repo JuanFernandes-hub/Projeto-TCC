@@ -87,8 +87,8 @@
                     idLog = (Integer) sessao.getAttribute("idUsuarioLogado");
                     classeLog = (String) sessao.getAttribute("classeUsuarioLogado");
                     nomeLog = (String) sessao.getAttribute("nomeUsuarioLogado");
-                    LoginLugar loginlugar = LoginLugarDAO.getLugar(idLog, lugar.getIdLugar());
-                    if (loginlugar != null || classeLog.equals("administrador")) {
+                    Lugar lugarCadastrado = LoginLugarDAO.getLugar(idLog, lugar.getIdLugar());
+                    if (lugarCadastrado != null || classeLog.equals("administrador")) {
             %>          
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalDeletaUsuario">
                 Deletar

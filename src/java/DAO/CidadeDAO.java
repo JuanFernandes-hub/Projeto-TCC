@@ -23,7 +23,6 @@ public class CidadeDAO {
 
     static Connection c;
 
-    //Talevz nao seja necessario inserir cidades
     public static boolean insereCidade(Cidade cidade) {
         c = ConnectionFactory.getConnection();
 
@@ -41,7 +40,7 @@ public class CidadeDAO {
         return true;
     }
     
-    //Recebe cidade atraves do nome
+    //Recebe cidade atraves do id
     public static Cidade getCidade(int idCidade) {
         String sql = "SELECT cidade.pkidcidade, cidade.nome AS cidadenome, cidade.fkidestado, estado.nome AS estadonome, estado.sigla\n"
                 + "FROM cidade INNER JOIN estado ON (cidade.fkidestado = estado.pkidestado) AND cidade.pkidcidade = ? ";

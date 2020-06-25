@@ -61,20 +61,20 @@
                             <%
                                 //Verifica se está logado, e substitui li
                                 HttpSession sessao = request.getSession();
-                                if(sessao.getAttribute("nomeUsuarioLogado") != null){
-                                %>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="PerfilUsuario.jsp" style="color: #ffffff;"><b><%= sessao.getAttribute("nomeUsuarioLogado") %></b></a>
-                                    </li>
-                                <%
-                                }else{
-                                %>    <li class="nav-item">
-                                        <a class="nav-link" href="Login.jsp" style="color: #ffffff;"><b>Entrar</b></a>
-                                    </li>
-                                <%    
+                                if (sessao.getAttribute("nomeUsuarioLogado") != null) {
+                            %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="PerfilUsuario.jsp" style="color: #ffffff;"><b><%= sessao.getAttribute("nomeUsuarioLogado")%></b></a>
+                            </li>
+                            <%
+                            } else {
+                            %>    <li class="nav-item">
+                                <a class="nav-link" href="Login.jsp" style="color: #ffffff;"><b>Entrar</b></a>
+                            </li>
+                            <%
                                 }
                             %>
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -88,26 +88,35 @@
         <div class="container pt-5">
 
             <div class="row">
-
                 <%!
                     LugarDAO lugardao = new LugarDAO();
                     List<Lugar> lugares = lugardao.getLugar();
                 %>
-
                 <%
                     //Limitar numero de cards na home
-                    for (int i = 0; i < 12; i++) {
+                    for (int i = 0; i < lugares.size(); i++) {
                 %>  <div class="col-md-3 cardCol">
                     <div class="card mycard" id="<%= lugares.get(i).getIdLugar()%>" onclick="geraPg(this)">
                         <div class="card-body">
-                            <h3 class="card-title"> <% out.print(lugares.get(i).getNome()); %> </h3>
-                            <p class="card-text"><% out.print(lugares.get(i).getCategoria().getNome()); %></p>
-                            <p class="card-text"><% out.print(lugares.get(i).getDescricao());%></p>
+                            <h3 class="card-title"> <%= lugares.get(i).getNome()%> </h3>
+                            <p class="card-text"><%= lugares.get(i).getCategoria().getNome()%></p>
+                            <p class="card-text"><%= lugares.get(i).getDescricao()%></p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="GetLugar?idLugar=<%= lugares.get(i).getIdLugar()%>&act=get">Ver Mais</a>
                         </div>
                     </div>
-                </div> <%
+                </div>
+                <%
+                        if (i >= 11) {
+                            break;
+                        }
                     }
-                %>
+                %>        
+
+
+
+
             </div>
         </div>
 
@@ -130,7 +139,7 @@
                     </div>
                     <div class="col-sm-3 mt-3" style="color: #ffffff;">
                         <a href="Login.jsp">
-                        <h2 style="color: #ffffff;">Entrar</h2>
+                            <h2 style="color: #ffffff;">Entrar</h2>
                         </a>
                     </div>
                 </div>
@@ -155,14 +164,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-        <script src="js/GeraPgLugar.js"></script> <!-- Guarda dados perfil do lugar  -->
-        <script type="text/javascript">
-                        $(function () {
-                            $(window).on('popstate', function () {
-                                location.reload(true);
-                            });
-                        });
-        </script>
 
     </body>
 </html>

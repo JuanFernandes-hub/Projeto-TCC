@@ -7,7 +7,6 @@ package servlet;
 
 import DAO.LugarDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import static java.lang.Integer.parseInt;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

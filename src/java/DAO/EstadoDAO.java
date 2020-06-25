@@ -20,27 +20,6 @@ import model.Estado;
 public class EstadoDAO {
     static Connection c;
     
-    public static Estado getEstado(Estado estado){
-        String sql = "SELECT * FROM estado WHERE nome = ?";
-        c = ConnectionFactory.getConnection();
-        try{
-            PreparedStatement ppstt = c.prepareStatement(sql);
-            ppstt.setString(1,estado.getNome());
-            ResultSet rs = ppstt.executeQuery();
-            if(rs.next()){
-                Estado estadoObj = new Estado();
-                estadoObj.setIdEstado(rs.getInt("pkidestado"));
-                estadoObj.setNome(rs.getString("nome"));
-                estadoObj.setSigla("sigla");
-                return estadoObj;
-            }
-        }catch(SQLException e){
-            System.out.println(e.getMessage());
-        }
-        
-        return null;
-    }
-    
     public static Estado getEstado(int idEstado){
         String sql = "SELECT * FROM estado WHERE pkidestado = ?";
         c = ConnectionFactory.getConnection();
@@ -61,7 +40,6 @@ public class EstadoDAO {
         
         return null;
     }
-    
     
     public static List<Estado> getEstado(){
         List<Estado> estados = new ArrayList<Estado>();

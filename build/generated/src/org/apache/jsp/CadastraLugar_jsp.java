@@ -81,10 +81,6 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("        \n");
-      out.write("\n");
       out.write("            ");
       out.write("\n");
       out.write("            \n");
@@ -230,7 +226,6 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
         } catch (Exception e) {
                 RequestDispatcher rd = request.getRequestDispatcher("Login.jsp");
                 rd.include(request, response);
-                System.out.println("CHEgou aqui");
             }
         
       out.write("\n");
@@ -242,7 +237,7 @@ public final class CadastraLugar_jsp extends org.apache.jasper.runtime.HttpJspBa
       out.write("        <!-- IMPORTANTE - SCRIPTS NECESSARIOS PARA O FUNCIONAMENTO DO DROPDOWN -->\n");
       out.write("        <script src=\"http://code.jquery.com/jquery-3.4.1.min.js\"\n");
       out.write("        integrity=\"sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=\" crossorigin=\"anonymous\"></script>\n");
-      out.write("        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js\"></script> <!-- MASCARAS -->\n");
+      out.write("        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js\"></script> \n");
       out.write("        <script type=\"text/javascript\" src=\"js/jquery.mask.min.js\"></script> <!-- MASCARAS -->\n");
       out.write("        <script type=\"text/javascript\" src=\"js/Mascaras.js\"></script> <!-- FORMATA MASCARAS -->\n");
       out.write("        <script src=\"bootstrap/js/bootstrap.min.js\"></script>\n");

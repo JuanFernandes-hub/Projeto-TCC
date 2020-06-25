@@ -82,7 +82,7 @@ public class CadastraLugar extends HttpServlet {
             localizacao.setCidade(cidade);
             localizacao.setBairro(bairro_lugar);
             localizacao.setNumero(numero_lugar);
-            int idLocal = LocalizacaoDAO.insere(localizacao); //manda para o banco e pega o id
+            int idLocal = LocalizacaoDAO.insereLocalizacao(localizacao); //manda para o banco e pega o id
             localizacao.setIdLocalizacao(idLocal);
 
             categoria.setIdCategoria(categoria_lugar);

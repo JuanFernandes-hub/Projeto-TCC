@@ -130,6 +130,5 @@
         <script type="text/javascript" src="js/jquery.mask.min.js"></script>
         <script type="text/javascript" src="js/Mascaras.js"></script>
         <script type="text/javascript" src="js/ValidaCadLugar.js"></script>
-        <script type="text/javascript" src="js/UpdateLugar.js"></script> <!-- MEU AJAX  para atualizar dados-->
     </body>
 </html>

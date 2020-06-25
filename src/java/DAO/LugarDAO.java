@@ -5,7 +5,6 @@
  */
 package DAO;
 
-import static DAO.LocalizacaoDAO.c;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -49,7 +48,7 @@ public class LugarDAO {
             int id = rs.getInt(1);
             rs.close();
             //relaciona pk gerado com o lugar
-            LugarDAO.loginLugar(id, idLoginLugar);
+            LoginLugarDAO.insereLoginLugar(id, idLoginLugar);
             ppstt.close();
         } catch (SQLException e) {
             System.out.print("Erro no sistema. Desculpe.");
@@ -83,90 +82,9 @@ public class LugarDAO {
         return true;
     }
 
-    //Tabela usuarioLugar
-    public static void loginLugar(int idLugar, int idLoginLugar) {
-        c = ConnectionFactory.getConnection();
+   //Movido - movido para LoginLugar metodo loginLugar() que insere pks login e lugar na tabela usuarioLugar
+   //Excluido - Metodo de getLugar() para pegar Lugar pelo nome
 
-        String sql = "INSERT INTO usuariolugar(fkidlogin,fkidlugar)\n"
-                + "VALUES (?,?);";
-        try {
-            PreparedStatement ppstt = c.prepareStatement(sql);
-            ppstt.setInt(1, idLoginLugar);
-            ppstt.setInt(2, idLugar);
-            ppstt.execute();
-            ppstt.close();
-        } catch (SQLException e) {
-            System.out.print("Erro no sistema. Desculpe.");
-        }
-
-    }
-
-    //metodo para passar a avaliacao(update) 
-    //pegar avaliacao, fazer a media e mandar para o banco
-    //Procurar pelo nome do lugar
-    public Lugar getLugar(Lugar lugar) {
-        String sql = "SELECT lug.pkidlugar, lug.nome AS lugarnome, lug.avaliacao, lug.fkidcategoria, lug.fkidlocalizacao,\n"
-                + "     lug.acesso, lug.horainicial, lug.horafinal, lug.descricao,\n"
-                + "     cat.nome AS categorianome, \n"
-                + "	loc.rua, loc.fkidcidade, loc.complemento, loc.bairro, loc.numero, \n"
-                + "	cid.nome AS nomecidade, cid.fkidestado,\n"
-                + "     est.nome AS estadonome, est.sigla\n"
-                + "     FROM lugar lug\n"
-                + "     INNER JOIN categoria AS cat ON (lug.fkidcategoria = cat.pkidcategoria)\n"
-                + "     INNER JOIN localizacao AS loc ON (lug.fkidlocalizacao = loc.pkidlocalizacao)\n"
-                + "     INNER JOIN cidade AS cid ON (loc.fkidcidade = cid.pkidcidade)\n"
-                + "     INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado)\n"
-                + "     AND lug.nome = '?' "; //talvez nao precise de  ' '
-        c = ConnectionFactory.getConnection();
-        try {
-            PreparedStatement ppstt = c.prepareStatement(sql);
-            ppstt.setString(1, lugar.getNome());
-            ResultSet rs = ppstt.executeQuery();
-            if (rs.next()) {
-                Lugar lugarObj = new Lugar();
-                lugarObj.setIdLugar(rs.getInt("pkidlugar"));
-                lugarObj.setNome(rs.getString("lugarnome"));
-                lugarObj.setAvaliacao(rs.getFloat("avaliacao"));
-                lugarObj.setAcesso(rs.getString("acesso"));
-                lugarObj.setHoraInicial(rs.getTime("horainicial"));
-                lugarObj.setHoraFinal(rs.getTime("horafinal"));
-                lugarObj.setDescricao(rs.getString("descricao"));
-
-                Categoria categoria = new Categoria();
-                categoria.setIdCategoria(rs.getInt("fkidcategoria"));
-                categoria.setNome(rs.getString("categorianome"));
-                lugarObj.setCategoria(categoria);
-
-                Localizacao localizacao = new Localizacao();
-                localizacao.setIdLocalizacao(rs.getInt("fkidlocalizacao"));
-                localizacao.setRua(rs.getString("rua"));
-                localizacao.setComplemento("complemento");
-                localizacao.setBairro(rs.getString("bairro"));
-                localizacao.setNumero(rs.getString("numero"));
-
-                Cidade cidade = new Cidade();
-                cidade.setIdCidade(rs.getInt("fkidcidade"));
-                cidade.setNome(rs.getString("nomecidade"));
-
-                Estado estado = new Estado();
-                estado.setIdEstado(rs.getInt("fkidestado"));
-                estado.setNome(rs.getString("estadonome"));
-                estado.setSigla(rs.getString("sigla"));
-                cidade.setEstado(estado);
-                localizacao.setCidade(cidade);
-
-                lugarObj.setLocalizacao(localizacao);
-
-                return lugarObj;
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        return null;
-    }
-
-    //Retornar Pagina de Lugar
     public static Lugar getLugar(int id) {
         String sql = "SELECT lug.pkidlugar, lug.nome AS lugarnome, lug.avaliacao, lug.fkidcategoria, lug.fkidlocalizacao,\n"
                 + "     lug.acesso, lug.horainicial, lug.horafinal, lug.descricao,\n"

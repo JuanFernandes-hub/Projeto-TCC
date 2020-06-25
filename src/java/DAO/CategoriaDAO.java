@@ -36,12 +36,12 @@ public class CategoriaDAO {
         return true;
     }
     
-    public static Categoria getCategoria(Categoria categoria){
+    public static Categoria getCategoria(String nomeCategoria){
         String sql = "SELECT * FROM categoria WHERE nome = ?";
         c = ConnectionFactory.getConnection();
         try{
             PreparedStatement ppstt = c.prepareStatement(sql);
-            ppstt.setString(1,categoria.getNome());
+            ppstt.setString(1, nomeCategoria);
             ResultSet rs = ppstt.executeQuery();
             if(rs.next()){
                 Categoria categoriaObj = new Categoria();
@@ -56,6 +56,7 @@ public class CategoriaDAO {
         return null;
     }
     
+    //Pega por id
     public static Categoria getCategoria(int idCategoria){
         String sql = "SELECT * FROM categoria WHERE pkidcategoria = ?";
         c = ConnectionFactory.getConnection();

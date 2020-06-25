@@ -5,15 +5,12 @@
  */
 package DAO;
 
-import static DAO.LoginDAO.c;
-import static DAO.LugarDAO.c;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Categoria;
 import model.Login;
 import model.LoginLugar;
 import model.Lugar;
@@ -53,8 +50,27 @@ public class LoginLugarDAO {
         }
         return loginLugares;
     }
+    
+    //Tabela usuarioLugar
+    public static void insereLoginLugar(int idLugar, int idLoginLugar) {
+        c = ConnectionFactory.getConnection();
 
-    public static LoginLugar getLugar(int idLogin, int idLugar) {
+        String sql = "INSERT INTO usuariolugar(fkidlogin,fkidlugar)\n"
+                + "VALUES (?,?);";
+        try {
+            PreparedStatement ppstt = c.prepareStatement(sql);
+            ppstt.setInt(1, idLoginLugar);
+            ppstt.setInt(2, idLugar);
+            ppstt.execute();
+            ppstt.close();
+        } catch (SQLException e) {
+            System.out.print("Erro no sistema. Desculpe.");
+        }
+
+    }
+
+    //Pega lugares cadastrados pelo usuário
+    public static Lugar getLugar(int idLogin, int idLugar) {
         String sql = "SELECT pkidusuariolugar, fkidlogin, fkidlugar\n"
                 + "FROM usuarioLugar\n"
                 + "WHERE fkidlogin = ? AND fkidlugar = ?";
@@ -66,15 +82,9 @@ public class LoginLugarDAO {
             ResultSet rs = ppstt.executeQuery();
             if (rs.next()) {
                 idLugar = rs.getInt("fkidlugar");
-                idLogin = rs.getInt("fkidlogin");
                 Lugar lugar = LugarDAO.getLugar(idLugar);
-                Login login = LoginDAO.getLogin(idLogin);
-                LoginLugar loginLugar = new LoginLugar();
-                loginLugar.setIdUsuarioLugar(rs.getInt("pkidusuariolugar"));
-                loginLugar.setLogin(login);
-                loginLugar.setLugar(lugar);
                 
-                return loginLugar;
+                return lugar;
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
