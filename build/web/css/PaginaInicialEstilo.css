@@ -1,0 +1,76 @@
+body, html{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif !important;
+    width: 100%;
+    height: 100%;
+}
+
+.section-top{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    background-image: url(../imagens/ruina.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+}
+
+
+.content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.content h1{
+    color: white;
+    font-size: 50px;
+    letter-spacing: 1px;
+}
+
+.input-imagem {
+    background-color: transparent;
+    color: #ffffff;
+    padding-right: 50px;
+    padding-left: 20px;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ffffff;
+    max-width: auto;
+    height: 50px;
+    width: 100%;
+}
+
+.input-imagem::placeholder {
+    color: white !important;
+}
+
+.content2{
+    position: absolute;
+    top: 85%;
+    left: 50%;
+    transform: translate(-50%, -15%);
+    text-align: center;
+    animation: brilhar 1.2s linear infinite;
+    font-size: 50px; 
+    color: #fff;
+}
+
+@keyframes brilhar {
+    from { opacity: 1.0; transform: translate(0,0);}
+    to { opacity: .0; transform: translate(0,10px);}
+  }
+
+.my-container h2 {
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+.my-container{
+    margin-top: 50px;
+}

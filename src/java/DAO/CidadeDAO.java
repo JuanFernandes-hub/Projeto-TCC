@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Categoria;
 import model.Cidade;
 import model.Estado;
 
@@ -23,22 +22,7 @@ public class CidadeDAO {
 
     static Connection c;
 
-    public static boolean insereCidade(Cidade cidade) {
-        c = ConnectionFactory.getConnection();
-
-        String sql = "INSERT INTO cidade(nome, fkidestado) "
-                + "VALUES (?,?);";
-        try {
-            PreparedStatement ppstt = c.prepareStatement(sql);
-            ppstt.setString(1, cidade.getNome());
-            ppstt.setInt(2, cidade.getEstado().getIdEstado());
-            ppstt.execute();
-            ppstt.close();
-        } catch (SQLException e) {
-            return false;
-        }
-        return true;
-    }
+    //Excluído - insereLugar(Cidade cidade)
     
     //Recebe cidade atraves do id
     public static Cidade getCidade(int idCidade) {

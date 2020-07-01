@@ -1,0 +1,78 @@
+.card-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 2px;                
+}
+
+.card-img{
+    width: 100%;
+    height: 100%;
+    background: url(../imagens/morretes.jpg);
+    background-color: darkgray;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: all ease 0.5s;
+}
+
+
+.card-container-texto{
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    position: absolute;
+    top: 0;
+    text-align: left;
+    padding-top: 10px;
+    padding-left: 20px;
+    text-decoration: none;
+}
+
+.card-titulo{
+    color: #fff;
+    margin-bottom: 0;
+    letter-spacing: 1px;
+    font-weight: 500;
+    font-size: 25px;
+}
+
+.card-titulo:hover {
+    text-decoration: none;
+    color: #fff;
+    text-shadow: -2px 2px #4A44F2;
+}
+
+.card-texto{
+    margin-bottom: 0;
+    font-weight: normal;
+    font-size: 18px;   
+}
+.my-card-footer{
+    bottom: 0;
+    text-align: left;
+    padding: 20px;
+    position: absolute;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+}
+.my-card-footer a{
+    color: #fff;
+}
+.my-card-col{
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.mycard{
+    box-shadow: 1px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.my-container h2 {
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+.my-container{
+    margin-top: 50px;
+}

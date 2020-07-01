@@ -3,13 +3,11 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import model.Cidade;
-import DAO.CidadeDAO;
-import DAO.LugarDAO;
-import model.Lugar;
 import java.util.List;
+import model.Lugar;
+import DAO.LugarDAO;
 
-public final class Home_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class TestePaginaInicial_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
 
@@ -60,7 +58,7 @@ public final class Home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>Página Inicial - Colibri</title>\n");
+      out.write("        <title>JSP Page</title>\n");
       out.write("        <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\"\n");
       out.write("              integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\n");
       out.write("        <link href=\"https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap\" rel=\"stylesheet\"> \n");
@@ -74,7 +72,7 @@ public final class Home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                <!-- navbar expansiva -->\n");
       out.write("                <div class=\"container\">\n");
       out.write("                    <!-- Logo -->\n");
-      out.write("                    <a class=\"navbar-brand\" href=\"Home.jsp\" style=\"color: white;\">\n");
+      out.write("                    <a class=\"navbar-brand\" href=\"index.html\" style=\"color: white;\">\n");
       out.write("                        <b>\n");
       out.write("                            Colibri\n");
       out.write("                        </b>\n");
@@ -92,18 +90,18 @@ public final class Home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            <!-- a lista aumenta automaticamente -->\n");
       out.write("                            <li class=\"nav-item active\">\n");
       out.write("                                <!-- opcao ativa -->\n");
-      out.write("                                <a class=\"nav-link\" href=\"Home.jsp\" style=\"color: #ffffff;\"><b>Home</b></a>\n");
+      out.write("                                <a class=\"nav-link\" href=\"index.html\" style=\"color: #ffffff;\"><b>Home</b></a>\n");
       out.write("                                <!-- como um \"\"\"botao\"\"\" , mas e um link-->\n");
       out.write("                            </li>\n");
       out.write("\n");
       out.write("                            <li class=\"nav-item\">\n");
-      out.write("                                <a class=\"nav-link\" href=\"Lugares.jsp\" style=\"color: #ffffff;\"><b>Lugares</b></a>\n");
+      out.write("                                <a class=\"nav-link\" href=\"#\" style=\"color: #ffffff;\"><b>Lugares</b></a>\n");
       out.write("                                <!-- como um \"\"\"botao\"\"\" , mas e um link-->\n");
       out.write("                            </li>\n");
       out.write("\n");
       out.write("\n");
       out.write("                            <li class=\"nav-item \">\n");
-      out.write("                                <a class=\"nav-link\" href=\"Sobre.jsp\" style=\"color: #ffffff;\"><b>Sobre</b></a>\n");
+      out.write("                                <a class=\"nav-link\" href=\"sobre.html\" style=\"color: #ffffff;\"><b>Sobre</b></a>\n");
       out.write("                                <!-- como um \"\"\"botao\"\"\" , mas e um link-->\n");
       out.write("                            </li>\n");
       out.write("\n");
@@ -212,7 +210,9 @@ public final class Home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\"\n");
       out.write("                integrity=\"sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM\"\n");
       out.write("        crossorigin=\"anonymous\"></script>\n");
-      out.write("</html>\n");
+      out.write("        <script type=\"text/javascript\">\n");
+      out.write("        </body>\n");
+      out.write("        </html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

@@ -2,7 +2,6 @@ package Controller;
 
 import DAO.CategoriaDAO;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -25,8 +24,8 @@ public class ControllerCategoria implements Initializable {
     @FXML
     private Tab tabCategoria;
 
-    @FXML
-    private Tab tabLugares;
+    //@FXML
+    //private Tab tabLugares;
 
     @FXML
     private TextField inpCatg;

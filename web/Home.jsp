@@ -9,23 +9,20 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Página Inicial - Colibri</title>
-        <link rel="stylesheet" href="css/EstiloHome.css">
-        <link rel="stylesheet" href="css/EstilosRodape.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
               integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" href="css/PaginaInicialEstilo.css">
+        <link rel="stylesheet" href="css/PgInicialCardEstilos.css">
+        <link rel="stylesheet" href="css/EstilosRodape.css">
     </head>
     <body>
-        <div class="fundo-imagem">
+        <div class="section-top">
             <nav class="navbar navbar-expand-md navbar-dark edit-nav">
                 <!-- navbar expansiva -->
                 <div class="container">
                     <!-- Logo -->
-
-                    <a class="navbar-brand" href="Home.jsp" style="color: #ffffff;">
-                        <span class="mx-1" style="font-size: 25px; color: #ffffff;">
-                            <i class="far fa-compass"></i>
-                        </span>
+                    <a class="navbar-brand" href="Home.jsp" style="color: white;">
                         <b>
                             Colibri
                         </b>
@@ -43,7 +40,7 @@
                             <!-- a lista aumenta automaticamente -->
                             <li class="nav-item active">
                                 <!-- opcao ativa -->
-                                <a class="nav-link" href="Home.jsp" style="color: #ffffff;"><b>Página Inicial</b></a>
+                                <a class="nav-link" href="Home.jsp" style="color: #ffffff;"><b>Home</b></a>
                                 <!-- como um """botao""" , mas e um link-->
                             </li>
 
@@ -54,35 +51,27 @@
 
 
                             <li class="nav-item ">
-                                <a class="nav-link" href="sobre.html" style="color: #ffffff;"><b>Sobre</b></a>
+                                <a class="nav-link" href="Sobre.jsp" style="color: #ffffff;"><b>Sobre</b></a>
                                 <!-- como um """botao""" , mas e um link-->
                             </li>
 
-                            <%
-                                //Verifica se está logado, e substitui li
-                                HttpSession sessao = request.getSession();
-                                if (sessao.getAttribute("nomeUsuarioLogado") != null) {
-                            %>
                             <li class="nav-item">
-                                <a class="nav-link" href="PerfilUsuario.jsp" style="color: #ffffff;"><b><%= sessao.getAttribute("nomeUsuarioLogado")%></b></a>
-                            </li>
-                            <%
-                            } else {
-                            %>    <li class="nav-item">
                                 <a class="nav-link" href="Login.jsp" style="color: #ffffff;"><b>Entrar</b></a>
+                                <!-- como um """botao""" , mas e um link-->
                             </li>
-                            <%
-                                }
-                            %>
-
                         </ul>
                     </div>
                 </div>
             </nav>
-            <div class="fundo-texto">
-                <h1 style="font-size:50px">Descubra sua cidade</h1>
-            </div>
+            <div class="content">
+                <h1>Descubra sua Cidade</h1>
+                <input class="input-imagem" type="search" name="" id="" placeholder="Pesquise Lugares">
 
+            </div>
+            <!-- Setinha -->
+            <div class="content2">
+                <i class="fas fa-chevron-down" style=""></i>
+            </div>
         </div>
 
         <div class="container pt-5">
@@ -95,14 +84,15 @@
                 <%
                     //Limitar numero de cards na home
                     for (int i = 0; i < lugares.size(); i++) {
-                %>  <div class="col-md-3 cardCol">
-                    <div class="card mycard" id="<%= lugares.get(i).getIdLugar()%>" onclick="geraPg(this)">
-                        <div class="card-body">
-                            <h3 class="card-title"> <%= lugares.get(i).getNome()%> </h3>
-                            <p class="card-text"><%= lugares.get(i).getCategoria().getNome()%></p>
-                            <p class="card-text"><%= lugares.get(i).getDescricao()%></p>
+                %>  <div class="col-md-3 my-card-col" style="padding-left: 10px; padding-right: 10px;">
+                    <div class="card-container mycard" id="<%= lugares.get(i).getIdLugar()%>">
+                        <div class="card-img"></div>
+                        <div class="card-container-texto">
+                            <a class="card-titulo" href="#"><%= lugares.get(i).getNome()%></a>
+                            <p class="card-texto"><%= lugares.get(i).getCategoria().getNome()%></p>
+                            <p class="card-texto"><%= lugares.get(i).getDescricao()%></p>
                         </div>
-                        <div class="card-footer">
+                        <div class="my-card-footer">
                             <a href="GetLugar?idLugar=<%= lugares.get(i).getIdLugar()%>&act=get">Ver Mais</a>
                         </div>
                     </div>
@@ -120,27 +110,22 @@
             </div>
         </div>
 
-        <!--Footer -->
-        <footer class="myfooter footer mt-5 py-3">
+
+
+        <footer class="myfooter footer mt-auto py-3">
             <div class="container">
-                <div class="row mx-3">
-                    <div class="col-sm-3 mt-3">
-                        <i class="far fa-compass" aria-hidden="true" style="font-size: 150px; color: #ffffff;"></i>
+                <div class="row justify-content-center area-footer-opcao">
+                    <h2><b>Colibri</b></h2>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-4 mt-3 area-footer-opcao">
+                        <h2><b>Sobre</b></h2>
                     </div>
-                    <div class="col-sm-3 mt-3">
-                        <a href="sobre.html">
-                            <h2 style="color: #ffffff;">Sobre</h2>
-                        </a>
+                    <div class="col-sm-4 mt-3 area-footer-opcao">
+                        <h2><b>Lugares</b></h2>
                     </div>
-                    <div class="col-sm-3 mt-3">
-                        <a href="Lugares.jsp">
-                            <h2 style="color: #ffffff;">Lugares</h2>
-                        </a>
-                    </div>
-                    <div class="col-sm-3 mt-3" style="color: #ffffff;">
-                        <a href="Login.jsp">
-                            <h2 style="color: #ffffff;">Entrar</h2>
-                        </a>
+                    <div class="col-sm-4 mt-3 area-footer-opcao">
+                        <h2><b>Redes Sociais</b></h2>
                     </div>
                 </div>
             </div>
@@ -148,12 +133,11 @@
         <footer class="myfooter-copyright footer mt-auto">
             <div class="container">
                 <div class="row justify-content-center">
-                    <p><small>Fabricado por Juan Fernandes - 2020</small></p>
+                    <p>Fabricado por Juan - 2020</p>
                 </div>
             </div>
         </footer><!-- FIM FOOTERS -->
 
-        <!-- font awesome -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
                 integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -164,6 +148,4 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
                 integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
-    </body>
 </html>
