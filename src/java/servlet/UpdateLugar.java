@@ -93,7 +93,7 @@ public class UpdateLugar extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("GetLugar?idLugar="+idLugar+"&act=get");
             rd.forward(request, response);
         } catch (Exception e) {
-            RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("Error.jsp");
             rd.forward(request, response);
         }
     }

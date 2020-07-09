@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author juann
  */
-public class Controller extends HttpServlet {
+public class GetCidades extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

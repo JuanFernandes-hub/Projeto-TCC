@@ -9,12 +9,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import model.Login;
 import model.LoginLugar;
 import model.Lugar;
-
 
 /**
  *
@@ -23,11 +24,11 @@ import model.Lugar;
 public class LoginLugarDAO {
 
     static Connection c;
-    
+
     //Retorna uma lista de LoginLugar (usado para verificar se o usuario cadastrou algum lugar)
     public static List<LoginLugar> getLoginLugar(Login login) {
         List<LoginLugar> loginLugares = new ArrayList<LoginLugar>();
-        String sql = "SELECT pkidusuariolugar, fkidlogin, fkidlugar\n"
+        String sql = "SELECT pkidusuariolugar, fkidlogin, fkidlugar, dataCadastro\n"
                 + "FROM usuarioLugar\n"
                 + "WHERE fkidlogin = ?";
         c = ConnectionFactory.getConnection();
@@ -42,7 +43,9 @@ public class LoginLugarDAO {
                 loginLugar.setIdUsuarioLugar(rs.getInt("pkidusuariolugar"));
                 loginLugar.setLogin(loginObj);
                 loginLugar.setLugar(lugar);
-                
+                Timestamp timestamp = rs.getTimestamp("dataCadastro");
+                loginLugar.setDataCadastro(timestamp.toLocalDateTime());
+
                 loginLugares.add(loginLugar);
             }
         } catch (SQLException e) {
@@ -50,17 +53,21 @@ public class LoginLugarDAO {
         }
         return loginLugares;
     }
-    
+
     //Tabela usuarioLugar
     public static void insereLoginLugar(int idLugar, int idLoginLugar) {
         c = ConnectionFactory.getConnection();
 
-        String sql = "INSERT INTO usuariolugar(fkidlogin,fkidlugar)\n"
-                + "VALUES (?,?);";
+        String sql = "INSERT INTO usuariolugar(fkidlogin,fkidlugar,dataCadastro)\n"
+                + "VALUES (?,?,?);";
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);
             ppstt.setInt(1, idLoginLugar);
             ppstt.setInt(2, idLugar);
+            //converter em TimeStamp
+            LocalDateTime agora = LocalDateTime.now();
+            Timestamp timestamp = Timestamp.valueOf(agora);
+            ppstt.setTimestamp(3, timestamp);
             ppstt.execute();
             ppstt.close();
         } catch (SQLException e) {
@@ -83,7 +90,6 @@ public class LoginLugarDAO {
             if (rs.next()) {
                 idLugar = rs.getInt("fkidlugar");
                 Lugar lugar = LugarDAO.getLugar(idLugar);
-                
                 return lugar;
             }
         } catch (SQLException e) {
@@ -92,7 +98,7 @@ public class LoginLugarDAO {
 
         return null;
     }
-    
+
     public static void deletaLoginLugar(int idLugar) {
         c = ConnectionFactory.getConnection();
         String sql = "DELETE FROM usuarioLugar WHERE fkidlugar= ? ";
@@ -103,11 +109,11 @@ public class LoginLugarDAO {
             ppstt.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }finally{
+        } finally {
             fecharConexao();
         }
     }
-    
+
     //Deleta por usuario
     public static void deletaLoginLugar(Login login) {
         c = ConnectionFactory.getConnection();
@@ -119,11 +125,11 @@ public class LoginLugarDAO {
             ppstt.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }finally{
+        } finally {
             fecharConexao();
         }
     }
-    
+
     private static void fecharConexao() {
         try {
             c.close();

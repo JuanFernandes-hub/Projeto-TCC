@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import static DAO.LugarDAO.c;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -154,5 +155,28 @@ public class LocalizacaoDAO {
         }
 
         return localizacoes;
+    }
+    
+    public static void deletaLocalizacao(int idlocalizacao) {
+        c = ConnectionFactory.getConnection();
+        String sql = "DELETE FROM localizacao WHERE pkidlocalizacao= ? ";
+        try {
+            PreparedStatement ppstt = c.prepareStatement(sql);
+            ppstt.setInt(1, idlocalizacao);
+            ppstt.execute();
+            ppstt.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }finally{
+            fecharConexao();
+        }
+    }
+
+    private static void fecharConexao() {
+        try {
+            c.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

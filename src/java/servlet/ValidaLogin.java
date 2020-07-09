@@ -20,7 +20,7 @@ import org.apache.commons.codec.digest.DigestUtils;
  *
  * @author user
  */
-public class validaLogin extends HttpServlet{
+public class ValidaLogin extends HttpServlet{
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

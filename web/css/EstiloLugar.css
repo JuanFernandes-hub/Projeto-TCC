@@ -1,0 +1,79 @@
+html, body{
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', serif;
+}
+
+.edit-nav{
+    background-color: #4A44F2
+}
+
+.container-fluid {
+    height: 100%;
+    width: 100%;
+}
+
+.tela {
+    height: 100%;
+}
+
+.area-info ul {
+    list-style: none;
+    padding-left: 25px;
+}
+
+.area-info {
+    background-color: #F0F0F2;
+    font-size: 23px;
+    height: 100%;
+    border-left: 7px solid #EA7E7B;
+}
+
+.area-info h1 {
+    color: #002028;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Roboto Slab', serif;
+}
+
+.area-info h2{
+    color: #344d54;
+    font-size: 35px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.area-info label{
+    color: #344d54;
+    font-size: 35px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.area-info ul {
+    padding-top: 20px;
+    height: 100%;
+}
+
+.area-info ul li {}
+
+.area-info .titulo-info {
+    font-weight: bold;
+}
+
+.area-img {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(74, 68, 242, .1);
+    background-image: url("../imagens/porto.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.area-btn {
+    margin-top: 20px;
+    margin-left: 0;
+}
+
+.area-btn a {
+    margin-right: 10px;
+}

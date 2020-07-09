@@ -7,11 +7,18 @@ package servlet;
 
 import DAO.CategoriaDAO;
 import DAO.LoginDAO;
+import DAO.LoginLugarDAO;
 import DAO.LugarDAO;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Calendar;
 import java.util.List;
-import model.Categoria;
+import java.util.Locale;
+import java.time.format.DateTimeFormatter;
 import model.Login;
-import model.Lugar;
+import model.LoginLugar;
 
 /**
  *
@@ -19,8 +26,5 @@ import model.Lugar;
  */
 public class Testes {
     public static void main(String[] args){
-        Login login = LoginDAO.getLogin(3);
-        login.setEmail("JuanTesteATT@gmail");
-        LoginDAO.atualizaLogin(login);
-    }
-}
+
+}}

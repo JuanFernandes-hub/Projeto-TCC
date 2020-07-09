@@ -1,22 +1,29 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Sobre - Colibri</title>
         <link rel="stylesheet" href="css/EstilosNavbar.css">
-        <link rel="stylesheet" href="css/EstilosRodape.css">
+        <link rel="stylesheet" href="css/EstiloFooter.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"> 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+        <link rel="stylesheet" href="css/EstiloSobre.css">
     </head>
+    <style>
+        html, body{
+            font-family: 'Roboto', serif;
+        }
+
+    </style>
+
     <body>
         <!-- NAVBAR -->
-        <nav class="navbar navbar-expand-md navbar-dark " style="background-color:#4A44F2;">
+        <nav class="navbar navbar-expand-md navbar-dark edit-nav">
             <!-- navbar expansiva -->
-
             <div class="container">
                 <!-- Logo -->
-                <a class="navbar-brand" href="Home.jsp" style="color: #ffffff;">
+                <a class="navbar-brand" href="Home.jsp" style="color: white;">
                     <b>
                         Colibri
                     </b>
@@ -50,17 +57,20 @@
                         </li>
 
                         <%
-                            //Verifica se está logado, e substitui li
                             HttpSession sessao = request.getSession();
-                            if (sessao.getAttribute("nomeUsuarioLogado") != null) {
+                            String usuario = (String) sessao.getAttribute("nomeUsuarioLogado");
+                            if (usuario != null) {
                         %>
                         <li class="nav-item">
-                            <a class="nav-link" href="PerfilUsuario.jsp" style="color: #ffffff;"><b><%= sessao.getAttribute("nomeUsuarioLogado")%></b></a>
+                            <a class="nav-link" href="Login.jsp" style="color: #ffffff;"><b><%= usuario%></b></a>
+                            <!-- como um """botao""" , mas e um link-->
                         </li>
                         <%
                         } else {
-                        %>    <li class="nav-item">
+                        %>
+                        <li class="nav-item">
                             <a class="nav-link" href="Login.jsp" style="color: #ffffff;"><b>Entrar</b></a>
+                            <!-- como um """botao""" , mas e um link-->
                         </li>
                         <%
                             }
@@ -68,40 +78,60 @@
                     </ul>
                 </div>
             </div>
-        </nav> <!-- FIM-NAVBAR -->
-        
+        </nav>
+
+
+        <div class="container">
+            <div class="row pt-5 row justify-content-center">
+                <h1 class="text-center">Por que me usar?</h1>
+            </div>
+            <div class="row justify-content-center pt-2 area-icon">
+                <div class="col" style="text-align: center;">
+                    <span class="" style="font-size: 120px; color: #4A44F2;">
+                        <i class="fas fa-route"></i>
+                    </span>
+                    <h3 class="" style="color: #002028;"><b>Explore novos lugares</b></h3>
+                    <p class="">Aproveite seu final de semana para conhecer novos lugares</p>
+                </div>
+                <div class="col" style="text-align: center;">
+                    <span class="" style="font-size: 120px; color: #4A44F2;">
+                        <i class="fas fa-share-alt"></i>                  
+                    </span>
+                    <h3 class="" style="color: #002028;"><b>Compartilhe um lugar</b></h3>
+                    <p class="">Cadastre um lugar para que mais pessoas possam visitá-lo</p>
+                </div>
+                <div class="col" style="text-align: center;">
+                    <span class="" style="font-size: 120px; color: #4A44F2;">
+                        <i class="far fa-laugh"></i>
+                    </span>
+                    <h3 class="" style="color: #002028;"><b>Veja outras experiências</b></h3>
+                    <p class="">Compartilhe e veja experiências</p>
+                </div>
+            </div>
+        </div>
+
         <!--Footer -->
-        <footer class="myfooter footer mt-5 py-3">
+        <footer class="my-footer mt-auto py-3">
             <div class="container">
-                <div class="row mx-3">
-                    <div class="col-sm-3 mt-3">
-                        <i class="far fa-compass" aria-hidden="true" style="font-size: 150px; color: #ffffff;"></i>
+                <div class="row justify-content-center area-footer-opcao">
+                    <h2><a href="Home.jsp"><b>Colibri</b></a></h2>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-4 mt-3 area-footer-opcao">
+                        <h2><a href="Sobre.jsp">Sobre</a></h2>
                     </div>
-                    <div class="col-sm-3 mt-3">
-                        <a href="sobre.html">
-                            <h2 style="color: #ffffff;">Sobre</h2>
-                        </a>
+                    <div class="col-sm-4 mt-3 area-footer-opcao">
+                        <h2><a href="Lugares.jsp">Lugares</a></h2>
                     </div>
-                    <div class="col-sm-3 mt-3">
-                        <a href="Lugares.jsp">
-                            <h2 style="color: #ffffff;">Lugares</h2>
-                        </a>
-                    </div>
-                    <div class="col-sm-3 mt-3" style="color: #ffffff;">
-                        <a href="Login.jsp">
-                        <h2 style="color: #ffffff;">Entrar</h2>
-                        </a>
+                    <div class="col-sm-4 mt-3 area-footer-opcao">
+                        <h2><a href="Login.jsp">Entrar</a></h2>
                     </div>
                 </div>
+            </div>
+            <div class="my-footer-copyright">
+                <p>&COPY; Colibri | Fabricado por Juan Fernandes</p>
             </div>
         </footer>
-        <footer class="myfooter-copyright footer mt-auto">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <p><small>Fabricado por Juan Fernandes - 2020</small></p>
-                </div>
-            </div>
-        </footer><!-- FIM FOOTERS -->
 
 
         <!-- font awesome -->

@@ -40,3 +40,13 @@ function validaForm(form) {
     }
 }
 
+function mostraSenha(input, icon) {
+    if ($(input).attr("type") === "text") {
+        $(input).attr("type", "password");
+        $(icon).removeClass().addClass("far fa-eye-slash");
+    } else if ($(input).attr("type") === "password") {
+        $(input).attr("type", "text");
+        $(icon).removeClass().addClass("far fa-eye");
+    }
+}
+

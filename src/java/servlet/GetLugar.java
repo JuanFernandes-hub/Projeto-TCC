@@ -55,7 +55,7 @@ public class GetLugar extends HttpServlet {
 
         } catch (Exception e) {
             e.printStackTrace();
-            RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("Error.jsp");
             rd.forward(request, response);
         }
     }

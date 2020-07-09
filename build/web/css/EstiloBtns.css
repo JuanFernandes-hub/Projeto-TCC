@@ -1,0 +1,25 @@
+.my-button-cancel {
+    background-color: #F20530;
+    color: #F0F0F2 !important;
+    border-radius: 5px;
+    min-width: 80px !important;
+}
+
+.my-button-accept {
+    background-color: #4A44F2;
+    color: #F0F0F2 !important;
+    border-radius: 5px;
+    min-width: 80px !important;
+}
+
+.my-button-accept:hover {
+    background-color: #056CF2;
+    color: #F0F0F2;
+    border-radius: 5px;
+}
+
+.my-button-cancel:hover {
+    background-color: #F20544;
+    color: #F0F0F2;
+    border-radius: 5px;
+}

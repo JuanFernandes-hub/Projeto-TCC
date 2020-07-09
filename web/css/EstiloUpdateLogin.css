@@ -1,0 +1,49 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Roboto', serif;
+}
+
+body{
+    background-color: #F2E635;
+}
+
+input {
+    width: 100%;
+}
+
+.area-col {
+    background-color: #F2E635;
+    padding-left: 30px;
+    padding-right: 80px;
+}
+
+.area-col h1 {
+    font-family: 'Roboto slab', serif;
+    color: #002028;
+    font-size: 120px;
+    font-weight: bold;
+}
+
+.area-col label {
+    color: #002028;
+    font-size: 20px;
+}
+
+.area-cap{
+    background-image: url(../imagens/Capivara.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container-fluid,
+.tela,
+.area-col {
+    height: 100%;
+}
+
+.tela{
+    background-color: #F2E635;
+}
+

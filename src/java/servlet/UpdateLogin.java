@@ -37,7 +37,6 @@ public class UpdateLogin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            System.out.println("CHEGOU AQUI");
             HttpSession sessao = request.getSession(false);
             int idUsuarioLogado = (Integer) sessao.getAttribute("idUsuarioLogado");
             String senhaCorreta = LoginDAO.getLogin(idUsuarioLogado).getSenha();
@@ -67,7 +66,7 @@ public class UpdateLogin extends HttpServlet {
             }
 
         } catch (Exception ex) {
-            RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("Error.jsp");
             rd.forward(request, response);
             ex.printStackTrace();
         }

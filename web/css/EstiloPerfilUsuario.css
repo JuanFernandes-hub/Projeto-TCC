@@ -1,0 +1,100 @@
+body, html{
+    font-family: 'Roboto', sans-serif !important;
+    width: 100%;
+    height: 100%;
+}
+.edit-nav{
+    background-color: #4A44F2;
+}
+
+.tela-altura{
+}
+
+.col-card-perfil {
+    padding-left: 50px;
+    padding-right: 50px;
+    min-height: 100vh;
+    height: 100%;
+}
+
+.col-perfil {
+    padding-top: 0;
+    padding-left: 25px;
+    padding-right: 25px;
+    background-color: #F2E635;
+}
+
+.col-md-9>div:nth-child(3) {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+
+.text-icon {
+    font-size: 25px;
+    margin: 8px;
+}
+
+.text-icon label,
+a {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.text-icon label,
+a,
+span:hover {
+    cursor: pointer;
+}
+
+.area-titulo {
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.area-titulo h1 {
+    font-family: 'Roboto slab', serif;
+    font-weight: bold;
+    color: #002028;
+    font-size: 50px;
+}
+
+.fa-ul {
+    color: #002028;
+    padding-top: 15px;
+}
+
+.fa-ul li a{
+    text-decoration: none;
+    color: #002028;
+}
+
+.nav-perfil {
+    display: contents;
+}
+
+.edit-nav {
+    background-color: #4A44F2;
+}
+
+
+/* Arrumando fontes da navbar */
+.navbar-brand>b:nth-child(1) {
+    font-weight: 700;
+}
+
+li.nav-item:nth-child(1)>a:nth-child(1)>b:nth-child(1) {
+    font-weight: 700;
+}
+
+li.nav-item:nth-child(2)>a:nth-child(1)>b:nth-child(1) {
+    font-weight: 700;
+}
+
+li.nav-item:nth-child(3)>a:nth-child(1)>b:nth-child(1) {
+    font-weight: 700;
+}
+
+li.nav-item:nth-child(4)>a:nth-child(1)>b:nth-child(1) {
+    font-weight: 700;
+}

@@ -10,12 +10,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import model.Categoria;
 import model.Cidade;
 import model.Estado;
 import model.Localizacao;
+import model.LoginLugar;
 import model.Lugar;
 
 /**
@@ -47,7 +49,7 @@ public class LugarDAO {
             rs.next();
             int id = rs.getInt(1);
             rs.close();
-            //relaciona pk gerado com o lugar
+            //relaciona pk gerado com o lugar e pega a date e hora atual
             LoginLugarDAO.insereLoginLugar(id, idLoginLugar);
             ppstt.close();
         } catch (SQLException e) {
@@ -121,7 +123,7 @@ public class LugarDAO {
                 Localizacao localizacao = new Localizacao();
                 localizacao.setIdLocalizacao(rs.getInt("fkidlocalizacao"));
                 localizacao.setRua(rs.getString("rua"));
-                localizacao.setComplemento("complemento");
+                localizacao.setComplemento(rs.getString("complemento"));
                 localizacao.setBairro(rs.getString("bairro"));
                 localizacao.setNumero(rs.getString("numero"));
 
@@ -183,7 +185,7 @@ public class LugarDAO {
                 Localizacao localizacao = new Localizacao();
                 localizacao.setIdLocalizacao(rs.getInt("fkidlocalizacao"));
                 localizacao.setRua(rs.getString("rua"));
-                localizacao.setComplemento("complemento");
+                localizacao.setComplemento(rs.getString("complemento"));
                 localizacao.setBairro(rs.getString("bairro"));
                 localizacao.setNumero(rs.getString("numero"));
 
@@ -215,10 +217,12 @@ public class LugarDAO {
         String sql = "DELETE FROM lugar WHERE pkidlugar= ? ";
         try {
             LoginLugarDAO.deletaLoginLugar(idLugar);
+            Lugar lugar = getLugar(idLugar);
             PreparedStatement ppstt = c.prepareStatement(sql);
             ppstt.setInt(1, idLugar);
             ppstt.execute();
             ppstt.close();
+            LocalizacaoDAO.deletaLocalizacao(lugar.getLocalizacao().getIdLocalizacao());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }finally{

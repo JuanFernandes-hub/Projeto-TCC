@@ -1,0 +1,29 @@
+.edit-nav{
+    background-color: #4A44F2;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+}
+h1{
+    font-family: 'Segoe UI', sans-serif, serif;
+    font-weight: bold;
+    background-color: #4A44F2;
+    color:#ffffff;
+    font-size: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.area-icon{
+    max-height: 0px;
+    height: 100%;
+}
+.container{
+    height: 100%;
+}
+
+.my-footer{
+    margin-top: auto;
+}

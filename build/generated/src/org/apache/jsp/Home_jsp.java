@@ -65,8 +65,8 @@ public final class Home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("              integrity=\"sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T\" crossorigin=\"anonymous\">\n");
       out.write("        <link href=\"https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap\" rel=\"stylesheet\"> \n");
       out.write("        <link rel=\"stylesheet\" href=\"css/PaginaInicialEstilo.css\">\n");
-      out.write("        <link rel=\"stylesheet\" href=\"css/PgInicialCardEstilos.css\">\n");
-      out.write("        <link rel=\"stylesheet\" href=\"css/EstilosRodape.css\">\n");
+      out.write("        <link rel=\"stylesheet\" href=\"css/EstiloCards.css\">\n");
+      out.write("        <link rel=\"stylesheet\" href=\"css/EstiloFooter.css\">\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        <div class=\"section-top\">\n");
@@ -92,7 +92,7 @@ public final class Home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            <!-- a lista aumenta automaticamente -->\n");
       out.write("                            <li class=\"nav-item active\">\n");
       out.write("                                <!-- opcao ativa -->\n");
-      out.write("                                <a class=\"nav-link\" href=\"Home.jsp\" style=\"color: #ffffff;\"><b>Home</b></a>\n");
+      out.write("                                <a class=\"nav-link\" href=\"Home.jsp\" style=\"color: #ffffff;\"><b>Página Inicial</b></a>\n");
       out.write("                                <!-- como um \"\"\"botao\"\"\" , mas e um link-->\n");
       out.write("                            </li>\n");
       out.write("\n");
@@ -107,10 +107,35 @@ public final class Home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                                <!-- como um \"\"\"botao\"\"\" , mas e um link-->\n");
       out.write("                            </li>\n");
       out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("                            ");
+
+                                HttpSession sessao = request.getSession();
+                                String usuario = (String) sessao.getAttribute("nomeUsuarioLogado");
+                                if (usuario != null) {
+                            
+      out.write("\n");
+      out.write("                            <li class=\"nav-item\">\n");
+      out.write("                                <a class=\"nav-link\" href=\"Login.jsp\" style=\"color: #ffffff;\"><b>");
+      out.print( usuario);
+      out.write("</b></a>\n");
+      out.write("                                <!-- como um \"\"\"botao\"\"\" , mas e um link-->\n");
+      out.write("                            </li>\n");
+      out.write("                            ");
+
+                            } else {
+                            
+      out.write("\n");
       out.write("                            <li class=\"nav-item\">\n");
       out.write("                                <a class=\"nav-link\" href=\"Login.jsp\" style=\"color: #ffffff;\"><b>Entrar</b></a>\n");
       out.write("                                <!-- como um \"\"\"botao\"\"\" , mas e um link-->\n");
       out.write("                            </li>\n");
+      out.write("                            ");
+
+                                }
+                            
+      out.write("\n");
       out.write("                        </ul>\n");
       out.write("                    </div>\n");
       out.write("                </div>\n");
@@ -176,31 +201,28 @@ public final class Home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("        <footer class=\"myfooter footer mt-auto py-3\">\n");
+      out.write("        <footer class=\"my-footer mt-auto py-3\">\n");
       out.write("            <div class=\"container\">\n");
       out.write("                <div class=\"row justify-content-center area-footer-opcao\">\n");
-      out.write("                    <h2><b>Colibri</b></h2>\n");
+      out.write("                    <h2><a href=\"Home.jsp\"><b>Colibri</b></a></h2>\n");
       out.write("                </div>\n");
       out.write("                <div class=\"row justify-content-center\">\n");
       out.write("                    <div class=\"col-sm-4 mt-3 area-footer-opcao\">\n");
-      out.write("                        <h2><b>Sobre</b></h2>\n");
+      out.write("                        <h2><a href=\"Sobre.jsp\">Sobre</a></h2>\n");
       out.write("                    </div>\n");
       out.write("                    <div class=\"col-sm-4 mt-3 area-footer-opcao\">\n");
-      out.write("                        <h2><b>Lugares</b></h2>\n");
+      out.write("                        <h2><a href=\"Lugares.jsp\">Lugares</a></h2>\n");
       out.write("                    </div>\n");
       out.write("                    <div class=\"col-sm-4 mt-3 area-footer-opcao\">\n");
-      out.write("                        <h2><b>Redes Sociais</b></h2>\n");
+      out.write("                        <h2><a href=\"Login.jsp\">Entrar</a></h2>\n");
       out.write("                    </div>\n");
       out.write("                </div>\n");
+      out.write("            </div>\n");
+      out.write("            <div class=\"my-footer-copyright\">\n");
+      out.write("                <p>&COPY; Colibri | Fabricado por Juan Fernandes</p>\n");
       out.write("            </div>\n");
       out.write("        </footer>\n");
-      out.write("        <footer class=\"myfooter-copyright footer mt-auto\">\n");
-      out.write("            <div class=\"container\">\n");
-      out.write("                <div class=\"row justify-content-center\">\n");
-      out.write("                    <p>Fabricado por Juan - 2020</p>\n");
-      out.write("                </div>\n");
-      out.write("            </div>\n");
-      out.write("        </footer><!-- FIM FOOTERS -->\n");
+      out.write("        <!-- FIM FOOTERS -->\n");
       out.write("\n");
       out.write("        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/all.min.js\"></script>\n");
       out.write("        <script src=\"https://code.jquery.com/jquery-3.3.1.slim.min.js\"\n");

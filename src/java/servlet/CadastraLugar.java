@@ -100,19 +100,10 @@ public class CadastraLugar extends HttpServlet {
             int idLoginLugar = (Integer) sessao.getAttribute("idUsuarioLogado");
             LugarDAO.insereLugar(lugar,idLoginLugar);
             
-
-            /*
-            out.println("<html>");
-            out.println("<body>");
-            out.println("Categoria " + categoria_lugar
-                    + " adicionado com sucesso");
-            out.println("</body>");
-            out.println("</html>");
-             */
             RequestDispatcher rd = request.getRequestDispatcher("PerfilUsuario.jsp");
             rd.forward(request, response);
         } catch (Exception e) {
-            RequestDispatcher rd = request.getRequestDispatcher("Home.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("Error.jsp");
             rd.forward(request, response);
         }
        

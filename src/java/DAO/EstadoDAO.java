@@ -43,7 +43,7 @@ public class EstadoDAO {
     
     public static List<Estado> getEstado(){
         List<Estado> estados = new ArrayList<Estado>();
-        String sql = "SELECT * FROM estado;";
+        String sql = "SELECT * FROM estado ORDER BY nome ASC;";
         c = ConnectionFactory.getConnection();
         try{
             PreparedStatement ppstt = c.prepareStatement(sql);

@@ -6,9 +6,21 @@ function validaForm(form) {
         return false;
     }
     
-     if(!form.bairro.value.trim() || form.bairro.value === null || form.bairro.value.length < 3){
-     alert("Digite o Bairro");
-     form.bairro.focus();
+    if(!form.categoria.value.trim() || form.categoria.value === null){
+     alert("Selecione uma categoria");
+     form.categoria.focus();
+     return false;
+     }
+    
+    if (!form.descricao.value.trim()) {
+        alert("Digite a descrição do lugar");
+        form.descricao.focus();
+        return false;
+    }
+    
+    if(!form.acesso.value.trim() || form.acesso.value === null){
+     alert("Selecione um acesso");
+     form.acesso.focus();
      return false;
      }
      
@@ -34,34 +46,34 @@ function validaForm(form) {
 //Verifica na hora e avisa
 $(function () {
     $("input").on("click", function () {
-        $("input").css("border", "1px solid #CCCCCC");
+        $("input").css("border", "2px solid #002028");
     });
 
 
     $("#nome").on("blur", function () {
-        nome = $("#nome");
+        let nome = $("#nome");
         if (nome.val().length === 0 || !nome.val().trim() || nome.val().length < 3) {
-            nome.css("border", "1px solid red");
+            nome.css("border", "2px solid #F20530");
         } else {
-            nome.css("border", "1px solid #CCCCCC");
+            nome.css("border", "2px solid #002028");
         }
     });
-
-    $("#bairro").on("blur", function () {
-        bairro = $("#bairro");
-        if (bairro.val().length === 0 || !bairro.val().trim() || bairro.val().length < 3) {
-            bairro.css("border", "1px solid red");
+    
+    $("#descricao").on("blur", function () {
+        let descricao = $("#descricao");
+        if (descricao.val().length === 0 || !descricao.val().trim()) {
+            descricao.css("border", "2px solid #F20530");
         } else {
-            bairro.css("border", "1px solid #CCCCCC");
+            descricao.css("border", "2px solid #002028");
         }
     });
 
     $("#rua").on("blur", function () {
-        rua = $("#rua");
+        let rua = $("#rua");
         if (rua.val().length === 0 || !rua.val().trim() || rua.val().length < 3) {
-            rua.css("border", "1px solid red");
+            rua.css("border", "2px solid #F20530");
         } else {
-            rua.css("border", "1px solid #CCCCCC");
+            rua.css("border", "2px solid #002028");
         }
     });
 

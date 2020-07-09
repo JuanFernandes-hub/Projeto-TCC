@@ -8,7 +8,7 @@ $(document).ready(function(){
        
        $.ajax({
           type: "GET",
-          url: "Controller",
+          url: "GetCidades",
           data: {pesquisa: pesquisa},
           dataType: "json",
             success: function (data, textStatus, jqXHR) {

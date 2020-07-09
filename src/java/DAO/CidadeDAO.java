@@ -92,7 +92,7 @@ public class CidadeDAO {
         List<Cidade> cidades = new ArrayList<Cidade>();
         String sql = "SELECT cid.pkidcidade ,cid.nome AS cidadenome, cid.fkidestado, est.nome AS estadonome, est.sigla AS sigla\n"
                 + "FROM cidade cid\n"
-                + "INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado) AND est.pkidestado = ?";
+                + "INNER JOIN estado AS est ON (cid.fkidestado = est.pkidestado) AND est.pkidestado = ? ORDER BY cidadenome ASC";
         c = ConnectionFactory.getConnection();
         try {
             PreparedStatement ppstt = c.prepareStatement(sql);

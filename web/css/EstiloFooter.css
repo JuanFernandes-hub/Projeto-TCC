@@ -1,19 +1,30 @@
 
-.myfooter-copyright{
+.my-footer-copyright{
     width: 100%;
+    padding-top: 15px;
     background-color: #4A44F2; 
     color: #ffffff;
     text-align: center;
 }
 
-.myfooter{
+.my-footer-copyright p{
+    margin-bottom: 0
+}
+
+.my-footer{
     width: 100%;
     background-color: #4A44F2;
     color: white;
     text-align: center;
 }
 
+.my-footer a{
+    text-decoration: none;
+    color: #fff;
+}
+
 .area-footer-opcao{
+    margin-top: 5px !important;
     text-align: center;
     color: #fff;
 }

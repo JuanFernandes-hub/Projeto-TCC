@@ -25,12 +25,14 @@ import model.Cidade;
  */
 public class Testes {
 
-    public static void main(String[] args) throws ParseException {
+    public static void main(String[] args){
         LugarDAO ldao = new LugarDAO();
         Lugar lugar = ldao.getLugar(13);
         Time horaInicial = lugar.getHoraInicial();
         String data = "16/06/2020";
+        
 
+        /*
         //Diz o formato esperado
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         //converte string em date
@@ -46,6 +48,7 @@ public class Testes {
 
         Time horaInicial_lugar = new java.sql.Time(horaInicial.getTime());
         System.out.println(horaInicial_lugar);
+        */
 
     }
 

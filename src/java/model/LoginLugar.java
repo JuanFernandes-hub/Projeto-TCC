@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.time.LocalDateTime;
+
 /**
  *
  * @author juann
@@ -13,9 +15,9 @@ public class LoginLugar {
     private int idUsuarioLugar;
     private Login login;
     private Lugar lugar;
-
-    public LoginLugar(int idUsuarioLugar, Login login, Lugar lugar) {
-        this.idUsuarioLugar = idUsuarioLugar;
+    private LocalDateTime dataCadastro;
+    
+    public LoginLugar(Login login, Lugar lugar) {
         this.login = login;
         this.lugar = lugar;
     }
@@ -45,6 +47,14 @@ public class LoginLugar {
 
     public void setLugar(Lugar lugar) {
         this.lugar = lugar;
+    }
+
+    public LocalDateTime getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(LocalDateTime dataCadastro) {
+        this.dataCadastro = dataCadastro;
     }
     
 }

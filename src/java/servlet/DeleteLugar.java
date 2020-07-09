@@ -34,14 +34,13 @@ public class DeleteLugar extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try {
             int idLugar = parseInt(request.getParameter("idLugar"));
-            
             LugarDAO.deletaLugar(idLugar);
-            //String mensagem = "Usuário ou senha incorretos. Tente novamente.";
-            //request.setAttribute("mensagem", mensagem);
-            RequestDispatcher rd = request.getRequestDispatcher("Lugares.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("PerfilUsuario.jsp");
             rd.forward(request, response);
         }catch(Exception e){
             e.printStackTrace();
+            RequestDispatcher rd = request.getRequestDispatcher("Error.jsp");
+            rd.forward(request, response);
         }
     }
 
